@@ -1,0 +1,21 @@
+.separator {
+  display: inline-block;
+  width: 2px;
+  min-width: 2px;
+  max-width: 2px;
+  height: 2rem;
+  background: $black;
+  //border-right: 1px solid $black;
+
+  &--absolute {
+    position: absolute;
+  }
+  &--centered {
+    left: calc(50% - 1px);
+  }
+}
+
+.divider {
+  height: 1px;
+  margin: auto;
+}

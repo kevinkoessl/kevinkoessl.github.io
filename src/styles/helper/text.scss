@@ -1,0 +1,17 @@
+.has-text-condensed {
+  font-stretch: condensed;
+}
+
+.is-nowrap {
+  white-space: nowrap;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: $white;
+  background: $primary;
+}
+
+::selection {
+  color: $white;
+  background: $primary;
+}
