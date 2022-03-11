@@ -1,35 +1,26 @@
 <template>
   <div id="app">
-    <section class="hero is-fullheight is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title is-1">Kevin does it all</h1>
-        </div>
-      </div>
-    </section>
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Requirements Frackend Service Engineer</h2>
-        <div class="is-size-3">
-          <p>Requirements Engineering</p>
-          <p>Frontend Development</p>
-          <p>Interaction Design</p>
-          <p>Artificial Intelligence</p>
-          <p>User Experience</p>
+        <div class="is-size-3 has-text-primary">
+          <word-cluster :words="expertise" />
         </div>
       </div>
     </section>
+
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Private Activities</h2>
         <div class="is-size-3">
-          <p>Beat Producer</p>
           <p>Graphics Designer</p>
           <p>Cooking</p>
           <p>Fitness</p>
         </div>
       </div>
     </section>
+    <h2 class="title is-2">Beat Producer</h2>
+    <side-scroll-beat-timeline />
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Techstack</h2>
@@ -40,6 +31,10 @@
         </div>
       </div>
     </section>
+    <light-bulb-section type="is-light"
+      ><h1 class="title is-1 has-text-light">Kevin does it all</h1></light-bulb-section
+    >
+
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Tools</h2>
@@ -107,7 +102,26 @@
     </section>
   </div>
 </template>
-
+<script>
+import LightBulbSection from './components/LightBulbSection.vue';
+import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
+import WordCluster from './components/WordCluster.vue';
+export default {
+  name: 'App',
+  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline },
+  data() {
+    return {
+      expertise: [
+        'Requirements Engineering',
+        'Frontend Development',
+        'Interaction Design',
+        'Artificial Intelligence',
+        'User Experience',
+      ],
+    };
+  },
+};
+</script>
 <style lang="scss">
 @import '~@/styles/main.scss';
 .column .box {
