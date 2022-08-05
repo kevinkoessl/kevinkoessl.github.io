@@ -1,5 +1,5 @@
 <template>
-  <section :class="type" class="light-blub-section hero is-fullheight" ref="container">
+  <section :class="type" class="light-blub-section hero is-fullheight" ref="container" @mouseenter="moveLight($event)">
     <div
       class="light-blub-section__light"
       :class="type === 'is-light' ? 'is-dark' : 'is-light'"
@@ -60,9 +60,11 @@ export default {
   },
   mounted() {
     window.addEventListener('mousemove', this.moveLight);
+    window.addEventListener('scroll', this.moveLight);
   },
   beforeDestroy() {
     window.removeEventListener('mousemove', this.moveLight);
+    window.removeEventListener('scroll', this.moveLight);
   },
 };
 </script>

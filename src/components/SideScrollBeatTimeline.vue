@@ -103,11 +103,14 @@ export default {
     return {
       stickyContainerHeight: 0,
       inViewport: false,
+      oldScrollValue: 0,
+      newScrollValue: 0,
     };
   },
 
   methods: {
     scroll(evt) {
+      console.log(evt);
       const containerInViewPort = this.$refs.stickyContainer;
 
       if (!this.isInViewport(containerInViewPort)) {
@@ -140,6 +143,14 @@ export default {
   mounted() {
     this.setStickyContainersSize();
     window.addEventListener('wheel', this.scroll);
+    document.addEventListener('scroll', () => {
+      this.newScrollValue = window.pageYOffset;
+      let scrollOffset = this.newScrollValue - this.oldScrollValue;
+
+      let wheelEvent = new WheelEvent('wheel', { deltaY: scrollOffset });
+      this.oldScrollValue = this.newScrollValue;
+      window.dispatchEvent(wheelEvent);
+    });
     window.addEventListener('resize', this.setStickyContainersSize);
   },
   beforeDestroy() {

@@ -1,22 +1,20 @@
 <template>
   <div class="word-cluster" @mouseenter="scattered = false" @mouseleave="scattered = true">
-    <component
+    <p
       v-for="(word, index) in words"
       :key="`word-cluster__word-${index}`"
-      :is="typeof words === 'string' ? 'span' : 'p'"
       :style="positions[index]"
       class="word-cluster__word"
     >
       {{ word }}
-      <span> </span>
-    </component>
+    </p>
   </div>
 </template>
 <script>
 export default {
   name: 'WordCluster',
   props: {
-    words: [] || String,
+    words: [],
   },
   data() {
     return {
@@ -25,15 +23,11 @@ export default {
   },
   computed: {
     positions() {
-      let words = this.words;
-      if (typeof words === 'string') {
-        words = words.split('');
-      }
-      return words.map(() => {
+      return this.words.map(() => {
         let rotate = 180 - Math.floor(Math.random() * 360);
         let rotateX = 90 - Math.floor(Math.random() * 180);
-        let translateX = Math.floor(Math.random() * 100) - 200;
-        let translateY = Math.floor(Math.random() * 100) - 200;
+        let translateX = Math.floor(Math.random() * 100 - 20);
+        let translateY = Math.floor(Math.random() * 100 - 20);
 
         if (this.scattered)
           return {
@@ -47,8 +41,8 @@ export default {
 <style lang="scss">
 .word-cluster {
   display: inline-block;
+  user-select: none;
   &__word {
-    display: inline-block;
     transition: all 2000ms cubic-bezier(0.31, 0.45, 0.19, 1);
     line-height: 9rem;
   }

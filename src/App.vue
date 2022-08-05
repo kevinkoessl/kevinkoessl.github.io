@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <section class="hero is-success is-fullheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <span class="title is-3">Der <span class="has-text-weight-bold">beste</span></span
+          ><br />
+          <span class="title is-2 has-text-black">Full-Stack-Developer</span><br />
+          <span class="title is-3">der <span class="has-text-weight-bold has-text-bold">Welt</span> ist auf</span><br />
+          <span class="title is-2 has-text-black">Jobsuche!</span>
+        </div>
+      </div>
+    </section>
+    <main-hero />
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Requirements Frackend Service Engineer</h2>
@@ -8,19 +20,6 @@
         </div>
       </div>
     </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="title is-2">Private Activities</h2>
-        <div class="is-size-3">
-          <p>Graphics Designer</p>
-          <p>Cooking</p>
-          <p>Fitness</p>
-        </div>
-      </div>
-    </section>
-    <h2 class="title is-2">Beat Producer</h2>
-    <side-scroll-beat-timeline />
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Techstack</h2>
@@ -31,9 +30,22 @@
         </div>
       </div>
     </section>
-    <light-bulb-section type="is-light"
-      ><h1 class="title is-1 has-text-light">Kevin does it all</h1></light-bulb-section
-    >
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-3">
+          <word-cluster words="Private Activities" />
+        </h2>
+        <div class="is-size-3">
+          <p>Graphics Designer</p>
+          <p>Cooking</p>
+          <p>Fitness</p>
+        </div>
+      </div>
+    </section>
+    <h2 class="title is-2">Beat Producer</h2>
+    <side-scroll-beat-timeline />
+
+    <light-bulb-section type="is-info"><h1 class="title is-1 has-text-info">Kevin does it all</h1></light-bulb-section>
 
     <section class="section">
       <div class="container">
@@ -47,6 +59,7 @@
         </div>
       </div>
     </section>
+    <!-- side-scroll-split-section /-->
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Experience</h2>
@@ -104,11 +117,13 @@
 </template>
 <script>
 import LightBulbSection from './components/LightBulbSection.vue';
+import MainHero from './components/MainHero.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
+
 import WordCluster from './components/WordCluster.vue';
 export default {
   name: 'App',
-  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline },
+  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline, MainHero },
   data() {
     return {
       expertise: [
