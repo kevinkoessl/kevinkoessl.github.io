@@ -10,6 +10,7 @@
         </div>
       </div>
     </section>
+    <work-experience />
     <main-hero />
     <section class="section">
       <div class="container">
@@ -120,9 +121,10 @@ import MainHero from './components/MainHero.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 
 import WordCluster from './components/WordCluster.vue';
+import WorkExperience from './components/WorkExperience.vue';
 export default {
   name: 'App',
-  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline, MainHero },
+  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline, MainHero, WorkExperience },
   data() {
     return {
       expertise: [
