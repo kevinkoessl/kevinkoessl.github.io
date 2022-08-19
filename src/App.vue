@@ -3,8 +3,7 @@
     <section class="hero is-success is-fullheight">
       <div class="hero-body">
         <div class="container is-fluid">
-          <span class="title is-3">Der <span class="has-text-weight-bold">beste</span></span
-          ><br />
+          <span class="title is-3"> Der <span class="has-text-weight-bold">beste</span> </span><br />
           <span class="title is-2 has-text-black">Full-Stack-Developer</span><br />
           <span class="title is-3">der <span class="has-text-weight-bold has-text-bold">Welt</span> ist auf</span><br />
           <span class="title is-2 has-text-black">Jobsuche!</span>
