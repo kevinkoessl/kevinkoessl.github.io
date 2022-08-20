@@ -1,28 +1,34 @@
 <template>
   <div class="columns">
     <div class="column is-half">
-      <div class="content p-6 is-flex" ref="scrollContentV">
-        <div class="title is-2 has-text-light mr-6">Photo 1</div>
-        <div class="title is-2 has-text-light mr-6">Photo 2</div>
-        <div class="title is-2 has-text-light mr-6">Photo 3</div>
-        <div class="title is-2 has-text-light mr-6">Photo 4</div>
-        <div class="title is-2 has-text-light mr-6">Photo 5</div>
+      <div class="content" ref="scrollContentV">
+        <div class="hero is-fullheight" v-for="i in 6" :key="`side-scroll-photo__${i}`">
+          <div class="hero-body">
+            <div class="title is-2 mr-6">Photo {{ i }}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="column is-half">
       <div
         class="sticky-container"
-        ref="stickyContainer"
+        ref="stickyContainerH"
         :style="{ height: `${stickyContainerHeight}px` }"
         :class="{ visible: inViewport }"
       >
         <div class="has-background-dark side-scroll" ref="scrollContainerH">
-          <div class="side-scroll__content p-6 is-flex" ref="scrollContent">
-            <div class="title is-2 has-text-light mr-6">Photo 1</div>
-            <div class="title is-2 has-text-light mr-6">Photo 2</div>
-            <div class="title is-2 has-text-light mr-6">Photo 3</div>
-            <div class="title is-2 has-text-light mr-6">Photo 4</div>
-            <div class="title is-2 has-text-light mr-6">Photo 5</div>
+          <div class="side-scroll__content is-flex" ref="scrollContentH" style="height: 100%">
+            <div
+              v-for="i in 6"
+              :key="`side-scroll-image__${i}`"
+              style="min-width: 1920px"
+              class="is-clipped hero"
+              :class="`is-${i % 2 ? 'primary' : 'success'}`"
+            >
+              <div class="hero-body has-text-centered is-flex is-align-items-center is-justify-content-center">
+                <img src="https://placeimg.com/640/480/any" width="50%" style="object-fit: cover" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -63,7 +69,7 @@ export default {
     },
     setStickyContainersSize() {
       console.log(this.$refs.scrollContainerH.offsetWidth);
-      this.stickyContainerHeight = this.$refs.scrollContent.offsetWidth + window.innerHeight;
+      this.stickyContainerHeight = this.$refs.scrollContentH.offsetWidth + window.innerHeight;
     },
     isInViewport(el) {
       const rect = el.getBoundingClientRect();
@@ -89,16 +95,10 @@ export default {
   top: 0;
 
   &__content {
-    width: 3000px;
+    width: 100vh * 6;
   }
 }
 .sticky-container {
   background: green;
-
-  &.visible {
-    .time-marker {
-      opacity: 1;
-    }
-  }
 }
 </style>

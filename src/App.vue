@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <side-scroll-split-section />
     <section class="hero is-success is-fullheight">
       <div class="hero-body">
         <div class="container is-fluid">
@@ -59,7 +60,7 @@
         </div>
       </div>
     </section>
-    <!-- side-scroll-split-section /-->
+
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Experience</h2>
@@ -119,12 +120,20 @@
 import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
+import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
 export default {
   name: 'App',
-  components: { WordCluster, LightBulbSection, SideScrollBeatTimeline, MainHero, WorkExperience },
+  components: {
+    WordCluster,
+    LightBulbSection,
+    SideScrollBeatTimeline,
+    MainHero,
+    WorkExperience,
+    SideScrollSplitSection,
+  },
   data() {
     return {
       expertise: [
