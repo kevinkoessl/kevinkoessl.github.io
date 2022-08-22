@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-clipped is-fullheight" style="background: rgb(232 172 254)">
+  <section class="hero is-clipped is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container is-fluid">
         <div class="columns">

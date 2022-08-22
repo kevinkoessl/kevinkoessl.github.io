@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <side-scroll-split-section />
     <section class="hero is-success is-fullheight">
       <div class="hero-body">
         <div class="container is-fluid">
@@ -11,8 +10,10 @@
         </div>
       </div>
     </section>
-    <work-experience />
+
     <main-hero />
+    <side-scroll-split-section />
+    <work-experience />
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Requirements Frackend Service Engineer</h2>
@@ -21,6 +22,7 @@
         </div>
       </div>
     </section>
+
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Techstack</h2>
@@ -107,6 +109,7 @@
         </div>
       </div>
     </section>
+    <canvas-3-d />
     <section class="hero is-primary is-medium">
       <div class="hero-body">
         <div class="container">
@@ -121,6 +124,7 @@ import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
+import Canvas3D from './components/Canvas3D.vue';
 
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
@@ -133,6 +137,7 @@ export default {
     MainHero,
     WorkExperience,
     SideScrollSplitSection,
+    Canvas3D,
   },
   data() {
     return {

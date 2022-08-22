@@ -1,34 +1,46 @@
 <template>
-  <div class="section work-experience-section my-6" @click="isOpen = !isOpen" :class="{ 'is-open': isOpen }">
-    <div class="columns">
-      <div class="column is-one-third has-text-grey-dark">
-        <p class="title is-6">
-          {{ experience.company }}
-        </p>
-        <div class="work-experience__meta">
-          <p class="mb-4"><b-icon icon="map-marker" class="mr-3"></b-icon>{{ experience.location }}</p>
-          <p><b-icon icon="calendar" class="mr-3"></b-icon>{{ experience.time }}</p>
-        </div>
-      </div>
-      <div class="column is-two-thirdsl">
-        <div class="work-experience__content has-background-lightest">
-          <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
-            <div class="title is-6 mb-0">{{ experience.jobTitle }}</div>
-            <!-- b-icon icon="plus" class="work-experience__toggle" size="is-medium"></b-icon -->
-          </div>
-          <p class="has-text-weight-bold">{{ experience.teaser }}</p>
-          <b-collapse v-model="isOpen" animation="slide">
-            <p
-              v-for="(contentLine, index) in experience.content"
-              :key="`experience-entry_${experience.id}_content-line__${index}`"
-            >
-              <span>{{ contentLine }}</span
-              ><br />
-            </p>
-            <div class="has-text-right" v-if="experience.weblink">
-              <a :href="experience.weblink">zur Website </a>
+  <div class="work-experience-section my-6" @click="isOpen = !isOpen" :class="{ 'is-open': isOpen }">
+    <div class="columns is-gapless">
+      <div class="column is-full">
+        <div class="columns">
+          <div class="column is-full">
+            <div class="work-experience-box p-6 has-background-info has-text-white">
+              <p class="title is-6 has-text-white">
+                {{ experience.company }}
+              </p>
+              <p class="mb-4">
+                <b-icon icon="map-marker"></b-icon>{{ experience.location }}
+                <b-icon icon="calendar" class="ml-4"></b-icon>{{ experience.time }}
+              </p>
+              <p></p>
             </div>
-          </b-collapse>
+          </div>
+          <div class="column is-half"></div>
+          <div class="column is-3"></div>
+        </div>
+
+        <div class="work-experience__meta"></div>
+
+        <div class="work-experience-box p-6">
+          <div class="work-experience__content has-background-lightest">
+            <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
+              <div class="title is-6 mb-0">{{ experience.jobTitle }}</div>
+              <!-- b-icon icon="plus" class="work-experience__toggle" size="is-medium"></b-icon -->
+            </div>
+            <p class="has-text-weight-bold">{{ experience.teaser }}</p>
+            <b-collapse v-model="isOpen" animation="slide">
+              <p
+                v-for="(contentLine, index) in experience.content"
+                :key="`experience-entry_${experience.id}_content-line__${index}`"
+              >
+                <span>{{ contentLine }}</span
+                ><br />
+              </p>
+              <div class="has-text-right" v-if="experience.weblink">
+                <a :href="experience.weblink">zur Website </a>
+              </div>
+            </b-collapse>
+          </div>
         </div>
       </div>
     </div>
@@ -52,12 +64,17 @@ export default {
 </script>
 <style lang="scss">
 .work-experience-section {
-  outline: 2px solid transparent;
+  outline: 2px solid black;
   transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
   .work-experience__content,
   .work-experience__meta {
     position: relative;
     transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .work-experience-box {
+    border-bottom: 2px solid black;
   }
   &:not(:hover) {
     .box.work-experience__content {
@@ -78,7 +95,7 @@ export default {
   }
 
   &:hover {
-    outline: 2px solid black;
+    //outline: 2px solid black;
     cursor: pointer;
 
     .work-experience__meta {
