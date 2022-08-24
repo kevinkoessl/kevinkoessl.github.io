@@ -4,8 +4,8 @@
       <div class="content" ref="scrollContentV">
         <div
           class="hero is-fullheight is-light"
-          v-for="experience in experienceEntries"
-          :key="`experience-entry__${experience.id}`"
+          v-for="(experience, index) in experienceEntries"
+          :key="`experience-entry__${experience.id}__${index}`"
         >
           <div class="single-experience">
             <work-experience-card :experience="experience" />
@@ -370,10 +370,6 @@ export default {
     box-shadow: 10px 10px 0 #333333;
 
     box-sizing: border-box;
-
-    .card-content {
-      //background: linear-gradient(135deg, #e8acfe, #d5f7ff);
-    }
   }
   .card-image {
     border-bottom: 2px solid black;

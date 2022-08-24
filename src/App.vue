@@ -1,15 +1,6 @@
 <template>
   <div id="app">
-    <section class="hero is-success is-fullheight">
-      <div class="hero-body">
-        <div class="container is-fluid">
-          <span class="title is-3"> Der <span class="has-text-weight-bold">beste</span> </span><br />
-          <span class="title is-2 has-text-black">Full-Stack-Developer</span><br />
-          <span class="title is-3">der <span class="has-text-weight-bold has-text-bold">Welt</span> ist auf</span><br />
-          <span class="title is-2 has-text-black">Jobsuche!</span>
-        </div>
-      </div>
-    </section>
+    <typographic-hero />
 
     <main-hero />
     <side-scroll-split-section />
@@ -122,6 +113,7 @@
 <script>
 import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
+import TypographicHero from './components/TypographicHero.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 import Canvas3D from './components/Canvas3D.vue';
@@ -138,6 +130,7 @@ export default {
     WorkExperience,
     SideScrollSplitSection,
     Canvas3D,
+    TypographicHero,
   },
   data() {
     return {
