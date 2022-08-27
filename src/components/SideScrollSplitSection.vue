@@ -30,7 +30,7 @@
               <div class="p-6">
                 <div class="columns is-multiline is-8 retro-images" style="width: 80%; margin: auto">
                   <div class="column is-one-third">
-                    <div class="card has-background-light">
+                    <div class="card has-background-light is-retro">
                       <div class="card-image">
                         <figure class="image is-16by9">
                           <img
@@ -179,13 +179,13 @@
             </div>
           </div>
         </div>
-        <div style="background: beige" class="arrow-animation">
-          <div class="">
+        <!--div style="has-background-success" class="arrow-animation">
+          <div class="has-text-yellow">
             <div class="scrolling is-flex is-flex-direction-column is-align-items-center">
               <b-icon v-for="i in 50" :key="`arrow_${i}`" icon="arrow-down" class="mb-6"></b-icon>
             </div>
           </div>
-        </div>
+        </div-->
       </div>
     </div>
   </div>
@@ -326,7 +326,6 @@ export default {
       }
     },
     setStickyContainersSize() {
-      console.log(this.$refs.scrollContainerH.offsetWidth);
       this.stickyContainerHeight = this.$refs.scrollContentH.offsetWidth + window.innerHeight;
     },
     isInViewport(el) {
@@ -395,8 +394,8 @@ export default {
   bottom: 0;
   right: 0;
   width: 50px;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-left: 2px solid #faff81;
+  border-right: 2px solid #faff81;
   overflow: hidden;
 
   .scrolling {

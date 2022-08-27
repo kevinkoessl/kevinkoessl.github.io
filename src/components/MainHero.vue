@@ -1,19 +1,19 @@
 <template>
-  <section class="hero is-clipped is-fullheight has-background-light">
-    <div class="hero-body">
+  <section class="hero is-medium is-light">
+    <div class="hero-body is-relative">
       <div class="container is-fluid">
-        <div class="columns">
-          <div class="column is-half is-flex is-align-items-center">
-            <div class="title is-4 has-text-black">
-              Während er sein <span class="has-text-weight-bold has-text-black">Glück</span> im
-              <span class="title is-3 has-text-weight-bold has-text-black"> Silicon Valley</span><br />
-              <div class="mt-5 has-text-black">
-                versucht, fühle ich mich im <span class="has-text-weight-bold">Pott</span>
+        <div class="columns is-gapless">
+          <div class="column is-half pt-6">
+            <text-slide :animated-text="heroText1" />
+          </div>
+          <div class="column is-half">
+            <div class="px-6">
+              <div style="width: 80%" class="is-retro">
+                <b-image :src="require('@/assets/img/silicon-valley.png')" ratio="is4by3"></b-image>
               </div>
-              <span class="title is-3 has-text-black"><span class="has-text-white">bestens</span> aufgehoben!</span>
             </div>
           </div>
-          <div class="column is-one-third is-offset-2">
+          <!--div class="column is-3 is-offset-2">
             <div class="memphis-shapes">
               <img src="@/assets/Kevin Header.png" alt="Das bin ich!" width="300px" class="memphis-shapes__main" />
               <img src="@/assets/Circle I.png" alt="" width="150px" class="memphis-shapes__circle-1" />
@@ -47,18 +47,38 @@
               <img src="@/assets/Arrows.svg" alt="" width="50px" class="memphis-shapes__rectangular-square-arrows-1" />
               <img src="@/assets/Double Circle.svg" alt="" width="150px" class="memphis-shapes__double-circle-1" />
             </div>
-          </div>
+          </div-->
         </div>
       </div>
     </div>
   </section>
 </template>
 <script>
+import TextSlide from './TextSlide.vue';
 export default {
   name: 'MainHero',
 
+  components: {
+    TextSlide,
+  },
+
   data() {
-    return {};
+    return {
+      heroText1: [
+        {
+          class: 'title is-4 has-text-black  has-text-right',
+          text: 'Während er sein <span class="has-text-weight-bold has-text-black">Glück</span>',
+        },
+        {
+          class: 'title is-4 has-text-black has-text-right',
+          text: 'im  <span class="title is-3 has-text-weight-bold has-text-warning is-retro"> Silicon Valley</span>',
+        },
+        {
+          class: 'title is-4 has-text-black has-text-right',
+          text: 'versucht...',
+        },
+      ],
+    };
   },
   computed: {},
   methods: {},

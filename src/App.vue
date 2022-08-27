@@ -1,14 +1,46 @@
 <template>
   <div id="app">
-    <typographic-hero />
-
+    <light-bulb-section type="is-dark">
+      <div class="job-search">
+        <b-icon type="is-dark" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="laptop" class="job-search__icon icon-3"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="account-multiple" class="job-search__icon icon-4"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="currency-usd" class="job-search__icon icon-5"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="wrench-outline" class="job-search__icon icon-6"></b-icon>
+        <b-icon type="is-dark" size="is-large" icon="office-building" class="job-search__icon icon-7"></b-icon>
+      </div>
+      <div class="hero-body is-relative">
+        <div class="hero-body__content p-6">
+          <div class="container is-fluid">
+            <text-slide :animated-text="mainHeroText" />
+          </div>
+        </div>
+      </div>
+    </light-bulb-section>
     <main-hero />
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-gapless">
+            <div class="column is-half">
+              <div class="px-6">
+                <canvas-3-d />
+              </div>
+            </div>
+            <div class="column is-half">
+              <text-slide :animated-text="heroText2" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <side-scroll-split-section />
     <work-experience />
     <section class="section">
       <div class="container">
         <h2 class="title is-2">Requirements Frackend Service Engineer</h2>
-        <div class="is-size-3 has-text-primary">
+        <div class="is-size-4 has-text-primary">
           <word-cluster :words="expertise" />
         </div>
       </div>
@@ -100,7 +132,7 @@
         </div>
       </div>
     </section>
-    <canvas-3-d />
+    <!--canvas-3-d /-->
     <section class="hero is-primary is-medium">
       <div class="hero-body">
         <div class="container">
@@ -113,7 +145,7 @@
 <script>
 import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
-import TypographicHero from './components/TypographicHero.vue';
+import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 import Canvas3D from './components/Canvas3D.vue';
@@ -130,16 +162,42 @@ export default {
     WorkExperience,
     SideScrollSplitSection,
     Canvas3D,
-    TypographicHero,
+    TextSlide,
   },
   data() {
     return {
-      expertise: [
-        'Requirements Engineering',
-        'Frontend Development',
-        'Interaction Design',
-        'Artificial Intelligence',
-        'User Experience',
+      expertise: ['Controlling', 'The', 'Chaos'],
+      mainHeroText: [
+        {
+          class: 'title is-3 has-text-yellow',
+          text: 'Der <strong class="has-text-weight-bold">beste</strong>',
+        },
+        {
+          class: 'title is-2 is-retro has-text-primary has-text-weight-bold',
+          text: 'Full-Stack-Developer',
+        },
+        {
+          class: 'title is-3  has-text-yellow has-text-weight-normal',
+          text: 'der <strong class="has-text-weight-bold">Welt</strong> ist auf',
+        },
+        {
+          class: 'title is-2 has-text-dark has-text-weight-bold has-underline is-inline-block is-relative',
+          text: 'Jobsuche!',
+        },
+      ],
+      heroText2: [
+        {
+          class: 'title is-4 has-text-black ',
+          text: '...fühle ich mich',
+        },
+        {
+          class: 'title is-4 has-text-black ',
+          text: 'im <span class="title is-3 has-text-weight-bold has-text-danger is-retro">Pott</span> bestens',
+        },
+        {
+          class: 'title is-4 has-text-black ',
+          text: 'aufgehoben.',
+        },
       ],
     };
   },
@@ -152,5 +210,132 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.title.is-retro {
+  text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032,
+    6px 6px 0px #161032, 7px 7px 0px #161032, 8px 8px 0px #161032, 9px 9px 0px #161032, 10px 10px 0px #161032;
+}
+
+.is-retro:not(.title) {
+  border: 2px solid #161032;
+  transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032,
+    6px 6px 0px #161032, 7px 7px 0px #161032, 8px 8px 0px #161032, 9px 9px 0px #161032, 10px 10px 0px #161032;
+
+  &:hover {
+    box-shadow: 1px 1px 0px $success, 2px 2px 0px $success, 3px 3px 0px $success, 4px 4px 0px $success,
+      5px 5px 0px $success, 6px 6px 0px $success, 7px 7px 0px $success, 8px 8px 0px $success, 9px 9px 0px $success,
+      10px 10px 0px $success;
+  }
+}
+
+.title.has-underline {
+  &:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+    height: 4px;
+    background: $yellow;
+  }
+}
+
+.is-retro:not(.title) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: $warning;
+    opacity: 0.8;
+    mix-blend-mode: darken;
+    transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    pointer-events: none;
+  }
+
+  &.is-success {
+    &:after {
+      background-color: $success;
+    }
+  }
+  &:hover {
+    &:after {
+      opacity: 0.5;
+      transform: translate3d(-20px, -20px, 0);
+    }
+  }
+}
+
+.hero-body__content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  bottom: 0;
+}
+
+.job-search {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  .job-search__icon {
+    position: absolute;
+    transform: scale(4);
+    //border: 2px solid red;
+
+    &.icon-1 {
+      transform: scale(2) rotate(-16deg);
+      left: 50%;
+      top: 22%;
+    }
+
+    &.icon-2 {
+      transform: scale(2) rotate(7deg);
+      left: 85%;
+      top: 10%;
+    }
+
+    &.icon-3 {
+      transform: scale(1.5) rotate(9deg);
+      left: 65%;
+      top: 25%;
+    }
+
+    &.icon-4 {
+      transform: scale(2);
+      left: 88%;
+      top: 50%;
+    }
+
+    &.icon-5 {
+      transform: scale(2) rotate(8deg);
+      left: 77%;
+      top: 66%;
+    }
+
+    &.icon-6 {
+      transform: scale(1.5) rotate(-10deg);
+      left: 51%;
+      top: 66%;
+    }
+
+    &.icon-7 {
+      transform: scale(1.2) rotate(10deg);
+      left: 65%;
+      top: 85%;
+    }
+
+    &:hover {
+      transform: scale(4);
+    }
+  }
 }
 </style>

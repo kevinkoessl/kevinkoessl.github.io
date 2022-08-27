@@ -5,13 +5,7 @@
       :class="type === 'is-light' ? 'is-dark' : 'is-light'"
       :style="lightStyle"
     ></div>
-    <div class="hero-body">
-      <div class="container">
-        <div :class="textClass">
-          <slot></slot>
-        </div>
-      </div>
-    </div>
+    <slot></slot>
   </section>
 </template>
 <script>
@@ -78,7 +72,8 @@ export default {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(rgba(255, 255, 255, 1), rgba(250, 255, 129, 0.3) 50%, rgba(250, 255, 129, 0) 51%);
+    mix-blend-mode: difference;
     &.is-dark {
       background: radial-gradient(#111111, rgba(255, 255, 255, 0) 70%);
     }

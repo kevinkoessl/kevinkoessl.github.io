@@ -1,7 +1,8 @@
 <template>
   <div class="canvas-3d" ref="canvas">
-    <div class="renderer" id="3mf-preview" ref="renderer" />
-    <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
+    <div class="renderer is-retro is-success" id="3mf-preview" ref="renderer">
+      <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
+    </div>
   </div>
 </template>
 
@@ -55,7 +56,7 @@ export default {
     },
     setupRenderer() {
       this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
-      this.renderer.setSize(600, 600);
+      this.renderer.setSize(400, 400);
       this.domElement = this.renderer.domElement;
       this.$refs.renderer.appendChild(this.renderer.domElement);
     },
@@ -75,13 +76,14 @@ export default {
     setupControls() {
       this.controls = new TrackballControls(this.camera, this.domElement);
       this.controls.rotateSpeed = 2.2;
-      this.controls.zoomSpeed = 0;
-      this.controls.panSpeed = 0;
+      this.controls.noPan =  true;
+      this.controls.noZoom = true;
     },
     animate() {
       requestAnimationFrame(this.animate);
       this.renderer.render(this.scene, this.camera);
       this.frontImageData = this.renderer.domElement.toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+
       if (this.controls) {
         this.controls.update();
       }
@@ -142,9 +144,12 @@ export default {
 </script>
 <style lang="scss">
 .canvas-3d {
-  cursor: grab;
+  .renderer {
+    cursor: grab;
+  }
+
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
 }
 </style>
