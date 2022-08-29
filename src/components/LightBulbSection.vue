@@ -1,5 +1,11 @@
 <template>
-  <section :class="type" class="light-blub-section hero is-fullheight" ref="container" @mouseenter="moveLight($event)">
+  <section
+    :class="type"
+    class="light-blub-section hero is-fullheight"
+    ref="container"
+    @mouseenter="moveLight($event)"
+    @mouseleave="dimLight()"
+  >
     <div
       class="light-blub-section__light"
       :class="type === 'is-light' ? 'is-dark' : 'is-light'"
@@ -19,6 +25,8 @@ export default {
   },
   data() {
     return {
+      lightScale: 0.5,
+      lightOpacity: 0,
       lightPosition: {
         x: 0,
         y: 0,
@@ -35,13 +43,18 @@ export default {
     },
     lightStyle() {
       return {
-        transform: `translate3d(${this.lightPosition.x}px, ${this.lightPosition.y - this.containerPosition.y}px, 0)`,
+        transform: `translate3d(${this.lightPosition.x}px, ${
+          this.lightPosition.y - this.containerPosition.y
+        }px, 0) scale(${this.lightScale})`,
+        opacity: this.lightOpacity,
       };
     },
   },
   methods: {
     moveLight(event) {
       let containerRect = this.$refs.container.getBoundingClientRect();
+      this.lightScale = 1;
+      this.lightOpacity = 1;
       this.containerPosition = {
         x: containerRect.x,
         y: containerRect.y,
@@ -50,6 +63,10 @@ export default {
         x: event.clientX - 250,
         y: event.clientY - 250,
       };
+    },
+    dimLight() {
+      this.lightScale = 0.5;
+      this.lightOpacity = 0;
     },
   },
   mounted() {

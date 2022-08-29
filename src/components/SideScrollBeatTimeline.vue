@@ -110,7 +110,6 @@ export default {
 
   methods: {
     scroll(evt) {
-      console.log(evt);
       const containerInViewPort = this.$refs.stickyContainer;
 
       if (!this.isInViewport(containerInViewPort)) {
@@ -132,7 +131,6 @@ export default {
       }
     },
     setStickyContainersSize() {
-      console.log(this.$refs.scrollContainer.offsetWidth);
       this.stickyContainerHeight = this.$refs.scrollContent.offsetWidth + window.innerHeight;
     },
     isInViewport(el) {
@@ -171,8 +169,6 @@ export default {
   }
 }
 .sticky-container {
-  background: green;
-
   .time-marker {
     display: block;
     height: 1080px;

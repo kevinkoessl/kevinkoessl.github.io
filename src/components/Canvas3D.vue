@@ -1,6 +1,6 @@
 <template>
-  <div class="canvas-3d" ref="canvas">
-    <div class="renderer is-retro is-success" id="3mf-preview" ref="renderer">
+  <div class="canvas-3d" ref="canvas" @mouseenter="mouseenter" @mouseout="mouseout">
+    <div class="renderer is-success" id="3mf-preview" ref="renderer">
       <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
     </div>
   </div>
@@ -29,9 +29,7 @@ export default {
   },
   computed: {
     fileUrl() {
-
         return "/foerderturm.3mf"
-
     },
     cartItemColor() {
       return '#333333'
@@ -46,6 +44,13 @@ export default {
   },
   methods: {
     ...mapActions(['postCartItemThumbnail']),
+    mouseenter(){
+      let mouseDownEvent = new Event('mousedown')
+      this.$refs.canvas.dispatchEvent(mouseDownEvent)
+    },
+    mouseout(){
+
+    },
     parseHexToRGB(hexColor) {
       const colorObject = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
       return colorObject ? {
@@ -56,7 +61,7 @@ export default {
     },
     setupRenderer() {
       this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
-      this.renderer.setSize(400, 400);
+      this.renderer.setSize(800, 800);
       this.domElement = this.renderer.domElement;
       this.$refs.renderer.appendChild(this.renderer.domElement);
     },

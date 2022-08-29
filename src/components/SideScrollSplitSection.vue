@@ -319,11 +319,12 @@ export default {
       var isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop;
       var isPlaceHolderBelowBottom =
         containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop;
-      let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
+      //let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
 
-      if (g_canScrollHorizontally) {
-        this.$refs.scrollContainerH.scrollLeft += evt.deltaY;
-      }
+      console.log('isPlaceHolderBelowTop', isPlaceHolderBelowTop);
+      console.log('isPlaceHolderBelowBottom ', isPlaceHolderBelowBottom);
+
+      this.$refs.scrollContainerH.scrollLeft += evt.deltaY;
     },
     setStickyContainersSize() {
       this.stickyContainerHeight = this.$refs.scrollContentH.offsetWidth + window.innerHeight;
@@ -356,9 +357,6 @@ export default {
   &__content {
     width: 100vh * 6;
   }
-}
-.sticky-container {
-  background: green;
 }
 
 .retro-images {

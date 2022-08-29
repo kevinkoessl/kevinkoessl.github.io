@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <light-bulb-section type="is-dark">
+      <div class="hero-head">
+        <div class="p-3"><b-icon type="is-light" icon="star-four-points" /></div>
+      </div>
       <div class="job-search">
         <b-icon type="is-dark" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
         <b-icon type="is-dark" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
@@ -17,15 +20,23 @@
           </div>
         </div>
       </div>
+      <div class="hero-foot">
+        <div class="p-3"><b-icon type="is-light" icon="star-four-points" /></div>
+      </div>
     </light-bulb-section>
     <main-hero />
-    <section class="hero is-small is-light">
+    <section class="hero is-large is-light">
       <div class="hero-body">
         <div class="container is-fluid">
           <div class="columns is-gapless">
             <div class="column is-half">
-              <div class="px-6">
-                <canvas-3-d />
+              <div class="px-6 is-flex is-justify-content-flex-end is-relative">
+                <canvas-3-d class="offset-canvas is-absolute" />
+                <div style="width: 400px">
+                  <div class="is-retro is-danger has-background-light px-4">
+                    <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
+                  </div>
+                </div>
               </div>
             </div>
             <div class="column is-half">
@@ -35,7 +46,8 @@
         </div>
       </div>
     </section>
-    <side-scroll-split-section />
+    <!--iris-in-transition /-->
+
     <work-experience />
     <section class="section">
       <div class="container">
@@ -45,6 +57,7 @@
         </div>
       </div>
     </section>
+    <side-scroll-split-section />
 
     <section class="section">
       <div class="container">
@@ -85,6 +98,7 @@
         </div>
       </div>
     </section>
+    <!--iris-in-transition /-->
 
     <section class="section">
       <div class="container">
@@ -132,7 +146,7 @@
         </div>
       </div>
     </section>
-    <!--canvas-3-d /-->
+
     <section class="hero is-primary is-medium">
       <div class="hero-body">
         <div class="container">
@@ -148,10 +162,12 @@ import MainHero from './components/MainHero.vue';
 import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
+
 import Canvas3D from './components/Canvas3D.vue';
 
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
+//import IrisInTransition from './components/IrisInTransition.vue';
 export default {
   name: 'App',
   components: {
@@ -163,6 +179,7 @@ export default {
     SideScrollSplitSection,
     Canvas3D,
     TextSlide,
+    //IrisInTransition,
   },
   data() {
     return {
@@ -230,6 +247,11 @@ export default {
   }
 }
 
+.offset-canvas {
+  left: -15%;
+  top: -107%;
+}
+
 .title.has-underline {
   &:after {
     content: '';
@@ -253,7 +275,7 @@ export default {
     bottom: 0;
     background-color: $warning;
     opacity: 0.8;
-    mix-blend-mode: darken;
+    mix-blend-mode: multiply;
     transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
     pointer-events: none;
   }
@@ -263,6 +285,19 @@ export default {
       background-color: $success;
     }
   }
+
+  &.is-danger {
+    &:after {
+      background-color: $danger;
+    }
+  }
+
+  &.is-info {
+    &:after {
+      background-color: lighten($info, 20%);
+    }
+  }
+
   &:hover {
     &:after {
       opacity: 0.5;
