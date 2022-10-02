@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <light-bulb-section type="is-dark">
-      <div class="hero-head">
-        <div class="p-3"><b-icon type="is-light" icon="star-four-points" /></div>
-      </div>
       <div class="job-search">
         <b-icon type="is-dark" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
         <b-icon type="is-dark" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
@@ -19,9 +16,6 @@
             <text-slide :animated-text="mainHeroText" />
           </div>
         </div>
-      </div>
-      <div class="hero-foot">
-        <div class="p-3"><b-icon type="is-light" icon="star-four-points" /></div>
       </div>
     </light-bulb-section>
     <main-hero />
@@ -372,5 +366,12 @@ export default {
       transform: scale(4);
     }
   }
+}
+
+.has-background-wavy {
+  background: radial-gradient(circle at 100% 50%, transparent 20%, $black 21%, $black 34%, transparent 35%, transparent),
+    radial-gradient(circle at 0% 50%, transparent 20%, $black 21%, $black 34%, transparent 35%, transparent) 0 -50px;
+  background-color: $yellow;
+  background-size: 75px 100px;
 }
 </style>

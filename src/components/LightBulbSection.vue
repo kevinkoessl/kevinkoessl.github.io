@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      lightScale: 0.5,
+      lightScale: 1,
       lightOpacity: 0,
       lightPosition: {
         x: 0,
@@ -55,17 +55,19 @@ export default {
       let containerRect = this.$refs.container.getBoundingClientRect();
       this.lightScale = 1;
       this.lightOpacity = 1;
-      this.containerPosition = {
-        x: containerRect.x,
-        y: containerRect.y,
-      };
-      this.lightPosition = {
-        x: event.clientX - 250,
-        y: event.clientY - 250,
-      };
+      requestAnimationFrame(() => {
+        this.containerPosition = {
+          x: containerRect.x,
+          y: containerRect.y,
+        };
+        this.lightPosition = {
+          x: event.clientX - 250,
+          y: event.clientY - 250,
+        };
+      });
     },
     dimLight() {
-      this.lightScale = 0.5;
+      this.lightScale = 1;
       this.lightOpacity = 0;
     },
   },
