@@ -53,6 +53,7 @@ export default {
   methods: {
     moveLight(event) {
       let containerRect = this.$refs.container.getBoundingClientRect();
+
       this.lightScale = 1;
       this.lightOpacity = 1;
       requestAnimationFrame(() => {
