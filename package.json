@@ -12,7 +12,6 @@
     "core-js": "^3.8.3",
     "gsap": "^3.11.2",
     "scrollmagic": "^2.0.8",
-    "scrollmagic-plugin-gsap": "^1.0.4",
     "scrollmagic-plugins": "^1.0.8",
     "three": "^0.143.0",
     "vue": "^2.6.14",
