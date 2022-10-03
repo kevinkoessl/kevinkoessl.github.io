@@ -114,13 +114,7 @@ export default {
               child.material.color.setHex(0x333333);
               child.material.vertexColors = false;
               child.material.needsUpdate = true;
-              const edges = new THREE.EdgesGeometry(child.geometry);
-              this.edges = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
-                color: this.edgeColors,
-                linewidth: 1,
-                opacity: 0.1,
-                transparent: true
-              }));
+
               //this.scene.add(line);
             }
           });
