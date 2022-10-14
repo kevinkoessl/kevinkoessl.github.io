@@ -25,7 +25,7 @@
           <div class="columns is-gapless">
             <div class="column is-half">
               <div class="px-6 is-flex is-justify-content-flex-end is-relative">
-                <canvas-3-d class="offset-canvas is-absolute" />
+                <!--canvas-3-d class="offset-canvas is-absolute" /-->
                 <div style="width: 400px">
                   <div class="is-retro is-danger has-background-light px-4">
                     <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
@@ -40,7 +40,6 @@
         </div>
       </div>
     </section>
-    <!--iris-in-transition /-->
 
     <work-experience />
     <section class="section">
@@ -51,7 +50,7 @@
         </div>
       </div>
     </section>
-    <side-scroll-split-section />
+    <!-- side-scroll-split-section / -->
 
     <section class="section">
       <div class="container">
@@ -92,7 +91,6 @@
         </div>
       </div>
     </section>
-    <!--iris-in-transition /-->
 
     <section class="section">
       <div class="container">
@@ -155,13 +153,13 @@ import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
 import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
-import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
+//import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 
-import Canvas3D from './components/Canvas3D.vue';
+//import Canvas3D from './components/Canvas3D.vue';
 
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
-//import IrisInTransition from './components/IrisInTransition.vue';
+
 export default {
   name: 'App',
   components: {
@@ -170,10 +168,9 @@ export default {
     SideScrollBeatTimeline,
     MainHero,
     WorkExperience,
-    SideScrollSplitSection,
-    Canvas3D,
+    //SideScrollSplitSection,
+    //Canvas3D,
     TextSlide,
-    //IrisInTransition,
   },
   data() {
     return {
@@ -373,5 +370,6 @@ export default {
     radial-gradient(circle at 0% 50%, transparent 20%, $black 21%, $black 34%, transparent 35%, transparent) 0 -50px;
   background-color: $yellow;
   background-size: 75px 100px;
+  transition: background-size 1000ms ease-in-out;
 }
 </style>

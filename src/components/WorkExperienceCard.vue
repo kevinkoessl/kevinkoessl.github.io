@@ -1,7 +1,7 @@
 <template>
   <div>
+    <div :id="`trigger_${experience.id}`"></div>
     <div class="work-experience-section my-6" :id="`work-experience-columns_${experience.id}`">
-      <div :id="`trigger_${experience.id}`"></div>
       <div class="columns is-gapless">
         <div class="column is-half has-background-light">
           <div class="columns">
@@ -76,16 +76,10 @@
   </div>
 </template>
 <script>
-import * as ScrollMagic from 'scrollmagic';
-import { ScrollMagicPluginIndicator } from 'scrollmagic-plugins';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-ScrollMagicPluginIndicator(ScrollMagic);
-import { TweenMax, TimelineMax } from 'gsap';
-import { ScrollMagicPluginGsap } from 'scrollmagic-plugins';
-
-ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
-
-let controller = null;
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'WorkExperienceCard',
@@ -96,46 +90,72 @@ export default {
     },
   },
   data() {
-    return { isOpen: true, scene1: null, scene2: null };
+    return { isOpen: true, timeline: null, timeline2: null, timeline3: null };
   },
   mounted() {
-    controller = new ScrollMagic.Controller();
+    this.timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#trigger_${this.experience.id}`,
+        start: 'top 50%',
+        end: '+=400',
+        scrub: true,
+      },
+    });
 
-    this.scene1 = new ScrollMagic.Scene({
-      triggerElement: `#trigger_${this.experience.id}`,
-      duration: 300,
-    })
+    this.timeline
+      .from(`#work-experience-columns_${this.experience.id}`, { x: 500 })
+      .to(`#work-experience-columns_${this.experience.id}`, { x: 0 });
 
-      .setTween(
-        TweenMax.fromTo(
-          `#work-experience-image_${this.experience.id}`,
-          1000,
-          { scale: 1, borderRadius: 0 },
-          { scale: 0.8, borderRadius: '50px' }
-        )
-      )
+    this.timeline2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#trigger_${this.experience.id}`,
+        start: '-=100',
+        end: '+=300',
+        scrub: true,
+      },
+    });
 
-      //.addIndicators({ name: 'pin scene', colorEnd: '#FFFFFF' })
-      .addTo(controller);
+    this.timeline2
+      .from(`#work-experience-image_${this.experience.id}`, { scale: 0.8, borderRadius: '50px' })
+      .to(`#work-experience-image_${this.experience.id}`, { scale: 1, borderRadius: 0 });
 
-    this.scene2 = new ScrollMagic.Scene({
+    this.timeline3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#trigger-columns_${this.experience.id}`,
+        start: 'top 66%',
+        end: '+=400',
+        scrub: true,
+      },
+    });
+
+    this.timeline3
+      .from(`#work-experience-columns_${this.experience.id}`, { y: 0 })
+      .to(`#work-experience-columns_${this.experience.id}`, { y: -500 });
+
+    /**
+
+    this.scene3 = new ScrollMagic.Scene({
       triggerElement: `#trigger-columns_${this.experience.id}`,
       duration: 400,
       offset: -300,
     })
       .setTween(
-        TweenMax.fromTo(
+        gsap.fromTo(
           `#work-experience-columns_${this.experience.id}`,
           100,
-
-          { translateX: 0, scale: 1 },
-          { translateY: '-500px' }
+          { translateY: 0 },
+          { translateY: '-500px', immediateRender: false }
         )
       )
       //.addIndicators({ name: 'pin scene', colorEnd: '#FFFFFF' })
-      .addTo(controller);
+      .addTo(this.controller);
+ */
   },
-  computed: {},
+  beforeDestroy() {
+    this.timeline = null;
+    this.timeline2 = null;
+    this.timeline3 = null;
+  },
 };
 </script>
 <style lang="scss">

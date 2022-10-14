@@ -1,104 +1,54 @@
 <template>
-  <div
-    class="sticky-container iris-container"
-    ref="stickyContainer"
-    :style="{ height: `${stickyContainerHeight}px` }"
-    :class="{ visible: inViewport }"
-  >
+  <div class="sticky-container iris-container" ref="stickyContainer">
     <div class="iris-in" ref="irisContainer">
-      <transition>
-        <div class="scale-circle" :style="`transform: scale(${irisScale})`">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="100%"
-            width="100%"
-            viewBox="0 0 4519 3213"
-            preserveAspectRatio="xMidYMid slice"
-            class="plus"
-            __source="[object Object]"
-          >
-            <path
-              fill="#000000"
-              d="M4519,0 L4519,3213 L0,3213 L0,0 L4519,0 Z M2322,1587.74993 L2278.24999,1587.74999 L2278.25006,1544 L2240.75003,1544 L2240.74994,1587.75003 L2197,1587.75011 L2197,1625.24989 L2240.74991,1625.25007 L2240.75008,1669 L2278.24992,1669 L2278.24996,1625.25003 L2322,1625.24999 L2322,1587.74993 Z"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-        </div>
-      </transition>
+      <div id="iris-trigger"></div>
+      <div class="scale-circle" id="iris-circle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="100%"
+          width="100%"
+          viewBox="0 0 4519 3213"
+          preserveAspectRatio="xMidYMid slice"
+          class="plus"
+        >
+          <path
+            fill="#f5f7dc"
+            d="M4519,0 L4519,3213 L0,3213 L0,0 L4519,0 Z M2322,1587.74993 L2278.24999,1587.74999 L2278.25006,1544 L2240.75003,1544 L2240.74994,1587.75003 L2197,1587.75011 L2197,1625.24989 L2240.74991,1625.25007 L2240.75008,1669 L2278.24992,1669 L2278.24996,1625.25003 L2322,1625.24999 L2322,1587.74993 Z"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
   name: 'IrisInTransition',
   data() {
     return {
-      stickyContainerHeight: 1920,
-      inViewport: false,
-      oldScrollValue: 0,
-      newScrollValue: 0,
-      irisScale: 1,
-      stickyContainerPosition: 0,
+      timeline: null,
     };
   },
-
-  methods: {
-    scroll() {
-      const containerInViewPort = this.$refs.stickyContainer;
-
-      if (!this.isInViewport(containerInViewPort)) {
-        this.inViewport = false;
-        return;
-      }
-
-      this.inViewport = true;
-
-      /**var isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop;
-      var isPlaceHolderBelowBottom =
-        containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop;*/
-      console.log('containerInViewPort.offsetTop ', containerInViewPort.offsetTop);
-      console.log('document.documentElement.scrollTop', document.documentElement.scrollTop);
-      console.log('Value I', document.documentElement.scrollTop - containerInViewPort.offsetTop);
-      //console.log('Value II', document.documentElement.scrollTop + containerInViewPort.getBoundingClientRect().top);
-      console.log(
-        'value III',
-        document.documentElement.scrollTop - (containerInViewPort.offsetTop + containerInViewPort.offsetHeight)
-      );
-
-      var isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop;
-      var isPlaceHolderBelowBottom =
-        containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop;
-      let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
-
-      if (g_canScrollHorizontally) {
-        //this.$refs.scrollContainer.scrollLeft += evt.deltaY;
-      }
-    },
-
-    isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top <= 0 && rect.bottom > document.documentElement.clientHeight;
-    },
-  },
   mounted() {
-    window.addEventListener('wheel', this.scroll);
-
-    /** 
-    document.addEventListener('scroll', () => {
-      this.newScrollValue = window.pageYOffset;
-      let scrollOffset = this.newScrollValue - this.oldScrollValue;
-
-      let wheelEvent = new WheelEvent('wheel', { deltaY: scrollOffset });
-      this.oldScrollValue = this.newScrollValue;
-      window.dispatchEvent(wheelEvent);
+    this.timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#iris-trigger`,
+        start: '-=100',
+        end: '+=800',
+        scrub: true,
+        pinnedContainer: true,
+      },
     });
 
-    window.addEventListener('resize', this.setStickyContainersSize);
-     */
+    this.timeline.from(`#iris-circle`, { scale: 1 }).to(`#iris-circle`, { scale: 120 });
   },
   beforeDestroy() {
-    window.removeEventListener('wheel', this.scroll);
-    window.removeEventListener('resize', this.setStickyContainersSize);
+    this.timeline = null;
   },
 };
 </script>
@@ -126,14 +76,5 @@ export default {
   overflow: hidden;
   max-width: 100vw;
   z-index: 20;
-}
-
-.debug {
-  position: static;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  color: black;
 }
 </style>

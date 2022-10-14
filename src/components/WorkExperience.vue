@@ -1,5 +1,6 @@
 <template>
   <div class="work-experience has-background-success">
+    <iris-in-transition />
     <div class="hero is-medium">
       <div class="hero-body">
         <div class="title is-3 has-text-warning is-retro">Praktische Erfahrung</div>
@@ -20,11 +21,13 @@
 </template>
 <script>
 import WorkExperienceCard from './WorkExperienceCard.vue';
+import IrisInTransition from './IrisInTransition.vue';
 
 export default {
   name: 'WorkExperience',
   components: {
     WorkExperienceCard,
+    IrisInTransition,
   },
   props: {},
   data() {
@@ -64,6 +67,7 @@ export default {
           imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.jpg'),
           imageClass: 'is-danger',
         },
+
         {
           id: 'LENC9HSN',
           jobTitle: 'Fullstack-Web-Entwickler',
