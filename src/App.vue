@@ -1,31 +1,17 @@
 <template>
   <div id="app">
-    <light-bulb-section type="is-dark">
-      <div class="job-search">
-        <b-icon type="is-dark" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="laptop" class="job-search__icon icon-3"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="account-multiple" class="job-search__icon icon-4"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="currency-usd" class="job-search__icon icon-5"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="wrench-outline" class="job-search__icon icon-6"></b-icon>
-        <b-icon type="is-dark" size="is-large" icon="office-building" class="job-search__icon icon-7"></b-icon>
-      </div>
-      <div class="hero-body is-relative">
-        <div class="hero-body__content p-6">
-          <div class="container is-fluid">
-            <text-slide :animated-text="mainHeroText" />
-          </div>
-        </div>
-      </div>
-    </light-bulb-section>
+    <job-search-hero></job-search-hero>
+    <!--
     <main-hero />
+
     <section class="hero is-large is-light">
       <div class="hero-body">
+        <div class="section-one"></div>
         <div class="container is-fluid">
           <div class="columns is-gapless">
             <div class="column is-half">
               <div class="px-6 is-flex is-justify-content-flex-end is-relative">
-                <!--canvas-3-d class="offset-canvas is-absolute" /-->
+                <canvas-3-d class="offset-canvas is-absolute" />
                 <div style="width: 400px">
                   <div class="is-retro is-danger has-background-light px-4">
                     <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
@@ -38,8 +24,10 @@
             </div>
           </div>
         </div>
+        <div class="section-five"></div>
       </div>
     </section>
+
 
     <work-experience />
     <section class="section">
@@ -50,7 +38,7 @@
         </div>
       </div>
     </section>
-    <!-- side-scroll-split-section / -->
+    <!-- side-scroll-split-section />
 
     <section class="section">
       <div class="container">
@@ -77,7 +65,9 @@
     <h2 class="title is-2">Beat Producer</h2>
     <side-scroll-beat-timeline />
 
-    <light-bulb-section type="is-info"><h1 class="title is-1 has-text-info">Kevin does it all</h1></light-bulb-section>
+    <light-bulb-section type="is-info">
+      <h1 class="title is-1 has-text-info">Kevin does it all</h1>
+    </light-bulb-section>
 
     <section class="section">
       <div class="container">
@@ -146,6 +136,7 @@
         </div>
       </div>
     </section>
+    -->
   </div>
 </template>
 <script>
@@ -155,11 +146,11 @@ import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 //import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 
-//import Canvas3D from './components/Canvas3D.vue';
+import Canvas3D from './components/Canvas3D.vue';
 
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
-
+import JobSearchHero from './components/job-search/JobSearchHero.vue';
 export default {
   name: 'App',
   components: {
@@ -169,30 +160,13 @@ export default {
     MainHero,
     WorkExperience,
     //SideScrollSplitSection,
-    //Canvas3D,
+    Canvas3D,
     TextSlide,
+    JobSearchHero,
   },
   data() {
     return {
       expertise: ['Controlling', 'The', 'Chaos'],
-      mainHeroText: [
-        {
-          class: 'title is-3 has-text-yellow',
-          text: 'Der <strong class="has-text-weight-bold">beste</strong>',
-        },
-        {
-          class: 'title is-2 is-retro has-text-primary has-text-weight-bold',
-          text: 'Full-Stack-Developer',
-        },
-        {
-          class: 'title is-3  has-text-yellow has-text-weight-normal',
-          text: 'der <strong class="has-text-weight-bold">Welt</strong> ist auf',
-        },
-        {
-          class: 'title is-2 has-text-dark has-text-weight-bold has-underline is-inline-block is-relative',
-          text: 'Jobsuche!',
-        },
-      ],
       heroText2: [
         {
           class: 'title is-4 has-text-black ',
@@ -213,6 +187,7 @@ export default {
 </script>
 <style lang="scss">
 @import '~@/styles/main.scss';
+
 .column .box {
   height: 100%;
   display: flex;
@@ -251,12 +226,14 @@ export default {
     right: 5px;
     bottom: 0;
     height: 4px;
+    margin-top: 5px;
     background: $yellow;
   }
 }
 
 .is-retro:not(.title) {
   position: relative;
+
   &:after {
     content: '';
     position: absolute;
@@ -301,67 +278,13 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  top: 20%;
+  top: 10%;
   bottom: 0;
 }
 
-.job-search {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-
-  .job-search__icon {
-    position: absolute;
-    transform: scale(4);
-    //border: 2px solid red;
-
-    &.icon-1 {
-      transform: scale(2) rotate(-16deg);
-      left: 50%;
-      top: 22%;
-    }
-
-    &.icon-2 {
-      transform: scale(2) rotate(7deg);
-      left: 85%;
-      top: 10%;
-    }
-
-    &.icon-3 {
-      transform: scale(1.5) rotate(9deg);
-      left: 65%;
-      top: 25%;
-    }
-
-    &.icon-4 {
-      transform: scale(2);
-      left: 88%;
-      top: 50%;
-    }
-
-    &.icon-5 {
-      transform: scale(2) rotate(8deg);
-      left: 77%;
-      top: 66%;
-    }
-
-    &.icon-6 {
-      transform: scale(1.5) rotate(-10deg);
-      left: 51%;
-      top: 66%;
-    }
-
-    &.icon-7 {
-      transform: scale(1.2) rotate(10deg);
-      left: 65%;
-      top: 85%;
-    }
-
-    &:hover {
-      transform: scale(4);
-    }
+@media screen and (min-width: $tablet) {
+  .hero-body__content {
+    top: 20%;
   }
 }
 

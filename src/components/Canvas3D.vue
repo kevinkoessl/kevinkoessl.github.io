@@ -7,10 +7,21 @@
 </template>
 
 <script lang="js">
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 import * as THREE from "three";
-import {ThreeMFLoader} from "three/examples/jsm/loaders/3MFLoader";
-import {TrackballControls} from "three/examples/jsm/controls/TrackballControls"
+import { ThreeMFLoader } from "three/examples/jsm/loaders/3MFLoader";
+import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
+
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+
+ScrollTrigger.defaults({
+  immediateRender: false,
+  ease: "power1.inOut",
+});
+
+gsap.registerPlugin(ScrollTrigger);
 export default {
   name: "Canvas3D",
   data() {
@@ -29,7 +40,7 @@ export default {
   },
   computed: {
     fileUrl() {
-        return "/foerderturm.3mf"
+      return "/foerderturm.3mf"
     },
     cartItemColor() {
       return '#333333'
@@ -44,11 +55,11 @@ export default {
   },
   methods: {
     ...mapActions(['postCartItemThumbnail']),
-    mouseenter(){
+    mouseenter() {
       let mouseDownEvent = new Event('mousedown')
       this.$refs.canvas.dispatchEvent(mouseDownEvent)
     },
-    mouseout(){
+    mouseout() {
 
     },
     parseHexToRGB(hexColor) {
@@ -60,7 +71,7 @@ export default {
       } : null;
     },
     setupRenderer() {
-      this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
       this.renderer.setSize(800, 800);
       this.domElement = this.renderer.domElement;
       this.$refs.renderer.appendChild(this.renderer.domElement);
@@ -81,7 +92,7 @@ export default {
     setupControls() {
       this.controls = new TrackballControls(this.camera, this.domElement);
       this.controls.rotateSpeed = 2.2;
-      this.controls.noPan =  true;
+      this.controls.noPan = true;
       this.controls.noZoom = true;
     },
     animate() {
@@ -101,10 +112,11 @@ export default {
         object.position.x = (box.max.x + box.min.x) / -2;
         object.position.y = (box.max.y + box.min.y) / -2;
         object.position.z = (box.max.z + box.min.z) / -2;
+        object.rotation.x = 0;
         if (this.meshObject) {
           this.scene.remove(this.meshObject);
         }
-        if(this.edges){
+        if (this.edges) {
           this.scene.remove(this.edges);
         }
         this.meshObject = object;
@@ -127,6 +139,8 @@ export default {
         const y = Math.cos(20 * Math.PI / 180) * d;
         this.camera.up.set(0, 0, 1);
         this.camera.position.set(x, -y, (box.max.z - box.min.z) / 2);
+
+        console.log(x, y)
         this.controls.handleResize();
       })
     },
@@ -135,9 +149,28 @@ export default {
     this.setupRenderer();
     this.setupScene();
     this.setupCamera();
-    this.setupControls();
+    this.setupControls()
     this.loadObject();
     this.animate();
+
+    /** */
+    let car_anim_tl = gsap.timeline({
+
+      scrollTrigger: {
+        trigger: ".section-two",
+        start: "top top",
+        endTrigger: ".section-five",
+        end: "bottom bottom",
+        scrub: true,
+      }
+
+    });
+
+
+    car_anim_tl
+      .to(this.scene.rotation, { y: -12 })
+
+      ;
   },
 }
 </script>
