@@ -1,38 +1,13 @@
 <template>
   <div id="app">
     <job-search-hero></job-search-hero>
-    <div class="hero is-fullheight">
+    <silicon-valley-hero></silicon-valley-hero>
+    <div class="hero is-light is-fullheight">
       <div class="hero-body">
-        <div class="title is-1">lol</div>
+        <div class="title">Ende</div>
       </div>
     </div>
     <!--
-    <main-hero />
-
-    <section class="hero is-large is-light">
-      <div class="hero-body">
-        <div class="section-one"></div>
-        <div class="container is-fluid">
-          <div class="columns is-gapless">
-            <div class="column is-half">
-              <div class="px-6 is-flex is-justify-content-flex-end is-relative">
-                <canvas-3-d class="offset-canvas is-absolute" />
-                <div style="width: 400px">
-                  <div class="is-retro is-danger has-background-light px-4">
-                    <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="column is-half">
-              <text-slide :animated-text="heroText2" />
-            </div>
-          </div>
-        </div>
-        <div class="section-five"></div>
-      </div>
-    </section>
-
 
     <work-experience />
     <section class="section">
@@ -43,7 +18,7 @@
         </div>
       </div>
     </section>
-    <!-- side-scroll-split-section />
+    <side-scroll-split-section />
 
     <section class="section">
       <div class="container">
@@ -151,11 +126,10 @@ import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
 //import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 
-import Canvas3D from './components/Canvas3D.vue';
-
 import WordCluster from './components/WordCluster.vue';
 import WorkExperience from './components/WorkExperience.vue';
 import JobSearchHero from './components/job-search/JobSearchHero.vue';
+import SiliconValleyHero from './components/silicon-valley/SiliconValleyHero.vue';
 export default {
   name: 'App',
   components: {
@@ -165,27 +139,13 @@ export default {
     MainHero,
     WorkExperience,
     //SideScrollSplitSection,
-    Canvas3D,
     TextSlide,
     JobSearchHero,
+    SiliconValleyHero,
   },
   data() {
     return {
       expertise: ['Controlling', 'The', 'Chaos'],
-      heroText2: [
-        {
-          class: 'title is-4 has-text-black ',
-          text: '...fühle ich mich',
-        },
-        {
-          class: 'title is-4 has-text-black ',
-          text: 'im <span class="title is-3 has-text-weight-bold has-text-danger is-retro">Pott</span> bestens',
-        },
-        {
-          class: 'title is-4 has-text-black ',
-          text: 'aufgehoben.',
-        },
-      ],
     };
   },
 };
@@ -201,8 +161,14 @@ export default {
 }
 
 .title.is-retro {
-  text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032,
-    6px 6px 0px #161032, 7px 7px 0px #161032, 8px 8px 0px #161032, 9px 9px 0px #161032, 10px 10px 0px #161032;
+  text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032;
+}
+
+@media screen and (min-width: $desktop) {
+  .title.is-retro {
+    text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032,
+      6px 6px 0px #161032, 7px 7px 0px #161032, 8px 8px 0px #161032, 9px 9px 0px #161032, 10px 10px 0px #161032;
+  }
 }
 
 .is-retro:not(.title) {

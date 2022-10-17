@@ -3,7 +3,7 @@
     <job-search-desktop v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"></job-search-desktop>
     <div class="hero-body is-relative">
       <div class="hero-body__content" :class="{ 'p-6': ['desktop', 'widescreen', 'fullhd'].includes($mq) }">
-        <div :class="{ 'container is-fluid': ['desktop', 'widescreen', 'fullhd'].includes($mq) }">
+        <div :class="{ 'container is-fluid': ['widescreen', 'fullhd'].includes($mq) }">
           <div v-if="!['desktop', 'widescreen', 'fullhd'].includes($mq)" class="level is-mobile">
             <div class="level-left">
               <div class="level-item">

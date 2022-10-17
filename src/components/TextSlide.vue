@@ -17,7 +17,6 @@
 </template>
 <script>
 import gsap from 'gsap';
-import CustomEase from 'gsap';
 
 export default {
   name: 'TextSlide',
