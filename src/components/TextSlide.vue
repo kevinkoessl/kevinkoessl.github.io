@@ -1,68 +1,52 @@
 <template>
-  <div class="text-slide" ref="container">
+  <div class="text-slide" ref="container" :id="`text-slide_${_uid}`">
+    <div :id="`text-slide-trigger_${_uid}`"></div>
     <template v-for="(textBlock, index) in animatedText">
       <div :key="`animated-text-block__${index}`">
         <div class="pr-2 is-clipped">
-          <transition name="slide-text-up">
-            <div v-if="isVisible[index]" :class="textBlock.class" v-html="textBlock.text" />
-          </transition>
+          <div
+            :id="`text-slide_${_uid}-line`"
+            :class="textBlock.class"
+            v-html="textBlock.text"
+            class="text-slide-line"
+          />
         </div>
       </div>
     </template>
   </div>
 </template>
 <script>
+import gsap from 'gsap';
+import CustomEase from 'gsap';
+
 export default {
   name: 'TextSlide',
 
   props: { animatedText: { type: Array, required: true } },
+
   data() {
     return {
-      interval: null,
-      isVisible: [],
+      timeline: null,
     };
   },
 
-  methods: {
-    revealText() {
-      let counter = 0;
-
-      this.interval = setInterval(() => {
-        if (counter >= this.isVisible.length) return clearInterval(this.interval);
-
-        let isVisible = [...this.isVisible];
-        isVisible[counter++] = true;
-
-        this.isVisible = isVisible;
-      }, 250);
-    },
-    isInView(scrollOffset = 0) {
-      const containerTop = this.$refs.container.getBoundingClientRect().top;
-
-      return containerTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset;
-    },
-    scroll() {
-      if (this.isInView(100)) {
-        this.revealText();
-      }
-    },
-  },
-
-  created() {
-    let isVisible = [];
-    this.animatedText.forEach(() => {
-      isVisible.push(false);
-    });
-    this.isVisible = isVisible;
-  },
-
   mounted() {
-    window.addEventListener('scroll', this.scroll);
-    if (this.isInView(100)) this.revealText();
-  },
+    this.timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#text-slide-trigger_${this._uid}`,
+      },
+    });
 
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.scroll);
+    this.timeline
+      .from(`#text-slide_${this._uid} .text-slide-line`, {
+        y: '100%',
+        duration: 0.5,
+        stagger: 0.25,
+        ease: 'power4.out',
+      })
+      .to(`#text-slide_${this._uid} .text-slide-line`, {
+        y: 0,
+      });
   },
 };
 </script>
