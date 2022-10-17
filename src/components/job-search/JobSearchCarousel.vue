@@ -48,25 +48,24 @@ export default {
   display: block;
   position: absolute;
   margin: auto;
-
-  top: 18px;
-  left: 39px;
+  top: 16px;
+  left: 15px;
   right: 0;
 
   .icon {
     margin: auto;
-    transform: scale(5);
+    transform: scale(4);
   }
 }
 .light-bulb {
   display: block;
   position: absolute;
-  top: -27px;
-  left: 0;
+  top: -21px;
+  left: -7px;
   right: 0;
   margin: auto;
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   background: radial-gradient(rgba(255, 255, 255, 1), rgba(250, 255, 129, 0.3) 50%, rgba(250, 255, 129, 0) 51%);
   mix-blend-mode: difference;
 }

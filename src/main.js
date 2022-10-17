@@ -4,6 +4,10 @@ import router from './router';
 import store from './store';
 import Buefy from 'buefy';
 import VueMq from 'vue-mq';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 Vue.config.productionTip = false;
 Vue.use(Buefy);

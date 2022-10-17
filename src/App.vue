@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <job-search-hero></job-search-hero>
+    <div class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="title is-1">lol</div>
+      </div>
+    </div>
     <!--
     <main-hero />
 
@@ -275,14 +280,14 @@ export default {
 }
 
 .hero-body__content {
-  position: absolute;
+  //position: absolute;
   left: 0;
   right: 0;
   top: 10%;
   bottom: 0;
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
   .hero-body__content {
     top: 20%;
   }

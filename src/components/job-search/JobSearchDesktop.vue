@@ -27,8 +27,8 @@ export default { name: 'JobSearchDesktop' };
 
     &.icon-1 {
       transform: scale(2) rotate(-16deg);
-      left: 50%;
-      top: 22%;
+      left: 80%;
+      top: 33%;
     }
 
     &.icon-2 {
@@ -57,8 +57,8 @@ export default { name: 'JobSearchDesktop' };
 
     &.icon-6 {
       transform: scale(1.5) rotate(-10deg);
-      left: 51%;
-      top: 66%;
+      left: 33%;
+      top: 90%;
     }
 
     &.icon-7 {
@@ -69,6 +69,24 @@ export default { name: 'JobSearchDesktop' };
 
     &:hover {
       transform: scale(4);
+    }
+  }
+}
+
+@media screen and (min-width: $widescreen) {
+  .job-search {
+    .job-search__icon {
+      &.icon-1 {
+        transform: scale(2) rotate(-16deg);
+        left: 50%;
+        top: 22%;
+      }
+
+      &.icon-6 {
+        transform: scale(1.5) rotate(-10deg);
+        left: 51%;
+        top: 66%;
+      }
     }
   }
 }

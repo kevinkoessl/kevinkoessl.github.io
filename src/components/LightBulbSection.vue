@@ -7,7 +7,7 @@
     @mouseleave="dimLight()"
   >
     <div
-      v-if="$mq !== 'mobile'"
+      v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"
       class="light-blub-section__light"
       :class="type === 'is-light' ? 'is-dark' : 'is-light'"
       :style="lightStyle"
