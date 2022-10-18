@@ -121,7 +121,7 @@ export default {
         },
         {
           class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-black has-text-right-fullhd',
-          text: 'vermutlich sein <span class="has-text-weight-bold has-text-black">Glück</span>',
+          text: 'sein <span class="has-text-weight-bold has-text-black">Glück</span> vermutlich ',
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd',
