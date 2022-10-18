@@ -184,11 +184,6 @@ export default {
   }
 }
 
-.offset-canvas {
-  left: -15%;
-  top: -107%;
-}
-
 .title.has-underline {
   &:after {
     content: '';

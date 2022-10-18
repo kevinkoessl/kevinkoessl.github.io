@@ -26,37 +26,75 @@
         </div>
       </div>
     </section>
-    <section class="hero is-large is-light">
+    <div v-if="['widescreen', 'fullhd'].includes($mq)" class="section-two"></div>
+    <section class="hero is-light" :class="['fullhd'].includes($mq) ? 'is-large' : 'is-small'">
       <div class="hero-body">
-        <div class="section-one"></div>
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']" class="column is-full is-half-fullhd">
-              <text-slide :animated-text="heroText2" />
-            </mq-layout>
-            <div class="column is-full is-half-fullhd">
-              <div
-                class="is-flex is-justify-content-flex-end is-relative"
-                :class="{
-                  'px-6': ['fullhd'].includes($mq),
-                  'py-6': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-                }"
-              >
-                <!--canvas-3-d class="offset-canvas is-absolute" /-->
-                <div
-                  :style="`width: ${!['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq) ? '400px' : '100%'}`"
-                >
-                  <div class="is-retro is-danger has-background-light px-4">
-                    <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
-                  </div>
+        <!--div class="columns is-multiline is-gapless is-centered">
+          <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']" class="column is-full is-half-fullhd">
+        
+          </mq-layout>
+          <div class="column is-full is-half-tablet is-relative">
+            <div
+              class="is-flex is-justify-content-flex-end is-relative"
+              :class="{
+                'px-6': ['fullhd'].includes($mq),
+                'py-6': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+              }"
+            >
+              <canvas-3-d class="offset-canvas is-absolute" style="width: 400px; height: 400px" />
+              <div :style="`width: ${!['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq) ? '400px' : '100%'}`">
+                <div class="is-retro is-danger has-background-light px-4">
+                  <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
                 </div>
               </div>
-              <mq-layout mq="mobile"><canvas-3-d></canvas-3-d></mq-layout>
             </div>
-            <mq-layout mq="fullhd" class="column is-full is-half-fullhd">
-              <text-slide :animated-text="heroText2" />
-            </mq-layout>
+            <div class="section-two"></div>
+            <mq-layout mq="mobile"><canvas-3-d></canvas-3-d></mq-layout>
           </div>
+          <mq-layout mq="fullhd" class="column is-full is-half-fullhd">
+            <text-slide :animated-text="heroText2" />
+          </mq-layout>
+        </div-->
+
+        <div class="columns is-multiline">
+          <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']" class="column is-full">
+            <div v-if="['tablet', 'desktop'].includes($mq)" class="section-two"></div>
+            <text-slide :animated-text="heroText2" />
+          </mq-layout>
+
+          <div
+            class="column is-full is-half-tablet is-relative"
+            :class="{ 'is-offset-one-third': ['tablet', 'desktop'].includes($mq) }"
+          >
+            <mq-layout :mq="['tablet', 'desktop']" class="py-6 my-6"></mq-layout>
+            <div
+              class="is-flex is-justify-content-flex-end is-relative"
+              :class="{
+                'px-6': ['sidescreen', 'fullhd'].includes($mq),
+                'py-6': ['mobile', 'tablet', 'desktop'].includes($mq),
+              }"
+            >
+              <canvas-3-d
+                v-if="['tablet', 'desktop', 'widescreen', 'fullhd'].includes($mq)"
+                class="offset-canvas is-absolute"
+                style="width: 800px; height: 800px"
+              ></canvas-3-d>
+
+              <div :style="`width: ${!['mobile', 'tablet', 'desktop'].includes($mq) ? '400px' : '100%'}`">
+                <div class="is-retro is-danger has-background-light px-4">
+                  <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
+                </div>
+              </div>
+            </div>
+            <template v-if="$mq === 'mobile'">
+              <div class="section-two"></div>
+              <canvas-3-d></canvas-3-d>
+            </template>
+          </div>
+          <mq-layout :mq="['fullhd']" class="column is-half">
+            <text-slide :animated-text="heroText2" />
+            <div v-if="$mq === 'tablet'" class="section-two"></div>
+          </mq-layout>
         </div>
         <div class="section-five"></div>
       </div>
@@ -108,3 +146,30 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.offset-canvas {
+  left: -115%;
+  top: -70%;
+}
+
+@media screen and (min-width: $desktop) {
+  .offset-canvas {
+    left: -90%;
+    top: -50%;
+  }
+}
+
+@media screen and (min-width: $widescreen) {
+  .offset-canvas {
+    left: -40%;
+    top: -107%;
+  }
+}
+
+@media screen and (min-width: $fullhd) {
+  .offset-canvas {
+    left: -200px;
+    top: -107%;
+  }
+}
+</style>
