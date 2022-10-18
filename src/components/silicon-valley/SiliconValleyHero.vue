@@ -117,7 +117,11 @@ export default {
       heroText1: [
         {
           class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-black has-text-right-fullhd',
-          text: 'Während er sein <span class="has-text-weight-bold has-text-black">Glück</span>',
+          text: 'Während er',
+        },
+        {
+          class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-black has-text-right-fullhd',
+          text: 'vermutlich sein <span class="has-text-weight-bold has-text-black">Glück</span>',
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd',
