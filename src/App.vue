@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <job-search-hero></job-search-hero>
-    <silicon-valley-hero></silicon-valley-hero>
-    <div class="hero is-light is-fullheight">
+    <job-search-hero />
+    <silicon-valley-hero />
+    <work-experience />
+    <div class="hero is-fullheight is-light">
       <div class="hero-body">
-        <div class="title">Ende</div>
+        <div class="title is-2">ENDE</div>
       </div>
     </div>
     <!--
 
-    <work-experience />
     <section class="section">
-      <div class="container">
+    <div class="container">
         <h2 class="title is-2">Requirements Frackend Service Engineer</h2>
         <div class="is-size-4 has-text-primary">
           <word-cluster :words="expertise" />
@@ -124,10 +124,9 @@ import LightBulbSection from './components/LightBulbSection.vue';
 import MainHero from './components/MainHero.vue';
 import TextSlide from './components/TextSlide.vue';
 import SideScrollBeatTimeline from './components/SideScrollBeatTimeline.vue';
-//import SideScrollSplitSection from './components/SideScrollSplitSection.vue';
 
 import WordCluster from './components/WordCluster.vue';
-import WorkExperience from './components/WorkExperience.vue';
+import WorkExperience from './components/work-experience/WorkExperience.vue';
 import JobSearchHero from './components/job-search/JobSearchHero.vue';
 import SiliconValleyHero from './components/silicon-valley/SiliconValleyHero.vue';
 export default {
@@ -223,6 +222,7 @@ export default {
   &.is-danger {
     &:after {
       background-color: $danger;
+      mix-blend-mode: darken;
     }
   }
 

@@ -1,27 +1,30 @@
 <template>
-  <div class="work-experience has-background-success">
+  <div class="work-experience has-background-dark">
     <iris-in-transition />
     <div class="hero is-medium">
       <div class="hero-body">
-        <div class="title is-3 has-text-warning is-retro">Praktische Erfahrung</div>
-
-        <template v-for="experience in experienceEntries">
-          <div :key="`experience-entry__${experience.id}`" class="single-experience">
-            <work-experience-card :experience="experience" />
-            <div>
-              <p class="has-text-centered title is-6">
-                <b-icon icon="cube-unfolded" type="is-light" size="is-medium"></b-icon>
-              </p>
-            </div>
-          </div>
-        </template>
+        <div :class="{ 'container is-fluid': ['widescreen', 'fullhd'].includes($mq) }">
+          <div class="title is-3 is-size-5-mobile has-text-warning is-retro">Meine Work Experience</div>
+        </div>
       </div>
+    </div>
+    <div class="work-experience-list">
+      <template v-for="experience in experienceEntries">
+        <div :key="`experience-entry__${experience.id}`" class="single-experience">
+          <work-experience-card :experience="experience" />
+          <div class="my-3">
+            <p class="has-text-centered title is-6">
+              <b-icon icon="cube-unfolded" type="is-light" size="is-medium"></b-icon>
+            </p>
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 <script>
 import WorkExperienceCard from './WorkExperienceCard.vue';
-import IrisInTransition from './IrisInTransition.vue';
+import IrisInTransition from '../IrisInTransition.vue';
 
 export default {
   name: 'WorkExperience',
@@ -35,7 +38,7 @@ export default {
       experienceEntries: [
         {
           id: 'XIWEJFVG',
-          jobTitle: 'Lead-Developer & Projektmanagement',
+          jobTitle: 'Lead-Developer & Projektmanager',
           timeModel: 'Vollzeit',
           teaser:
             'Als leitender Entwickler habe ich verschiedene Online-Portale für die Kunden von bits & likes umgesetzt.',
@@ -139,15 +142,19 @@ export default {
           id: 'NCUWEHFJSH',
           jobTitle: 'Programmierpraktikum Android',
           timeModel: 'Vollzeit',
-          teaser: '1337',
+          teaser: 'Im Rahmen meines Studiums habe ich ein einwöchiges Pflichtpraktikum absolviert.',
           content: [
-            'Im Rahmen meines Studiums habe ich ein einwöchiges Pflichtpraktikum absolviert.',
-            'In diesem Praktikum konnte ich mich Eigenverantwortlich mit der Programmierung von Android-Apps mit Java und Android Studio vertraut machen.',
+            'Programmierung einer Android-App mit Java',
+            'Layouts und Sytling',
+            'Erfassung und Verarbeitung von Sensordaten',
+            'Implementierung von XHTTP-Requests',
+            'Zugriff auf Kamera-Funktionen',
           ],
+          skills: ['Android', 'Java', 'XML', 'I18N', 'Asnychrone Programmierung', 'Android-Studio'],
           time: 'September 2018',
           location: 'Bochum',
           company: 'Ruhr-Universität Bochum',
-          imageUrl: 'https://via.placeholder.com/600x800/FFC53A/000000?text=Bild+von+der+RUB',
+          imageUrl: require('@/assets/jobs/Ruhr-Universität Bochum - Universitätsbibliothek.jpeg'),
         },
       ],
     };

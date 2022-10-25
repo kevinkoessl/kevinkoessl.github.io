@@ -1,33 +1,58 @@
 <template>
   <div>
     <div :id="`trigger_${experience.id}`"></div>
-    <div class="work-experience-section my-6" :id="`work-experience-columns_${experience.id}`">
+    <div class="work-experience-section" :id="`work-experience-columns_${experience.id}`">
       <div class="columns is-gapless">
-        <div class="column is-half has-background-light">
-          <div class="columns">
-            <div class="column is-full">
-              <div class="work-experience-box p-6">
-                <p class="title is-6">
-                  {{ experience.company }}
-                </p>
+        <div class="column is-half">
+          <div
+            class="work-experience-box"
+            :class="{
+              'p-6': ['fullhd'].includes($mq),
+              'p-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+            }"
+          >
+            <p class="title is-6 is-size-7-mobile">
+              {{ experience.company }}
+            </p>
 
-                <div class="class is-flex is-align-items-baseline">
-                  <b-icon icon="map-marker"></b-icon>{{ experience.location }}
-                  <b-icon icon="calendar" class="ml-5"></b-icon>{{ experience.time }}
-                  <b-icon icon="clock-outline" class="ml-5"></b-icon>{{ experience.timeModel }}
-                </div>
-
-                <p></p>
+            <div
+              :class="{
+                'is-flex is-justify-content-space-between': ['fullhd'].includes($mq),
+                'has-text-left': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+              }"
+            >
+              <div
+                :class="{
+                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+                }"
+              >
+                <b-icon icon="map-marker"></b-icon>{{ experience.location }}
+              </div>
+              <div
+                :class="{
+                  'ml-3': ['fullhd'].includes($mq),
+                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+                }"
+              >
+                <b-icon icon="calendar"></b-icon>{{ experience.time }}
+              </div>
+              <div
+                :class="{
+                  'ml-3': ['fullhd'].includes($mq),
+                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+                }"
+              >
+                <b-icon icon="clock-outline"></b-icon>{{ experience.timeModel }}
               </div>
             </div>
-            <div class="column is-half"></div>
-            <div class="column is-3"></div>
+
+            <p></p>
           </div>
 
           <div class="work-experience__meta"></div>
 
           <div class="p-6 is-flex is-flex-direction-column is-justify-content-space-between">
-            <div class="work-experience__content has-background-lightest content">
+            <div class="work-experience__content has-background-lightest content is-clipped">
               <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
                 <div class="title is-6 mb-0">{{ experience.jobTitle }}</div>
                 <!-- b-icon icon="plus" class="work-experience__toggle" size="is-medium"></b-icon -->
@@ -63,7 +88,7 @@
               <b-image
                 :src="experience.imageUrl"
                 ratio="is3by4"
-                class="is-clipped"
+                class="is-clipped is-retro is-danger"
                 :id="`work-experience-image_${experience.id}`"
                 :class="experience.imageClass || ''"
               ></b-image>
@@ -89,6 +114,7 @@ export default {
     return { isOpen: true, timeline: null, timeline2: null, timeline3: null };
   },
   mounted() {
+    /** 
     this.timeline = gsap.timeline({
       scrollTrigger: {
         trigger: `#trigger_${this.experience.id}`,
@@ -145,7 +171,7 @@ export default {
       )
       //.addIndicators({ name: 'pin scene', colorEnd: '#FFFFFF' })
       .addTo(this.controller);
- */
+    */
   },
   beforeDestroy() {
     this.timeline = null;

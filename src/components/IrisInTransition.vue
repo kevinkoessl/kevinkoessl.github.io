@@ -76,5 +76,20 @@ export default {
   overflow: hidden;
   max-width: 100vw;
   z-index: 20;
+
+  svg {
+    contain: layout;
+    min-height: 101%;
+    min-width: 101%;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    path {
+      transform-origin: center !important;
+    }
+  }
 }
 </style>
