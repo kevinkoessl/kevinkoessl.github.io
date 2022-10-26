@@ -5,60 +5,16 @@
     <div :id="`work-experience-image-hero_${_uid}`" class="hero is-fullheight">
       <div class="hero-background">
         <div :id="`work-experience-image_${_uid}`" class="has-background-dark is-clipped">
-          <b-image :src="experience.imageUrl" class="is-clipped" :class="experience.imageClass || ''"></b-image>
+          <b-image
+            :src="experience.imageUrl"
+            class="is-clipped is-tinted"
+            :class="experience.imageClass || ''"
+          ></b-image>
         </div>
       </div>
     </div>
     <div :id="`trigger-slide-show_${_uid}`"></div>
-    <div class="hero is-small">
-      <div class="hero-body pb-0 is-clipped">
-        <div class="work-experience-section has-background-light">
-          <div
-            :class="{
-              'p-6': ['fullhd'].includes($mq),
-              'p-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-            }"
-          >
-            <p class="title is-6 is-size-7-mobile">
-              {{ experience.company }}
-            </p>
-
-            <div
-              :class="{
-                'is-flex is-justify-content-space-between': ['fullhd'].includes($mq),
-                'has-text-left': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-              }"
-            >
-              <div
-                :class="{
-                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-                }"
-              >
-                <b-icon icon="map-marker"></b-icon>{{ experience.location }}
-              </div>
-              <div
-                :class="{
-                  'ml-3': ['fullhd'].includes($mq),
-                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-                }"
-              >
-                <b-icon icon="calendar"></b-icon>{{ experience.time }}
-              </div>
-              <div
-                :class="{
-                  'ml-3': ['fullhd'].includes($mq),
-                  'mb-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
-                }"
-              >
-                <b-icon icon="clock-outline"></b-icon>{{ experience.timeModel }}
-              </div>
-            </div>
-
-            <p></p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <work-experience-card-head :experience="experience" />
     <div class="hero" :id="`work-experience-content_${_uid}`">
       <div class="hero-body is-clipped">
         <div class="content is-clipped">
@@ -68,6 +24,7 @@
           </div>
           <p class="has-text-weight-bold has-text-white">{{ experience.teaser }}</p>
           <div :id="`experience-trigger_${_uid}`"></div>
+
           <ul class="has-text-white">
             <li
               v-for="(contentLine, index) in experience.content"
@@ -79,7 +36,7 @@
           </ul>
         </div>
         <div v-if="experience.skills" class="mt-6">
-          <div class="title is-6 has-text-white">Skills</div>
+          <div class="title is-6 is-size-7-mobile has-text-white">Skills</div>
           <b-taglist class="work-experience__skills" ref="skillContainer">
             <b-tag
               v-for="(skill, index) in experience.skills"
@@ -99,8 +56,10 @@
 </template>
 <script>
 import gsap from 'gsap';
+import WorkExperienceCardHead from './WorkExperienceCardHead.vue';
 
 export default {
+  components: { WorkExperienceCardHead },
   name: 'WorkExperienceCard',
   props: {
     experience: {
@@ -125,9 +84,9 @@ export default {
 
     timeline
       //.fromTo(`#work-experience-image_${this._uid}`, { scale: 0.85 }, { scale: 1.1, duration: 1 })
-      .fromTo(`#work-experience-image_${this._uid} img`, { opacity: 0 }, { opacity: 1, duration: 1 }, 0)
-      .fromTo(`#work-experience-image_${this._uid} img`, { borderRadius: 0 }, { borderRadius: 0, duration: 5 }, 0)
-      .fromTo(`#work-experience-image_${this._uid} img`, { opacity: 1 }, { opacity: 0, duration: 1 }, '<50%');
+      .fromTo(`#work-experience-image_${this._uid}`, { opacity: 0 }, { opacity: 1, duration: 1 }, 0)
+      .fromTo(`#work-experience-image_${this._uid}`, { borderRadius: 0 }, { borderRadius: 0, duration: 5 }, 0)
+      .fromTo(`#work-experience-image_${this._uid}`, { opacity: 1 }, { opacity: 0, duration: 1 }, '<50%');
 
     const timeline2 = gsap.timeline({
       scrollTrigger: {

@@ -5,7 +5,7 @@
 $primary: #ff8f2a;
 $success: #3a6d5e;
 $danger: #e65f5c;
-$warning: #FFC53A;
+$warning: #ffc53a;
 $info: #26085e;
 $dark: #161032;
 $primary-light: findLightColor($primary);
@@ -18,10 +18,10 @@ $loading-background: rgba(0, 0, 0, 0);
 
 // Lists and maps
 $custom-colors: (
-    'yellow': (
-      #FAFF81,
-      $black,
-    ),
+  'yellow': (
+    #faff81,
+    $black,
+  ),
 );
 $custom-shades: null !default;
 
@@ -102,5 +102,6 @@ $link-focus-border: $primary;
 
 $weight-medium: 500;
 
-$family-sans-serif:  itc-avant-garde-gothic-pro, BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: itc-avant-garde-gothic-pro, BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $family-primary: itc-avant-garde-gothic-pro;

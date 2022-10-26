@@ -1,7 +1,7 @@
 <template>
   <div class="sticky-container iris-container" ref="stickyContainer">
+    <div id="iris-trigger"></div>
     <div class="iris-in" ref="irisContainer">
-      <div id="iris-trigger"></div>
       <div class="scale-circle" id="iris-circle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,29 +35,40 @@ export default {
     };
   },
   mounted() {
-    this.timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#iris-trigger`,
-        start: '-=100',
-        end: '+=800',
-        scrub: true,
-        pinnedContainer: true,
-      },
-    });
+    let timeline;
 
-    this.timeline.from(`#iris-circle`, { scale: 1 }).to(`#iris-circle`, { scale: 120 });
+    const setUpScrollTrigger = () => {
+      if (timeline) timeline.kill();
+
+      let triggerStart = '-=100';
+      if (this.$mq === 'mobile') triggerStart = 'top top';
+      if (this.$mq === 'tablet') triggerStart = 'top 25%';
+
+      timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#iris-trigger`,
+          start: triggerStart,
+          end: '+=800',
+          scrub: true,
+          pinnedContainer: true,
+        },
+      });
+
+      timeline.fromTo(`#iris-circle`, { scale: 5 }, { scale: 180, y: '300%', ease: 'power1.inOut' });
+    };
+
+    setUpScrollTrigger();
+    window.addEventListener('resize', setUpScrollTrigger);
   },
-  beforeDestroy() {
-    this.timeline = null;
-  },
+  beforeDestroy() {},
 };
 </script>
 <style lang="scss" scoped>
 .iris-in {
   height: 1080px;
+  top: 0;
   overflow: hidden;
   position: sticky;
-  top: 0;
 
   &__content {
     width: 1920px;
@@ -65,7 +76,6 @@ export default {
 }
 
 .sticky-container.iris-container {
-  position: sticky;
   width: calc(100vw + 4px);
   height: calc(100vh + 4px);
   top: 0;
@@ -73,23 +83,8 @@ export default {
   contain: layout;
   pointer-events: none;
   margin-top: 0;
-  overflow: hidden;
   max-width: 100vw;
-  z-index: 20;
-
-  svg {
-    contain: layout;
-    min-height: 101%;
-    min-width: 101%;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    path {
-      transform-origin: center !important;
-    }
-  }
+  z-index: 2000;
+  position: sticky;
 }
 </style>

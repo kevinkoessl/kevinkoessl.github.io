@@ -160,6 +160,7 @@ export default {
 </script>
 <style lang="scss">
 .canvas-3d {
+  z-index: 1;
   .renderer {
     cursor: grab;
   }

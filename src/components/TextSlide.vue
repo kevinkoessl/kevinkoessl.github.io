@@ -39,10 +39,9 @@ export default {
     this.timeline
       .from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
         y: '100%',
-        delay: 0.5,
-        duration: 0.5,
-        stagger: 0.25,
-        ease: 'power4.out',
+        duration: 0.4,
+        stagger: 0.2,
+        ease: 'power1.inOut',
       })
       .to(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
         y: 0,

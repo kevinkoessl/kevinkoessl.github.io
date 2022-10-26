@@ -240,6 +240,67 @@ export default {
   }
 }
 
+.is-tinted {
+  background-color: #d7a621;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #0c6249;
+    mix-blend-mode: lighten;
+  }
+
+  img {
+    mix-blend-mode: multiply;
+    -webkit-filter: grayscale(100%) contrast(1.2);
+    filter: grayscale(100%) contrast(1.2);
+  }
+
+  &.is-success {
+    background-color: #00ff36;
+
+    img {
+      mix-blend-mode: multiply;
+      -webkit-filter: grayscale(100%) contrast(1.2);
+      filter: grayscale(100%) contrast(1);
+    }
+
+    &:after {
+      background-color: #23278a;
+      mix-blend-mode: lighten;
+    }
+  }
+
+  &.is-danger {
+    background-color: #e41c2d;
+
+    &:after {
+      background-color: #1d3162;
+      mix-blend-mode: lighten;
+    }
+  }
+
+  &.is-info {
+    background-color: #e50914;
+
+    img {
+      -webkit-filter: grayscale(100%) contrast(1.2);
+      filter: grayscale(100%) contrast(1.2);
+      opacity: 0.8;
+    }
+    &:after {
+      mix-blend-mode: lighten;
+      -webkit-filter: contrast(1.1);
+      filter: contrast(1.1);
+      background-color: #282581;
+    }
+  }
+}
+
 .hero-body__content {
   //position: absolute;
   left: 0;

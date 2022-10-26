@@ -137,6 +137,7 @@ export default {
           company: 'bits & likes',
           weblink: 'https://allyourhorses.de/',
           imageUrl: require('@/assets/jobs/Kevin Kössl - Werkstudent.jpg'),
+          imageClass: 'is-success',
         },
         {
           id: 'NCUWEHFJSH',
@@ -150,11 +151,12 @@ export default {
             'Implementierung von XHTTP-Requests',
             'Zugriff auf Kamera-Funktionen',
           ],
-          skills: ['Android', 'Java', 'XML', 'I18N', 'Asnychrone Programmierung', 'Android-Studio'],
+          skills: ['Android', 'Java', 'XML', 'I18N', 'Asynchrone Programmierung', 'Android-Studio'],
           time: 'September 2018',
           location: 'Bochum',
           company: 'Ruhr-Universität Bochum',
           imageUrl: require('@/assets/jobs/Ruhr-Universität Bochum - Universitätsbibliothek.jpeg'),
+          imageClass: 'is-info',
         },
       ],
     };
