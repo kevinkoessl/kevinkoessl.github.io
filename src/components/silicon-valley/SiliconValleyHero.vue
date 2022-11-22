@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero is-medium is-light">
+    <section class="hero is-medium is-light has-gridlines">
       <div class="hero-body is-relative">
         <div>
           <div class="columns is-multiline is-gapless">
@@ -27,7 +27,7 @@
       </div>
     </section>
     <div v-if="['widescreen', 'fullhd'].includes($mq)" class="section-two"></div>
-    <section class="hero is-light" :class="['fullhd'].includes($mq) ? 'is-large' : 'is-small'">
+    <section class="hero is-light has-gridlines" :class="['fullhd'].includes($mq) ? 'is-large' : 'is-small'">
       <div class="hero-body">
         <!--div class="columns is-multiline is-gapless is-centered">
           <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']" class="column is-full is-half-fullhd">

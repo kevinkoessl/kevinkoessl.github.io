@@ -23,6 +23,10 @@ export default {
       required: false,
       default: 'is-light',
     },
+    hasLight: {
+      required: false,
+      default: false,
+    },
   },
   data() {
     return {
@@ -55,8 +59,14 @@ export default {
     moveLight(event) {
       let containerRect = this.$refs.container.getBoundingClientRect();
 
-      this.lightScale = 1;
-      this.lightOpacity = 1;
+      if (this.hasLight) {
+        this.lightScale = 1;
+        this.lightOpacity = 1;
+      } else {
+        this.lightScale = 0.5;
+        this.lightOpacity = 0;
+      }
+
       requestAnimationFrame(() => {
         this.containerPosition = {
           x: containerRect.x,
@@ -71,6 +81,12 @@ export default {
     dimLight() {
       this.lightScale = 1;
       this.lightOpacity = 0;
+    },
+  },
+
+  watch: {
+    hasLight() {
+      this.moveLight();
     },
   },
   mounted() {

@@ -1,5 +1,6 @@
 <template>
-  <light-bulb-section type="is-dark">
+  <light-bulb-section type="is-dark" class="has-gridlines" :has-light="hasLight">
+    <div class="hero-head"><div class="container"></div></div>
     <job-search-desktop v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"></job-search-desktop>
     <div class="hero-body is-relative">
       <div class="hero-body__content" :class="{ 'p-6': ['desktop', 'widescreen', 'fullhd'].includes($mq) }">
@@ -7,14 +8,23 @@
           <div v-if="!['desktop', 'widescreen', 'fullhd'].includes($mq)" class="level is-mobile">
             <div class="level-left">
               <div class="level-item">
-                <b-icon type="is-yellow" icon="xml" class="job-search__icon icon-2"></b-icon>Kevin Kössl
+                <!--b-icon type="is-yellow" icon="xml" class="job-search__icon icon-2"></b-icon>Kevin Kö<ssl-->
+                <b-switch v-model="hasLight" outlined type="is-light" size="is-small">{{ lightSwitchLabel }} </b-switch>
               </div>
             </div>
           </div>
           <text-slide :animated-text="mainHeroText" class="mb-6" />
           <div v-if="!['desktop', 'widescreen', 'fullhd'].includes($mq)" class="job-search-mobile">
-            <job-search-carousel></job-search-carousel>
+            <job-search-carousel :has-light="hasLight"></job-search-carousel>
           </div>
+          <b-switch
+            v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"
+            v-model="hasLight"
+            outlined
+            type="is-light"
+            size="is-small"
+            >{{ lightSwitchLabel }}
+          </b-switch>
         </div>
       </div>
     </div>
@@ -29,7 +39,17 @@ import TextSlide from '../TextSlide.vue';
 export default {
   name: 'JobSearchHero',
   components: { LightBulbSection, JobSearchCarousel, TextSlide, JobSearchDesktop },
+
+  data() {
+    return {
+      hasLight: false,
+    };
+  },
+
   computed: {
+    lightSwitchLabel() {
+      return !this.hasLight ? 'Licht' : 'Licht';
+    },
     mainHeroText() {
       return [
         {

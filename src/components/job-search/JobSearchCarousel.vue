@@ -1,6 +1,6 @@
 <template>
   <div class="job-search-carousel">
-    <div class="light-bulb"></div>
+    <div class="light-bulb" :class="{ 'is-on': hasLight }"></div>
     <b-carousel :interval="2500" :pause-info="false" :arrow="false" :indicator="false">
       <b-carousel-item v-for="icon in drinkIcons" :key="`job-search-mobile__${icon}`">
         <div class="flip has-text-centered">
@@ -16,6 +16,12 @@
 <script>
 export default {
   name: 'JobSearchCarousel',
+  props: {
+    hasLight: {
+      required: false,
+      default: false,
+    },
+  },
   data() {
     return {
       drinkIcons: [
@@ -68,6 +74,16 @@ export default {
   height: 100px;
   background: radial-gradient(rgba(255, 255, 255, 1), rgba(250, 255, 129, 0.3) 50%, rgba(250, 255, 129, 0) 51%);
   mix-blend-mode: difference;
+  opacity: 0;
+  scale: 0;
+  transition: all 500ms cubic-bezier(0.46, 0.27, 0.59, 1.01);
+  transform: translateX(-300%);
+
+  &.is-on {
+    opacity: 1;
+    scale: 1;
+    transform: translateX(0);
+  }
 }
 .flip {
   animation-name: flip;

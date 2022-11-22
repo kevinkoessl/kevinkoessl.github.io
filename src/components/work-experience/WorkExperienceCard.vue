@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div class="py-6">
     <div :id="`trigger_${_uid}`"></div>
     <div :id="`trigger-background-image_${_uid}`"></div>
-    <div :id="`work-experience-image-hero_${_uid}`" class="hero is-fullheight">
+    <div
+      v-show="['mobile', 'tablet'].includes($mq)"
+      :id="`work-experience-image-hero_${_uid}`"
+      class="hero is-fullheight"
+    >
       <div class="hero-background">
         <div :id="`work-experience-image_${_uid}`" class="has-background-dark is-clipped">
           <b-image
@@ -14,18 +18,38 @@
       </div>
     </div>
     <div :id="`trigger-slide-show_${_uid}`"></div>
-    <work-experience-card-head :experience="experience" />
-    <div class="hero" :id="`work-experience-content_${_uid}`">
-      <div class="hero-body is-clipped">
-        <div class="content is-clipped">
+    <div class="columns is-gapless is-multiline">
+      <div class="column is-full">
+        <div
+          v-show="['desktop', 'widescreen', 'fullhd'].includes($mq)"
+          :id="`work-experience-image-hero_${_uid}-desktop`"
+          class="hero"
+        >
+          <div class="hero-background">
+            <div :id="`work-experience-image_${_uid}-desktop`" class="has-background-dark is-clipped">
+              <b-image :src="experience.imageUrl" class="is-tinted" :class="experience.imageClass || ''"></b-image>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-full" style="position: relative; z-index: 12000n">
+        <work-experience-card-head
+          :experience="experience"
+          :class="{ 'px-4': ['mobile', 'tablet', 'desktop'].includes($mq) }"
+        />
+        <div
+          :id="`work-experience-content_${_uid}`"
+          class="content"
+          :class="{ 'px-4': ['mobile', 'tablet', 'desktop'].includes($mq) }"
+        >
           <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
-            <div class="title is-6 is-size-7-mobile mb-0 has-text-white">{{ experience.jobTitle }}</div>
+            <div class="title is-6 is-size-7-mobile mb-0 has-text-light">{{ experience.jobTitle }}</div>
             <!-- b-icon icon="plus" class="work-experience__toggle" size="is-medium"></b-icon -->
           </div>
-          <p class="has-text-weight-bold has-text-white">{{ experience.teaser }}</p>
+          <p class="has-text-weight-bold has-text-light">{{ experience.teaser }}</p>
           <div :id="`experience-trigger_${_uid}`"></div>
 
-          <ul class="has-text-white">
+          <ul class="has-text-light">
             <li
               v-for="(contentLine, index) in experience.content"
               :key="`experience-entry_${_uid}_content-line__${index}`"
@@ -35,8 +59,11 @@
             </li>
           </ul>
         </div>
-        <div v-if="experience.skills" class="mt-6">
-          <div class="title is-6 is-size-7-mobile has-text-white">Skills</div>
+      </div>
+      <div v-if="experience.skills" class="column is-half">
+        <div class="mt-6"></div>
+        <div :class="{ 'px-4': ['mobile', 'tablet', 'desktop'].includes($mq) }">
+          <div class="title is-6 is-size-7-mobile has-text-light">Skills</div>
           <b-taglist class="work-experience__skills" ref="skillContainer">
             <b-tag
               v-for="(skill, index) in experience.skills"
@@ -68,107 +95,95 @@ export default {
     },
   },
   data() {
-    return { isOpen: true, timeline: null, timeline2: null, timeline3: null };
+    return { isOpen: true, timeline: null, timeline2: null };
   },
-  mounted() {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#trigger-background-image_${this._uid}`,
-        endTrigger: `#end-trigger_${this._uid}`,
-        start: `top 0%`,
-        end: `bottom bottom`,
-        scrub: 1,
-        pin: `#work-experience-image_${this._uid}`,
-      },
-    });
 
-    timeline
-      //.fromTo(`#work-experience-image_${this._uid}`, { scale: 0.85 }, { scale: 1.1, duration: 1 })
-      .fromTo(`#work-experience-image_${this._uid}`, { opacity: 0 }, { opacity: 1, duration: 1 }, 0)
-      .fromTo(`#work-experience-image_${this._uid}`, { borderRadius: 0 }, { borderRadius: 0, duration: 5 }, 0)
-      .fromTo(`#work-experience-image_${this._uid}`, { opacity: 1 }, { opacity: 0, duration: 1 }, '<50%');
+  methods: {
+    setUpTimeline() {
+      let scrub = 1;
+      if (['desktop'].includes(this.$mq)) scrub = true;
 
-    const timeline2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#experience-trigger_${this._uid}`,
-        start: 'top 50%',
-      },
-    });
-
-    timeline2
-      .from(`#work-experience-content_${this._uid} li`, {
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: 'power1.inOut',
-      })
-      .to(`#work-experience-content_${this._uid} li`, {
-        opacity: 1,
+      this.timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#trigger-background-image_${this._uid}`,
+          endTrigger: `#end-trigger_${this._uid}`,
+          start: `top 0%`,
+          end: `bottom bottom`,
+          scrub,
+          pin: `#work-experience-image_${this._uid}${['desktop'].includes(this.$mq) ? '-desktop' : ''}`,
+        },
       });
 
-    if (this.$refs['skillContainer']) {
-      let skillContainer = this.$refs.skillContainer.$el.getBoundingClientRect();
-      const containerHCenter = skillContainer.x + skillContainer.width / 2;
+      if (['mobile', 'tablet'].includes(this.$mq))
+        this.timeline
+          //.fromTo(`#work-experience-image_${this._uid}`, { scale: 0.85 }, { scale: 1.1, duration: 1 })
+          .fromTo(`#work-experience-image_${this._uid}`, { opacity: 0 }, { opacity: 1, duration: 1 }, 0)
+          .fromTo(`#work-experience-image_${this._uid}`, { borderRadius: 0 }, { borderRadius: 0, duration: 5 }, 0)
+          .fromTo(`#work-experience-image_${this._uid}`, { opacity: 1 }, { opacity: 0, duration: 1 }, '<50%');
+      else {
+        this.timeline
+          .fromTo(`#work-experience-image_${this._uid}-desktop`, { scale: 0.5 }, { scale: 1, duration: 1 }, 0)
+          .fromTo(`#work-experience-image_${this._uid}-desktop`, { opacity: 1 }, { opacity: 1, duration: 1 }, 1);
+        this.timeline2 = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#experience-trigger_${this._uid}`,
+            scrub,
+            start: 'top 50%',
+          },
+        });
 
-      for (let i = 0; i < this.experience.skills.length; i++) {
-        let skillTag = this.$refs[`work-experience_${this._uid}-skill_${i}`][0].$el.getBoundingClientRect();
-        const skillTagHCenter = skillTag.x + skillTag.width / 2;
+        this.timeline2
+          .from(`#work-experience-content_${this._uid} li`, {
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power1.inOut',
+          })
+          .to(`#work-experience-content_${this._uid} li`, {
+            opacity: 1,
+          });
 
-        /**
-        timeline.fromTo(
-          `#work-experience_${this._uid}-skill_${i}`,
-          { x: (skillTagHCenter - containerHCenter) * 2 },
-          { x: 0 },
-          '90%'
-        );
-        */
+        if (this.$refs['skillContainer']) {
+          let skillContainer = this.$refs.skillContainer.$el.getBoundingClientRect();
+          const containerHCenter = skillContainer.x + skillContainer.width / 2;
+          const containerVCenter = skillContainer.y + skillContainer.height / 2;
+
+          for (let i = 0; i < this.experience.skills.length; i++) {
+            let skillTag = this.$refs[`work-experience_${this._uid}-skill_${i}`][0].$el.getBoundingClientRect();
+            const skillTagHCenter = skillTag.x + skillTag.width / 2;
+            const skillTagVCenter = skillTag.y + skillTag.height / 2;
+
+            this.timeline2.fromTo(
+              `#work-experience_${this._uid}-skill_${i}`,
+              {
+                x: (skillTagHCenter - containerHCenter) * 2,
+                y: (skillTagVCenter - containerVCenter) * 1,
+                opacity: 0,
+                scale: 1,
+              },
+              { x: 0, y: 0, opacity: 1, scale: 1, duration: 3 },
+              '70%'
+            );
+          }
+        }
       }
-    }
-    /**
-    this.timeline2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#trigger_${this._uid}`,
-        start: '-=100',
-        end: '+=300',
-        scrub: true,
-      },
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.setUpTimeline();
+    }, 5000);
+
+    window.addEventListener('resize', () => {
+      this.timeline.kill();
+      this.timeline = null;
+
+      if (this.timeline2) {
+        this.timeline2.kill();
+        this.timeline2 = null;
+      }
+      this.setUpTimeline();
     });
-
-    this.timeline2
-      .from(`#work-experience-image_${this._uid}`, { scale: 0.8, borderRadius: '50px' })
-      .to(`#work-experience-image_${this._uid}`, { scale: 1, borderRadius: 0 });
-
-    this.timeline3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#trigger-columns_${this._uid}`,
-        start: 'top 66%',
-        end: '+=400',
-        scrub: true,
-      },
-    });
-
-    this.timeline3
-      .from(`#work-experience-columns_${this._uid}`, { y: 0 })
-      .to(`#work-experience-columns_${this._uid}`, { y: -500 });
-
-    /**
-
-    this.scene3 = new ScrollMagic.Scene({
-      triggerElement: `#trigger-columns_${this._uid}`,
-      duration: 400,
-      offset: -300,
-    })
-      .setTween(
-        gsap.fromTo(
-          `#work-experience-columns_${this._uid}`,
-          100,
-          { translateY: 0 },
-          { translateY: '-500px', immediateRender: false }
-        )
-      )
-      //.addIndicators({ name: 'pin scene', colorEnd: '#FFFFFF' })
-      .addTo(this.controller);
-    */
   },
   beforeDestroy() {
     this.timeline = null;
@@ -180,7 +195,9 @@ export default {
 <style lang="scss">
 .work-experience-section {
   border: 2px solid black;
+  position: relative;
   transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 300;
 
   .work-experience__content,
   .work-experience__meta {
@@ -249,5 +266,9 @@ export default {
       height: 100%;
     }
   }
+}
+
+.work-experience__skills {
+  overflow: visible;
 }
 </style>

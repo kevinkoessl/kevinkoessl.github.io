@@ -1,24 +1,37 @@
 <template>
   <div class="work-experience has-background-dark">
-    <iris-in-transition />
-    <div class="hero is-medium">
+    <!--iris-in-transition /-->
+    <div class="hero is-medium is-dark has-gridlines">
       <div class="hero-body">
-        <div :class="{ 'container is-fluid': ['widescreen', 'fullhd'].includes($mq) }">
+        <div :class="{ 'container is-max-desktop': ['widescreen', 'fullhd'].includes($mq) }">
           <div class="title is-3 is-size-5-mobile has-text-warning is-retro">Meine Work Experience</div>
         </div>
       </div>
+      <div class="hero-foot"></div>
     </div>
-    <div class="work-experience-list">
-      <template v-for="experience in experienceEntries">
-        <div :key="`experience-entry__${experience.id}`" class="single-experience">
-          <work-experience-card :experience="experience" />
-          <div class="my-3">
-            <p class="has-text-centered title is-6">
-              <b-icon icon="cube-unfolded" type="is-light" size="is-medium"></b-icon>
-            </p>
-          </div>
+    <div class="hero is-dark" :class="{ 'has-gridlines has-gridlines-right': ['widescreen', 'fullhd'].includes($mq) }">
+      <div :class="{ 'hero-body': ['widescreen', 'fullhd'].includes($mq) }">
+        <div
+          class="work-experience-list"
+          :class="{ 'container is-max-desktop': ['widescreen', 'fullhd'].includes($mq) }"
+        >
+          <template v-for="experience in experienceEntries">
+            <div :key="`experience-entry__${experience.id}`" class="single-experience">
+              <work-experience-card :experience="experience" />
+              <div
+                :class="{
+                  'my-3': ['mobile', 'tablet'].includes($mq),
+                  'my-6 py-6': ['desktop', 'widescreen', 'fullhd'].includes($mq),
+                }"
+              >
+                <p class="has-text-centered title is-6">
+                  <b-icon icon="cube-unfolded" type="is-light" size="is-medium"></b-icon>
+                </p>
+              </div>
+            </div>
+          </template>
         </div>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +82,7 @@ export default {
           weblink: 'https://www.murtfeldt-as.de/',
           imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.jpg'),
           imageClass: 'is-danger',
+          backgroundClass: 'has-background-cross',
         },
 
         {
@@ -104,6 +118,7 @@ export default {
           weblink: 'https://elem3nts.de/',
           imageUrl: require('@/assets/jobs/Kevin Kössl - Full-Stack-Entwickler.jpg'),
           imageClass: 'is-warning',
+          backgroundClass: 'has-background-polka-dot',
         },
         {
           id: 'PSMELKFSG',
@@ -138,6 +153,7 @@ export default {
           weblink: 'https://allyourhorses.de/',
           imageUrl: require('@/assets/jobs/Kevin Kössl - Werkstudent.jpg'),
           imageClass: 'is-success',
+          backgroundClass: 'has-background-zigzag',
         },
         {
           id: 'NCUWEHFJSH',
@@ -157,6 +173,7 @@ export default {
           company: 'Ruhr-Universität Bochum',
           imageUrl: require('@/assets/jobs/Ruhr-Universität Bochum - Universitätsbibliothek.jpeg'),
           imageClass: 'is-info',
+          backgroundClass: 'has-background-wavy',
         },
       ],
     };
