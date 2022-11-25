@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas-3d" ref="canvas" style="">
+  <div class="canvas-3d" ref="canvas" id="fixed-canvas">
     <div class="renderer is-success" id="3mf-preview" ref="renderer">
       <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
     </div>
@@ -60,7 +60,7 @@ export default {
     this.scene = new THREE.Scene();
 
     let height = 800;
-    this.scene.rotation.x = 0.7
+   // this.scene.rotation.x = 0.7
     if(this.$mq === 'mobile') {
       height = 400;
       this.scene.rotation.x = 1.5
@@ -73,17 +73,22 @@ export default {
     this.renderer.setSize(this.$refs.canvas.offsetWidth , height);
     this.$refs.canvas.appendChild(this.renderer.domElement);
 
-    const alight = new THREE.AmbientLight(0x000000, 0.1);
+   const alight = new THREE.AmbientLight(0xffffff, 0.4);
+    const axesHelper = new THREE.AxesHelper( 100 );
+
     this.scene.add(alight);
 
-    const pointLight = new THREE.PointLight(0x4578d6, 0.5);
-    pointLight.position.set(0, 0, 1000);
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(-50, 20, 100);
+
+    const pointLightHelper = new THREE.PointLightHelper( pointLight, 10 );
+
     this.scene.add(pointLight);
 
     this.pointLight = pointLight;
 
 
-    this.pointLight2 = new THREE.PointLight(0xff0000, 0.5);
+    this.pointLight2 = new THREE.PointLight(0xffffff, 0.5);
     this.pointLight2.position.set(0, 0, -1000);
     this.scene.add(this.pointLight2)
 
@@ -111,21 +116,26 @@ export default {
   async mounted() {
     this.setupScene();
 
+
     const loader = new ThreeMFLoader();
     let meshObject;
     loader.load(this.fileUrl, (object) => {
       const box = new THREE.Box3().setFromObject(object);
 
-      object.position.x = 40;
+
+      object.position.x = -10;
       object.position.y = 0;
-      object.position.z = 250;
-      object.rotation.x = (-Math.PI / 2);
+      object.position.z = -5;
+
+
 
       this.meshObject = object;
+      //object.translate(0, 20, 0);
       if (this.meshObject) {
         this.meshObject.traverse((child) => {
           if (child.isMesh) {
-            child.material.color.setHex(0xffffff);
+
+            child.material.color.setHex(0xffd800);
             child.material.vertexColors = false;
             child.material.needsUpdate = true;
           }
@@ -133,25 +143,37 @@ export default {
       }
 
 
-      this.scene.add(this.meshObject);
-      // calculate a nice position for the camera
-
+      //this.scene.add(this.meshObject);
       this.camera.up.set(0, 0, 1);
+      this.camera.position.set(5, 15, 200)
 
-      //camera.position.set(x, -y, (box.max.z - box.min.z) / 2);
-      this.camera.position.set(0, 300, 2000)
+
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".section-two",
           endTrigger: ".section-five",
-          start: "top 60%",
-          end: "top ",
+          //start: "top 60%",
+          end: "top 50%",
           scrub: true,
+          pin: "#fixed-canvas"
         }
       });
 
-      timeline.to(this.scene.rotation, {y: -4, x: -0.5}, 0).to(this.camera.position, {z: 1000,y: 200, ease: "power4.out"}, 0);
+      let pivot = new THREE.Group();
+      pivot.position.set( 0, 0, 0 );
+      pivot.rotation.x = (Math.PI / 3);
+      pivot.add( object );
+      this.scene.add(pivot)
+
+
+
+      timeline.fromTo('#fixed-canvas', {x: "-80%"}, {x: 0, ease: "power2.out"}, 0)
+      .to(pivot.rotation, {y: -6,  x: 0, ease: "power2.out"}, 0)
+      .to(this.pointLight.position, {x: 10, z: 100}, 0)
+      .to(this.camera.rotation, {x: Math.PI * 1/12 },0)
+      .to(this.camera.position, {z: 70, y: -5, ease: "power2.out"}, 0);
+
 
       window.addEventListener('resize', this.resize)
     })
