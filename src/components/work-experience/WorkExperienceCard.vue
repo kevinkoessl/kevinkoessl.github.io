@@ -8,7 +8,7 @@
       class="hero is-fullheight"
     >
       <div class="hero-background">
-        <div :id="`work-experience-image_${_uid}`" class="has-background-dark is-clipped">
+        <div :id="`work-experience-image_${_uid}`" class="has-background-dark is-clipped work-experience-image-div">
           <b-image
             :src="experience.imageUrl"
             class="is-clipped is-tinted"

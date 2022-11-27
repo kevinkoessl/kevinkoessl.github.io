@@ -154,6 +154,7 @@ export default {
           trigger: ".section-two",
           endTrigger: ".section-five",
           //start: "top 60%",
+          anticipatePin: 1,
           end: "top 50%",
           scrub: true,
           pin: "#fixed-canvas"

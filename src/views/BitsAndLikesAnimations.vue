@@ -2,10 +2,14 @@
   <div class="about">
     <div class="hero is-fullheight">
       <div class="hero-body">
-        <h1 class="title is-1">Typography Banner</h1>
+        <div>
+          <h1 class="title is-1" style="color: lightblue">Ein Kevin</h1>
+          <h2 class="title is-2" style="color: #003266">Für dein Animation-Game</h2>
+        </div>
       </div>
     </div>
-
+    <b-a-l-tier-one></b-a-l-tier-one>
+    <b-a-l-tier-two></b-a-l-tier-two>
     <div :id="`text-wall-start-trigger_${_uid}`"></div>
     <div class="hero is-fullheight is-clipped" style="background: lightblue">
       <div
@@ -157,7 +161,7 @@
           class="mb-4"
         >
           <b-image
-            v-for="j in 14"
+            v-for="j in 18"
             :key="`emoji-line-word_${i}_${j}`"
             class="emoji-wall__emoji mx-4 is-inline-block"
             style="width: 100px"
@@ -194,7 +198,7 @@
           class="mb-4"
         >
           <b-image
-            v-for="j in 18"
+            v-for="j in 20"
             :key="`emoji-2-line-word_${i}_${j}`"
             class="emoji-wall-2__emoji mx-4 is-inline-block"
             style="width: 75px"
@@ -210,9 +214,11 @@
       </div>
     </div>
     <div :id="`emoji-wall-2-end-trigger_${_uid}`"></div>
-    <div class="hero is-fullheight">
+
+    <div class="hero is-fullheight line-animation">
       <div class="hero-body">
-        <h1 class="title is-1">Ende</h1>
+        <div :id="`svg-start-trigger_${_uid}`"></div>
+        <div class="square"></div>
       </div>
     </div>
   </div>
@@ -221,9 +227,11 @@
 import gsap from 'gsap';
 
 import BAL3D from '@/components/bitsandlikes/BAL3D.vue';
+import BALTierOne from '@/components/bitsandlikes/BALTierOne.vue';
+import BALTierTwo from '@/components/bitsandlikes/BALTierTwo.vue';
 
 export default {
-  components: { BAL3D },
+  components: { BAL3D, BALTierOne, BALTierTwo },
   data() {
     return {
       text: `news`,
@@ -232,6 +240,7 @@ export default {
       timeline3: null,
       timeline4: null,
       timeline5: null,
+      tierOneAnimations: null,
     };
   },
   methods: {
@@ -458,6 +467,26 @@ export default {
           },
           '-=150%'
         );
+
+      let intro = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#svg-start-trigger_${this._uid}`,
+
+          start: 'top 20%',
+        },
+      });
+
+      intro
+        .fromTo(
+          '.line-animation .square',
+          { clipPath: 'polygon(0 0, 5px 0, 5px 0, 0 0)' },
+          { clipPath: 'polygon(0 0, 5px 0, 5px 100%, 0 100%)', ease: 'power1.in', duration: 0.1 }
+        )
+        .to('.line-animation .square', {
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+          ease: 'power1.in',
+          duration: 0.1,
+        });
     },
   },
   mounted() {
@@ -466,6 +495,14 @@ export default {
 };
 </script>
 <style lang="scss">
+@import '~@/styles/main.scss';
+.square {
+  width: 500px;
+  height: 300px;
+  border-left: 5px dashed #7bb3dc;
+  border-bottom: 5px dashed #0d3d60;
+}
+
 .title.is-outlined {
   color: lightblue !important;
   text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;

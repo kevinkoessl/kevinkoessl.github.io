@@ -6,6 +6,7 @@ $primary: #ff8f2a;
 $success: #3a6d5e;
 $danger: #e65f5c;
 $warning: #ffc53a;
+$yellow: #faff81;
 $info: #26085e;
 $dark: #161032;
 $primary-light: findLightColor($primary);
@@ -19,7 +20,7 @@ $loading-background: rgba(0, 0, 0, 0);
 // Lists and maps
 $custom-colors: (
   'yellow': (
-    #faff81,
+    $yellow,
     $black,
   ),
 );
