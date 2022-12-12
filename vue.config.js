@@ -15,7 +15,7 @@ module.exports = defineConfig({
         */
         additionalData: `
           @import "~bulma/sass/utilities/_all";
-          @import "//styles/abstracts/_style.scss";
+          @import "~@/styles/abstracts/_styles.scss";
         `,
       },
     },

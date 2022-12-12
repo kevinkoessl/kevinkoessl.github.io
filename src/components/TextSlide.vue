@@ -3,7 +3,7 @@
     <div :id="`text-slide-trigger_${_uid}`"></div>
     <template v-for="(textBlock, index) in animatedText">
       <div :key="`animated-text-block__${index}`">
-        <div class="pr-2 is-clipped">
+        <div class="pr-2">
           <div
             :id="`text-slide_${_uid}-line`"
             :class="textBlock.class"
@@ -33,19 +33,23 @@ export default {
     this.timeline = gsap.timeline({
       scrollTrigger: {
         trigger: `#text-slide-trigger_${this._uid}`,
+        scrub: true,
+
+        start: 'top 70%',
+        end: '+=400',
       },
     });
 
-    this.timeline
-      .from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
-        y: '100%',
-        duration: 0.4,
-        stagger: 0.2,
-        ease: 'power1.inOut',
-      })
-      .to(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
-        y: 0,
-      });
+    this.timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
+      y: '100px',
+
+      opacity: 0,
+      ease: 'power1.out',
+      stagger: {
+        amount: 0.5,
+        ease: 'linear',
+      },
+    });
   },
 };
 </script>

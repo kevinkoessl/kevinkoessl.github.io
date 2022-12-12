@@ -118,7 +118,7 @@ export default {
 
 
     const loader = new ThreeMFLoader();
-    let meshObject;
+    console.log(this.fileUrl)
     loader.load(this.fileUrl, (object) => {
       const box = new THREE.Box3().setFromObject(object);
 

@@ -35,7 +35,7 @@
       </div>
     </div>
     <div id="tier-two-animations-middle-trigger"></div>
-    <div class="hero" style="background: lightblue; height: 12000px" id="boring-hero">
+    <div class="hero" style="background: lightblue; height: 10000px" id="boring-hero">
       <div class="hero-body" style="width: 100%">
         <div class="bore-me-container">
           <div class="bore-me has-text-centered is-relative">
@@ -81,6 +81,9 @@
           </div>
         </div>
       </div>
+      <div class="hero-foot has-text-centered pt-3 pb-6">
+        <div class="title is-5 has-text-white mb-6">also weiter zu...</div>
+      </div>
     </div>
     <div id="tier-two-animations-end-trigger"></div>
   </div>
@@ -117,55 +120,35 @@ export default {
       .from('#tier-two-animations .right', { duration: 0.5, ease: 'power3.out', x: '-50px', opacity: 0 })
       .from('#tier-two-animations .left', { duration: 0.3, ease: 'power3.out', x: '50px', opacity: 0 }, '-=50%');
 
-    this.timeline2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#tier-two-animations-trigger`,
-        start: 'top 0%',
-      },
-    });
-
-    this.timeline2.fromTo(
-      '#tier-two-animations .bore-me-container',
-      {
-        rotation: '-30%',
-        opacity: 0,
-        scale: 0.3,
-      },
-      {
-        duration: 0.5,
-        y: 0,
-        ease: 'power4.in',
-        rotation: -15,
-        opacity: 1,
-        scale: 1,
-      }
-    );
-
     this.timeline3 = gsap.timeline({
       scrollTrigger: {
         trigger: `#tier-two-animations-middle-trigger`,
         endTrigger: `#tier-two-animations-end-trigger`,
         start: 'top 20%',
         end: 'bottom 100%',
-        scrub: true,
+        scrub: 1,
+        snap: {
+          snapTo: 1,
+        },
         pin: '#boring-hero .bore-me-container',
       },
     });
     this.timeline3
-      .fromTo(
-        `#boring-hero .bore-me`,
-        { scale: 0.01, opacity: 0.5 },
-        { scale: 1, ease: 'power3.in', duration: 2, opacity: 1 }
-      )
+      .fromTo(`#boring-hero .bore-me`, { scale: 0.01 }, { scale: 1, ease: 'power1.in', duration: 1 })
       .addLabel('explosion')
-      .to(`#boring-hero .boring-letter.b`, {
-        x: '-600px',
+      .to(
+        `#boring-hero .boring-letter.b`,
+        {
+          x: '-600px',
 
-        opacity: '0',
-        scale: '2',
-        rotation: 270,
-        ease: 'power3.out',
-      })
+          opacity: '0',
+          scale: '2',
+          rotation: 270,
+          ease: 'power3.out',
+          duration: 0.5,
+        },
+        '<90%'
+      )
       .to(
         `#boring-hero .boring-letter.o`,
         {
@@ -261,10 +244,14 @@ export default {
         },
         '<0%'
       )
-      .to(
+      .fromTo(
         `#boring-hero .bore-me .image`,
         {
-          scale: '1.5',
+          scale: '0.7',
+        },
+        {
+          scale: 1,
+          y: '50%',
           ease: 'power3.out',
         },
         '<0%'
@@ -298,7 +285,7 @@ export default {
           );
       }
 
-      return t1.duration(0.3);
+      return t1.duration(0.5);
     }
 
     this.timeline3.add(imageSwapScene(), 'explosion');
@@ -309,8 +296,8 @@ export default {
 @import '~@/styles/main.scss';
 .bore-me {
   .image {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     position: absolute;
     left: 0;
     right: 0;

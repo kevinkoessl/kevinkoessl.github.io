@@ -125,7 +125,7 @@ export default {
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd',
-          text: 'im  <span class="title is-size-6-mobile is-size-4-tablet is-size-3-fullhd is-3 has-text-weight-bold has-text-warning is-retro"> Silicon Valley</span>',
+          text: 'im  <span class="title is-size-6-mobile is-size-4-tablet is-size-4-fullhd is-3 has-text-weight-bold has-text-warning is-retro"> Silicon Valley</span>',
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd',
@@ -139,7 +139,7 @@ export default {
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right has-text-left-fullhd',
-          text: 'im <span class="title  is-size-6-mobile is-3 has-text-weight-bold has-text-danger is-retro">Pott</span> bestens',
+          text: 'im <span class="title  is-size-6-mobile is-4 has-text-weight-bold has-text-danger is-retro">Pott</span> bestens',
         },
         {
           class: 'title is-size-6-mobile is-4 has-text-black has-text-right has-text-left-fullhd',
