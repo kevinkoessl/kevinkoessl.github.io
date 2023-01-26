@@ -14,7 +14,7 @@
     "scrollmagic": "^2.0.8",
     "scrollmagic-plugins": "^1.0.8",
     "three": "^0.143.0",
-    "vue": "^2.6.14",
+    "vue": "^2.7.14",
     "vue-mq": "^1.0.1",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"

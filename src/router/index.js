@@ -18,6 +18,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/BitsAndLikesAnimations.vue'),
   },
+
+  {
+    path: '/demo/Y5v26L22Psb',
+    name: 'animated-components',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AnimatedComponents.vue'),
+  },
 ];
 
 const router = new VueRouter({
