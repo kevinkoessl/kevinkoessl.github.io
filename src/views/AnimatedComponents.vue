@@ -17,7 +17,7 @@
           <b-icon icon="arrow-right" size="is-large"></b-icon>
         </div>
         <div class="column is-10">
-          <r-slide-in v-bind="direction.config">
+          <k-k-slide-in v-bind="direction.config">
             <div class="title is-1">{{ direction.label }}</div>
             <pre class="inset">{{ direction.config }}</pre>
             <div v-if="index === 1" class="columns">
@@ -37,16 +37,16 @@
               </div>
               <div class="column is-half">
                 <div class="py-3 pl-3 pr-0">
-                  <r-slide-in direction="right-to-left" :scroll-start="40">
+                  <k-k-slide-in direction="right-to-left" :scroll-start="40">
                     <b-image
                       src="https://content.bitsandlikes.de//var/public/images/3c/2a/1_Gruppenfoto_Gartenfeier_klein_2.jpg"
                     >
                     </b-image>
-                  </r-slide-in>
+                  </k-k-slide-in>
                 </div>
               </div>
             </div>
-          </r-slide-in>
+          </k-k-slide-in>
         </div>
       </div>
     </div>

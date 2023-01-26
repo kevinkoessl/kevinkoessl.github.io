@@ -6,13 +6,11 @@ import Buefy from 'buefy';
 import VueMq from 'vue-mq';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import Revuelution from 'revuelution';
 
 gsap.registerPlugin(ScrollTrigger);
 
 Vue.config.productionTip = false;
 Vue.use(Buefy);
-Vue.use(Revuelution);
 
 Vue.use(VueMq, {
   breakpoints: {
