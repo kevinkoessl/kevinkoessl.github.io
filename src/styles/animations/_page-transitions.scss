@@ -1,0 +1,39 @@
+
+.fade-page-enter-active {
+  animation: fade-page-in $speed;
+}
+
+.fade-page-leave-active {
+  animation: fade-page-out $speed;
+}
+
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 86ms cubic-bezier(0.31, 0.46, 0.02, 1);
+}
+
+.page-enter, .page-leave-to {
+  opacity: 0;
+}
+
+.slide-page-up-enter-active,
+.slide-page-up-leave-active {
+  transition: all 500ms cubic-bezier(0.31, 0.46, 0.02, 1);
+}
+
+.slide-page-up-enter, .slide-page-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+  opacity: 1;
+}
+
+
+.slide-page-left-enter-active,
+.slide-page-left-leave-active {
+  transition: all 500ms cubic-bezier(0.31, 0.46, 0.02, 1);
+}
+
+.slide-page-left-enter, .slide-page-left-leave-to {
+  transform: translate3d(100%, 0, 0);
+  opacity: 1;
+}

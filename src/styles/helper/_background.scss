@@ -1,0 +1,5 @@
+.has-background-light {
+  .select select, .taginput .taginput-container.is-focusable, .textarea, .input {
+    background-color: $white;
+  }
+}

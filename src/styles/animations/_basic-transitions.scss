@@ -1,0 +1,21 @@
+.slide-text-up-enter-active,
+.slide-text-up-leave-active {
+  transition: all 500ms cubic-bezier(0.31, 0.46, 0.02, 1);
+}
+
+.slide-text-up-enter,
+.slide-text-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+  opacity: 1;
+}
+
+.flick-text-up-enter-active,
+.flick-text-up-leave-active {
+  transition: all 500ms cubic-bezier(0.31, 0.46, 0.02, 1);
+}
+
+.flick-text-up-enter,
+.flick-text-up-leave-to {
+  transform:  translate3d(0, 100%, 0) rotateZ(8deg);
+  opacity: 1;
+}
