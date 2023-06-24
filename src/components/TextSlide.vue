@@ -41,7 +41,7 @@ export default {
     });
 
     this.timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
-      y: '100px',
+      x: '100px',
 
       opacity: 0,
       ease: 'power1.out',

@@ -76,14 +76,14 @@ export default {
     const alight = new THREE.AmbientLight(0x000000, 0.1);
     this.scene.add(alight);
 
-    const pointLight = new THREE.PointLight(0x4578d6, 0.5);
+    const pointLight = new THREE.PointLight(0x00ff00, 0.5);
     pointLight.position.set(0, 0, 1000);
     this.scene.add(pointLight);
 
     this.pointLight = pointLight;
 
 
-    this.pointLight2 = new THREE.PointLight(0xff0000, 0.5);
+    this.pointLight2 = new THREE.PointLight(0x4578d6, 0.5);
     this.pointLight2.position.set(0, 0, -1000);
     this.scene.add(this.pointLight2)
 

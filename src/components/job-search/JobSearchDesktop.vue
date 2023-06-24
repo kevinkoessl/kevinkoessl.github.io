@@ -1,12 +1,12 @@
 <template>
   <div class="job-search">
-    <b-icon type="is-dark" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="laptop" class="job-search__icon icon-3"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="account-multiple" class="job-search__icon icon-4"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="currency-usd" class="job-search__icon icon-5"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="wrench-outline" class="job-search__icon icon-6"></b-icon>
-    <b-icon type="is-dark" size="is-large" icon="office-building" class="job-search__icon icon-7"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="briefcase-outline" class="job-search__icon icon-1"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="xml" class="job-search__icon icon-2"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="laptop" class="job-search__icon icon-3"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="account-multiple" class="job-search__icon icon-4"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="currency-usd" class="job-search__icon icon-5"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="wrench-outline" class="job-search__icon icon-6"></b-icon>
+    <b-icon type="is-black" size="is-large" icon="office-building" class="job-search__icon icon-7"></b-icon>
   </div>
 </template>
 <script>
@@ -84,7 +84,7 @@ export default { name: 'JobSearchDesktop' };
 
       &.icon-6 {
         transform: scale(1.5) rotate(-10deg);
-        left: 51%;
+        left: 55%;
         top: 66%;
       }
     }

@@ -9,7 +9,7 @@
       </b-carousel-item>
     </b-carousel>
     <div class="search is-flex is-justify-content-center">
-      <b-icon type="is-yellow" size="is-large" icon="magnify"></b-icon>
+      <b-icon type="is-white" size="is-large" icon="magnify"></b-icon>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
         'wrench-outline',
         'office-building',
       ],
-      availableColors: [{ name: 'dark' }],
+      availableColors: [{ name: 'black' }],
     };
   },
   methods: {
@@ -72,7 +72,7 @@ export default {
   margin: auto;
   width: 100px;
   height: 100px;
-  background: radial-gradient(rgba(255, 255, 255, 1), rgba(250, 255, 129, 0.3) 50%, rgba(250, 255, 129, 0) 51%);
+  background: radial-gradient(rgba(255, 255, 255, 1), rgba(144, 255, 186, 0.578) 50%, rgba(250, 255, 129, 0) 51%);
   mix-blend-mode: difference;
   opacity: 0;
   scale: 0;

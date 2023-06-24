@@ -2,7 +2,7 @@
 @import '~bulma/sass/utilities/_all';
 
 // Set your colors
-$primary: #ff8f2a;
+$primary: #51cd88;
 $success: #3a6d5e;
 $danger: #e65f5c;
 $warning: #ffc53a;
@@ -16,6 +16,8 @@ $twitter: #4099ff;
 $twitter-invert: findColorInvert($twitter);
 $light: #f5f7dc;
 $loading-background: rgba(0, 0, 0, 0);
+$black: #171b20;
+$white: #ffffff;
 
 // Lists and maps
 $custom-colors: (
@@ -106,3 +108,5 @@ $weight-medium: 500;
 $family-sans-serif: itc-avant-garde-gothic-pro, BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $family-primary: itc-avant-garde-gothic-pro;
+
+$family-secondary: superior-title, sans-serif;

@@ -1,5 +1,5 @@
 <template>
-  <light-bulb-section type="is-dark" class="has-gridlines" :has-light="hasLight">
+  <light-bulb-section type="is-black" class="has-gridlines" :has-light="hasLight">
     <div class="hero-head"><div class="container"></div></div>
     <job-search-desktop v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"></job-search-desktop>
     <div class="hero-body is-relative">
@@ -9,7 +9,7 @@
             <div class="level-left">
               <div class="level-item">
                 <!--b-icon type="is-yellow" icon="xml" class="job-search__icon icon-2"></b-icon>Kevin Kö<ssl-->
-                <b-switch v-model="hasLight" outlined type="is-light" size="is-small">{{ lightSwitchLabel }} </b-switch>
+                <b-switch v-model="hasLight" outlined type="is-white" size="is-small">{{ lightSwitchLabel }} </b-switch>
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
             v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"
             v-model="hasLight"
             outlined
-            type="is-light"
+            type="is-white"
             size="is-small"
             >{{ lightSwitchLabel }}
           </b-switch>
@@ -53,24 +53,24 @@ export default {
     mainHeroText() {
       return [
         {
-          class: 'title is-size-4-mobile is-3 has-text-yellow',
+          class: 'title is-size-4-mobile is-3 has-text-white',
           text: 'Der <strong class="has-text-weight-bold">beste</strong>',
         },
         {
-          class: 'title is-size-5-mobile is-2 mt-2 is-retro has-text-primary has-text-weight-bold',
+          class: 'title is-size-5-mobile is-2 mt-2 is-retro has-text-primary has-text-weight-bold is-family-secondary',
           text: 'Full-Stack-Developer',
         },
         {
-          class: 'title is-size-6-mobile is-3 mt-2  has-text-yellow has-text-weight-normal',
-          text: 'der <strong class="has-text-weight-bold">Welt</strong> ist auf',
+          class: 'title is-size-6-mobile is-3 mt-2  has-text-white has-text-weight-normal',
+          text: 'der <strong class="has-text-weight-bold">Welt</strong> sucht eine',
         },
         {
           class: `title is-size-5-mobile is-2 mt-2 has-text-dark-desktop has-text-weight-bold is-inline-block is-relative${
             ['desktop', 'widescreen', 'fullhd'].includes(this.$mq)
-              ? ' has-underline has-text-dark slide-left'
+              ? ' has-underline has-text-black slide-left'
               : ' has-text-primary'
           }`,
-          text: 'Jobsuche!',
+          text: 'Challenge!',
         },
       ];
     },

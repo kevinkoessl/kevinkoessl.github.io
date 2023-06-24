@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    <!--b-navbar type="is-light" >
+      <template #brand> <b-navbar-item href="/">Start</b-navbar-item></template>
+      <template #end>
+        <b-navbar-item href="/studium">Studium</b-navbar-item>
+        <b-navbar-item href="/projekte">Projekte</b-navbar-item>
+        <b-navbar-item href="/about-me">About Me</b-navbar-item>
+      </template>
+    </b-navbar-->
     <router-view></router-view>
 
     <!--

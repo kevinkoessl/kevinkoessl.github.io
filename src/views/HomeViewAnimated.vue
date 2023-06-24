@@ -1,78 +1,15 @@
 <template>
   <div class="home">
+    <div class="noise-overlay">hello :)</div>
     <job-search-hero />
-    <silicon-valley-hero></silicon-valley-hero>
-
-    <slide-text-wall></slide-text-wall>
-    <section class="hero is-medium has-gridlines is-black has-gridlines-right">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6">
-                <div class="title is-4 has-text-white">...auf meinem virtuellen Spielplatz! 🎉</div>
-                <br />
-                <p class="is-size-6 has-text-white">
-                  Als erfahrener Webentwickler mit einem Faible für Vue.js, Nest.js und einer Prise Machine Learning bin
-                  ich hier, um deine Projekte auf das nächste Level zu katapultieren.
-                </p>
-                <p class="is-size-7 has-text-white has-text-weight-bold">
-                  <br />Mit exakt
-                  <span class="has-text-primary">4 Jahren, 5 Tagen, 3 Stunden und 4 Minuten</span> Arbeitserfahrung habe
-                  ich so manche Codezeile geschrieben, aber mein wahrer Stolz liegt in all den Nutzererlebnissen, die
-                  ich bisher bei meiner Arbeit gestalten durfte. Denn was nützt der beste Code, wenn deine Benutzer sich
-                  wie in einem Labyrinth verirren?
-                </p>
-                <div class="py-6">
-                  <b-button type="is-white is-outlined mr-4" size="is-medium">Lebenslauf</b-button>
-                  <b-button type="is-white" size="is-medium" icon-right="arrow-right">Projekte</b-button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="hero is-medium has-gridlines is-black has-gridlines-right">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-full">
-              <div class="title is-4 is-family-secondary">
-                Mein Ziel ist es, Webanwendungen zu gestalten, die so intuitiv sind, dass selbst Oma Waltraud sie ohne
-                Anleitung bedienen kann. Klingt nach einem Abenteuer? Dann lass uns gemeinsam großartige digitale
-                Erlebnisse erschaffen!
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <full-stack-explained></full-stack-explained>
-    <section class="hero is-medium is-light">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="hero is-medium is-light">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <silicon-valley-hero />
     <work-experience />
-    <contact-form />
+    <div class="hero is-fullheight is-light has-gridlines">
+      <div class="hero-head"><div class="container is-fluid"></div></div>
+      <div class="hero-body">
+        <div class="title is-2">ENDE</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -86,49 +23,19 @@ import WordCluster from '@/components/WordCluster.vue';
 import WorkExperience from '@/components/work-experience/WorkExperience.vue';
 import JobSearchHero from '@/components/job-search/JobSearchHero.vue';
 import SiliconValleyHero from '@/components/silicon-valley/SiliconValleyHero.vue';
-import ContactForm from '@/components/contact/ContactForm.vue';
-import FullStackExplained from '@/components/full-stack-explained/FullStackExplained.vue';
-import SlideTextWall from '@/components/slide-text-wall/SlideTextWall.vue';
 
 export default {
   name: 'HomeView',
-  data() {
-    return {
-      startDate: null,
-      currentDate: null,
-    };
-  },
   components: {
     WordCluster,
     LightBulbSection,
     SideScrollBeatTimeline,
     MainHero,
     WorkExperience,
+    //SideScrollSplitSection,
     TextSlide,
     JobSearchHero,
-    ContactForm,
-    FullStackExplained,
     SiliconValleyHero,
-    SlideTextWall,
-  },
-  computed: {
-    dateDifference() {
-      if (!this.currentDate || !this.startDate) {
-        return '';
-      }
-
-      var diff = this.currentDate.getTime() - this.startDate.getTime(); // this is a time in milliseconds
-      var diff_as_date = new Date(diff);
-      diff_as_date.getHours(); // hours
-      diff_as_date.getMinutes(); // minutes
-      diff_as_date.getSeconds(); // seconds
-      return `${diff_as_date.getYear()} Jahren, ${diff_as_date.getDay()} Tagen, ${diff_as_date.getHours()} Stunden und ${diff_as_date.getMinutes()}`;
-    },
-  },
-
-  mounted() {
-    this.startDate = new Date(Date.parse('31 Feb 2019 00:12:00 GMT'));
-    this.currentDate = new Date(Date.now());
   },
 };
 </script>
@@ -143,15 +50,13 @@ export default {
 }
 
 .title.is-retro {
-  //text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032;
+  text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032;
 }
 
 @media screen and (min-width: $desktop) {
   .title.is-retro {
-    /** 
     text-shadow: 1px 1px 0px #161032, 2px 2px 0px #161032, 3px 3px 0px #161032, 4px 4px 0px #161032, 5px 5px 0px #161032,
       6px 6px 0px #161032, 7px 7px 0px #161032, 8px 8px 0px #161032, 9px 9px 0px #161032, 10px 10px 0px #161032;
-      */
   }
 }
 
@@ -187,10 +92,12 @@ export default {
 
 .is-retro:not(.title) {
   position: relative;
+
   img {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
   }
+
   &:after {
     content: '';
     position: absolute;
@@ -198,9 +105,9 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: $primary;
+    background-color: $warning;
     opacity: 0.8;
-    mix-blend-mode: hard-light;
+    mix-blend-mode: multiply;
     transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
     pointer-events: none;
   }
@@ -347,8 +254,8 @@ export default {
   bottom: 0;
   background-repeat: repeat;
   z-index: 10000000;
-  mix-blend-mode: darken;
-  opacity: 0.1;
+  mix-blend-mode: normal;
+  opacity: 1;
   pointer-events: none;
   background-size: 100px 100px;
 }
@@ -370,8 +277,8 @@ export default {
     border-top: 1px solid $gridline-color;
   }
 
-  &.is-black {
-    $gridline-color: $white;
+  &.is-dark {
+    $gridline-color: $yellow;
     .hero-head {
       border-bottom: 1px solid $gridline-color;
 
@@ -416,8 +323,8 @@ export default {
       }
     }
 
-    &.is-black {
-      $gridline-color: $white;
+    &.is-dark {
+      $gridline-color: $yellow;
       .hero-head {
         border-bottom: 2px solid $gridline-color;
 

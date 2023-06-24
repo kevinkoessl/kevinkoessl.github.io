@@ -109,7 +109,7 @@ export default {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(rgba(255, 255, 255, 1), rgba(250, 255, 129, 0.3) 50%, rgba(250, 255, 129, 0) 51%);
+    background: radial-gradient(rgba(255, 255, 255, 1), rgba(144, 255, 186, 0.578) 50%, rgba(250, 255, 129, 0) 51%);
     mix-blend-mode: difference;
     &.is-dark {
       background: radial-gradient(#111111, rgba(255, 255, 255, 0) 70%);
