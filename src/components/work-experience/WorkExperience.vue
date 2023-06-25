@@ -1,20 +1,17 @@
 <template>
-  <div class="work-experience has-background-dark">
+  <div class="work-experience has-background-white">
     <!--iris-in-transition /-->
-    <div class="hero is-medium is-dark has-gridlines">
+    <div class="hero is-medium is-white has-gridlines">
       <div class="hero-body">
-        <div :class="{ 'container is-max-desktop': ['widescreen', 'fullhd'].includes($mq) }">
-          <div class="title is-3 is-size-5-mobile has-text-warning is-retro">Meine Work Experience</div>
+        <div :class="{ container: ['widescreen', 'fullhd'].includes($mq) }">
+          <div class="title is-3 is-size-5-mobile is-retro">Praktische Erfahrung</div>
         </div>
       </div>
       <div class="hero-foot"></div>
     </div>
-    <div class="hero is-dark" :class="{ 'has-gridlines has-gridlines-right': ['widescreen', 'fullhd'].includes($mq) }">
+    <div class="hero" :class="{ 'has-gridlines has-gridlines-right': ['widescreen', 'fullhd'].includes($mq) }">
       <div :class="{ 'hero-body': ['widescreen', 'fullhd'].includes($mq) }">
-        <div
-          class="work-experience-list"
-          :class="{ 'container is-max-desktop': ['widescreen', 'fullhd'].includes($mq) }"
-        >
+        <div class="work-experience-list" :class="{ container: ['widescreen', 'fullhd'].includes($mq) }">
           <template v-for="experience in experienceEntries">
             <div :key="`experience-entry__${experience.id}`" class="single-experience">
               <work-experience-card :experience="experience" />
@@ -25,7 +22,7 @@
                 }"
               >
                 <p class="has-text-centered title is-6">
-                  <b-icon icon="cube-unfolded" type="is-light" size="is-medium"></b-icon>
+                  <b-icon icon="cube-unfolded" type="is-black" size="is-medium"></b-icon>
                 </p>
               </div>
             </div>
@@ -66,10 +63,11 @@ export default {
           location: 'Düsseldorf',
           company: 'Douglas',
           weblink: 'https://www.douglas.de/',
-          imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.jpg'),
-          imageClass: 'is-info',
+          imageUrl: require('@/assets/jobs/Kevin Kössl - Frontend Engineer.webp'),
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-cross',
         },
+        /** 
         {
           id: 'LDJGMSHE',
           jobTitle: '_______________',
@@ -81,10 +79,11 @@ export default {
           location: 'Düsseldorf',
           company: '',
           weblink: '',
-          imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.jpg'),
-          imageClass: 'is-info',
+          imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.webp'),
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-cross',
         },
+        */
         {
           id: 'XIWEJFVG',
           jobTitle: 'Lead-Developer & Projektmanager',
@@ -116,8 +115,8 @@ export default {
           location: 'Dortmund',
           company: 'bits & likes',
           weblink: 'https://www.murtfeldt-as.de/',
-          imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.jpg'),
-          imageClass: 'is-danger',
+          imageUrl: require('@/assets/jobs/Kevin Kössl - Projektmanager.webp'),
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-cross',
         },
 
@@ -152,8 +151,8 @@ export default {
           location: 'Dortmund',
           company: 'bits & likes',
           weblink: 'https://elem3nts.de/',
-          imageUrl: require('@/assets/jobs/Kevin Kössl - Full-Stack-Entwickler.jpg'),
-          imageClass: 'is-warning',
+          imageUrl: require('@/assets/jobs/Kevin Kössl - Full-Stack-Entwickler.webp'),
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-polka-dot',
         },
         {
@@ -187,8 +186,8 @@ export default {
           location: 'Dortmund',
           company: 'bits & likes',
           weblink: 'https://allyourhorses.de/',
-          imageUrl: require('@/assets/jobs/Kevin Kössl - Werkstudent.jpg'),
-          imageClass: 'is-success',
+          imageUrl: require('@/assets/jobs/Kevin Kössl - Werkstudent.webp'),
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-zigzag',
         },
         {
@@ -208,7 +207,7 @@ export default {
           location: 'Bochum',
           company: 'Ruhr-Universität Bochum',
           imageUrl: require('@/assets/jobs/Ruhr-Universität Bochum - Universitätsbibliothek.jpeg'),
-          imageClass: 'is-info',
+          imageClass: 'is-primary',
           backgroundClass: 'has-background-wavy',
         },
       ],

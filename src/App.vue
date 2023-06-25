@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-    <!--b-navbar type="is-light" >
-      <template #brand> <b-navbar-item href="/">Start</b-navbar-item></template>
+    <b-navbar fixed-top type=" is-transparent">
       <template #end>
-        <b-navbar-item href="/studium">Studium</b-navbar-item>
-        <b-navbar-item href="/projekte">Projekte</b-navbar-item>
-        <b-navbar-item href="/about-me">About Me</b-navbar-item>
+        <b-navbar-item href="/" class="has-text-white">Start</b-navbar-item>
+        <b-navbar-item href="/experience" class="has-text-white mr-6">Lebenslauf</b-navbar-item>
       </template>
-    </b-navbar-->
+    </b-navbar>
     <router-view></router-view>
 
     <!--
@@ -131,4 +129,10 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.navbar {
+  border-bottom: 2px solid white;
+  mix-blend-mode: difference;
+  background-color: rgba(0, 0, 0, 0);
+}
+</style>

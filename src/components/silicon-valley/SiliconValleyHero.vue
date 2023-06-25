@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero is-medium is-black has-gridlines">
+    <section class="hero is-medium is-white has-gridlines">
       <div class="hero-body is-relative">
         <div>
           <div class="columns is-multiline is-gapless">
@@ -30,7 +30,7 @@
       </div>
     </section>
     <div v-if="['widescreen', 'fullhd'].includes($mq)" class="section-two"></div>
-    <section class="hero is-black has-gridlines" :class="['fullhd'].includes($mq) ? 'is-large' : 'is-small'">
+    <section class="hero is-white has-gridlines" :class="['fullhd'].includes($mq) ? 'is-large' : 'is-small'">
       <div class="hero-body">
         <div id="sc-valley__img-2-start-trigger"></div>
         <div class="columns is-multiline">
@@ -99,33 +99,33 @@ export default {
       timeline2: null,
       heroText1: [
         {
-          class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-white has-text-right-fullhd',
+          class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-black has-text-right-fullhd',
           text: 'Während er',
         },
         {
-          class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-white has-text-right-fullhd',
-          text: 'sein <span class="has-text-weight-bold has-text-white">Glück</span> vermutlich ',
+          class: 'title is-size-6-mobile is-size-4-tablet is-4 has-text-black has-text-right-fullhd',
+          text: 'sein <span class="has-text-weight-bold has-text-black">Glück</span> vermutlich ',
         },
         {
-          class: 'title is-size-6-mobile is-4 has-text-white has-text-right-fullhd is-family-secondary',
+          class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd is-family-secondary',
           text: 'im  <span class="title is-size-6-mobile is-size-4-tablet is-size-4-fullhd is-3 has-text-weight-bold has-text-primary is-retro"> Silicon Valley</span>',
         },
         {
-          class: 'title is-size-6-mobile is-4 has-text-white has-text-right-fullhd',
+          class: 'title is-size-6-mobile is-4 has-text-black has-text-right-fullhd',
           text: 'versucht...',
         },
       ],
       heroText2: [
         {
-          class: 'title is-size-6-mobile is-4 has-text-white has-text-right has-text-left-fullhd',
+          class: 'title is-size-6-mobile is-4 has-text-black has-text-right has-text-left-fullhd',
           text: '...fühle ich mich',
         },
         {
-          class: 'title is-size-6-mobile is-4 has-text-white has-text-right has-text-left-fullhd',
+          class: 'title is-size-6-mobile is-4 has-text-black has-text-right has-text-left-fullhd',
           text: 'im <span class="title  is-size-6-mobile is-4 has-text-weight-bold has-text-primary is-family-secondary is-retro">Pott</span> bestens',
         },
         {
-          class: 'title is-size-6-mobile is-4 has-text-white has-text-right has-text-left-fullhd',
+          class: 'title is-size-6-mobile is-4 has-text-black has-text-right has-text-left-fullhd',
           text: 'aufgehoben.',
         },
       ],

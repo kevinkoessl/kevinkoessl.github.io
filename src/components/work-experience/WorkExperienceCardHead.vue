@@ -2,16 +2,11 @@
   <div class="py-6">
     <div :id="`trigger_${_uid}`"></div>
     <div class="columns is-gapless">
-      <div class="column is-half is-flex is-flex-direction-column is-justify-content-space-between">
-        <div
-          v-show="['widescreen', 'desktop', 'fullhd'].includes($mq)"
-          :id="`panel_${_uid}`"
-          :class="experience.backgroundClass"
-          class="weird-grid"
-        ></div>
+      <div class="column is-half is-flex is-flex-direction-column is-justify-content-flex-end">
         <div style="width: 100%">
-          <div class="work-experience-section has-background-light has-text-black" :id="`card_${_uid}`">
-            <div :class="{}">
+          <div class="mx-6 py-3" style="border-left: 2px solid black"></div>
+          <div class="card work-experience-section has-text-black" :id="`card_${_uid}`">
+            <div>
               <div style="border-bottom: 2px solid black">
                 <div class="mx-3 p-3" style="border-left: 2px solid black">
                   <p class="title is-6 is-size-7-mobile has-text-black">
@@ -28,7 +23,7 @@
               >
                 <div
                   class="mx-3"
-                  style="border-left: 2px solid black"
+                  style="border-right: 2px solid black"
                   :class="{
                     'p-5': ['fullhd'].includes($mq),
                     'px-1 py-3': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
@@ -62,17 +57,20 @@
               </div>
             </div>
           </div>
+          <div class="mx-3 py-2" style="border-right: 2px solid black"></div>
         </div>
       </div>
-      <div class="column is-half" v-show="['widescreen', 'desktop', 'fullhd'].includes($mq)">
+      <div class="column is-half" v-show="['tablet', 'widescreen', 'desktop', 'fullhd'].includes($mq)">
         <div class="px-6">
-          <b-image
-            :src="experience.imageUrl"
-            :class="experience.imageClass || ''"
-            :id="`image_${_uid}`"
-            class="is-clipped is-tinted"
-            style="z-index: 4"
-          ></b-image>
+          <div class="is-retro">
+            <b-image
+              :src="experience.imageUrl"
+              :class="experience.imageClass || ''"
+              :id="`image_${_uid}`"
+              class="is-clipped is-tinted"
+              style="z-index: 4"
+            ></b-image>
+          </div>
         </div>
       </div>
     </div>
@@ -80,8 +78,6 @@
   </div>
 </template>
 <script>
-import gsap from 'gsap';
-
 export default {
   name: 'WorkExperienceCardHead',
 
@@ -92,40 +88,7 @@ export default {
     },
   },
 
-  data() {
-    return {
-      timeline: null,
-    };
-  },
-
-  methods: {
-    setUpTimeline() {
-      if (!['desktop', 'widescreen', 'fullhd'].includes(this.$mq)) return;
-      this.timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#trigger_${this._uid}`,
-          endTrigger: `#end-trigger_${this._uid}`,
-          start: 'top 100%',
-          end: 'top 50%',
-          scrub: true,
-        },
-      });
-
-      this.timeline
-        .fromTo(`#panel_${this._uid}`, { x: 0, y: '200%', scale: 0.7 }, { x: 0, y: '100%', scale: 1 }, 0)
-        .fromTo(`#card_${this._uid}`, { x: '15%' }, { x: '20%' }, 0)
-        .fromTo(`#image_${this._uid}`, { x: '-20%' }, { x: 0, y: '-100px' }, 0);
-    },
-  },
-  mounted() {
-    this.setUpTimeline();
-    window.addEventListener('resize', () => {
-      this.timeline.kill();
-      this.timeline = null;
-
-      this.setUpTimeline();
-    });
-  },
+  methods: {},
 };
 </script>
 <style lang="scss">

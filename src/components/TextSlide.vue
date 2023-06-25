@@ -21,7 +21,10 @@ import gsap from 'gsap';
 export default {
   name: 'TextSlide',
 
-  props: { animatedText: { type: Array, required: true } },
+  props: {
+    animatedText: { type: Array, required: true },
+    isActive: { type: Boolean, required: false, default: true },
+  },
 
   data() {
     return {
@@ -29,40 +32,43 @@ export default {
     };
   },
 
+  methods: {
+    setUpTimeline() {
+      if (!this.isActive) return;
+
+      if (this.$mq === 'mobile') {
+        if (this.timeline) this.timeline.kill();
+
+        return;
+      }
+
+      this.timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#text-slide-trigger_${this._uid}`,
+          scrub: true,
+
+          start: 'top 70%',
+          end: '+=400',
+        },
+      });
+
+      this.timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
+        x: '100px',
+
+        opacity: 0,
+        ease: 'power1.out',
+        stagger: {
+          amount: 0.5,
+          ease: 'linear',
+        },
+      });
+    },
+  },
+
   mounted() {
-    this.timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#text-slide-trigger_${this._uid}`,
-        scrub: true,
+    this.setUpTimeline();
 
-        start: 'top 70%',
-        end: '+=400',
-      },
-    });
-
-    this.timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
-      x: '100px',
-
-      opacity: 0,
-      ease: 'power1.out',
-      stagger: {
-        amount: 0.5,
-        ease: 'linear',
-      },
-    });
+    window.addEventListener('resize', this.setUpTimeline);
   },
 };
 </script>
-<style lang="scss">
-/** 
-.title.has-text-white {
-  //color: #b5d99c !important;
-  //text-shadow: -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff;
-  //background-image: linear-gradient(90deg, #88af6c, #52a560, #387249);
-  //background-clip: text;
-  //color: transparent;
-  //-webkit-background-clip: text;
-  //-webkit-text-fill-color: transparent;
-}
-*/
-</style>

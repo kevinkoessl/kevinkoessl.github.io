@@ -1,94 +1,128 @@
 <template>
   <div class="home">
-    <job-search-hero />
-    <silicon-valley-hero></silicon-valley-hero>
+    <div style="position: sticky; top: 0">
+      <job-search-hero />
+    </div>
+    <div class="is-relative">
+      <silicon-valley-hero></silicon-valley-hero>
 
-    <slide-text-wall></slide-text-wall>
-    <section class="hero is-medium has-gridlines is-black has-gridlines-right">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6">
-                <div class="title is-4 has-text-white">...auf meinem virtuellen Spielplatz! 🎉</div>
-                <br />
-                <p class="is-size-6 has-text-white">
-                  Als erfahrener Webentwickler mit einem Faible für Vue.js, Nest.js und einer Prise Machine Learning bin
-                  ich hier, um deine Projekte auf das nächste Level zu katapultieren.
-                </p>
-                <p class="is-size-7 has-text-white has-text-weight-bold">
-                  <br />Mit exakt
-                  <span class="has-text-primary">4 Jahren, 5 Tagen, 3 Stunden und 4 Minuten</span> Arbeitserfahrung habe
-                  ich so manche Codezeile geschrieben, aber mein wahrer Stolz liegt in all den Nutzererlebnissen, die
-                  ich bisher bei meiner Arbeit gestalten durfte. Denn was nützt der beste Code, wenn deine Benutzer sich
-                  wie in einem Labyrinth verirren?
-                </p>
+      <slide-text-wall></slide-text-wall>
+      <section class="hero is-medium has-gridlines is-black has-gridlines-right is-relative" style="z-index: 98">
+        <div class="hero-body">
+          <div class="container">
+            <div class="columns is-multiline is-gapless">
+              <div class="column is-full">
                 <div class="py-6">
-                  <b-button type="is-white is-outlined mr-4" size="is-medium">Lebenslauf</b-button>
-                  <b-button type="is-white" size="is-medium" icon-right="arrow-right">Projekte</b-button>
+                  <div class="title is-3 has-text-white">Willkommen auf meinem virtuellen Spielplatz!</div>
+                  <br />
+                  <p class="is-size-6 has-text-white">
+                    Als erfahrener Webentwickler mit einem Faible für Vue.js, Nest.js und einer Prise Machine Learning
+                    bin ich hier, um deine Projekte auf das nächste Level zu katapultieren.
+                  </p>
+                  <div class="is-large has-text-centered my-6 py-6">
+                    <div :id="`start-trigger_${_uid}`"></div>
+                    <div class="py-6 my-6"></div>
+                    <div class="title is-2 is-family-secondary mb-6">EXAKT</div>
+                    <div class="columns" id="date-cards">
+                      <div class="column" v-for="entry in dateDifference" :key="entry.label">
+                        <div class="card py-6 px-4 has-background-primary" :id="`card_${_uid}_${entry.label}`">
+                          <div class="title is-3 has-text-white">{{ entry.value }}</div>
+                          <div class="title is-6 has-text-black">
+                            {{ entry.label }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="title is-4 mb-6 py-6">Praxis Erfahrung</div>
+
+                    <div :id="`end-trigger_${_uid}`"></div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-half">
+                      <div class="title is-3"><span class="has-text-primary">#</span>amazing</div>
+                      <p class="is-size-7 has-text-white has-text-weight-bold">
+                        <br />Bis heute habe ich so manche Codezeile geschrieben, aber mein wahrer Stolz liegt in all
+                        den Nutzererlebnissen, die ich bisher bei meiner Arbeit gestalten durfte. Denn was nützt der
+                        beste Code, wenn deine Benutzer sich wie in einem Labyrinth verirren?
+                      </p>
+                      <div class="py-6">
+                        <b-button
+                          type="is-white is-outlined mr-4"
+                          size="is-medium"
+                          icon-right="arrow-right"
+                          @click="$router.push({ path: '/experience', scrollTo: 0 })"
+                          >Lebenslauf</b-button
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="hero is-medium has-gridlines is-black has-gridlines-right">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-full">
-              <div class="title is-4 is-family-secondary">
-                Mein Ziel ist es, Webanwendungen zu gestalten, die so intuitiv sind, dass selbst Oma Waltraud sie ohne
-                Anleitung bedienen kann. Klingt nach einem Abenteuer? Dann lass uns gemeinsam großartige digitale
-                Erlebnisse erschaffen!
+      </section>
+      <section class="hero is-large has-gridlines is-white has-gridlines-right">
+        <div class="hero-body is-relative">
+          <div>
+            <div class="columns is-multiline is-gapless">
+              <div class="column is-full">
+                <div class="title is-4 is-family-superior">
+                  Mein Ziel ist es, Webanwendungen zu gestalten, die so intuitiv sind, dass selbst Oma Waltraud sie ohne
+                  Anleitung bedienen kann. Klingt nach einem Abenteuer? Dann lass uns gemeinsam großartige digitale
+                  Erlebnisse erschaffen!
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <full-stack-explained></full-stack-explained>
-    <section class="hero is-medium is-light">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6"></div>
+      </section>
+      <full-stack-explained></full-stack-explained>
+      <project-gallery />
+      <section class="hero is-medium is-light">
+        <div class="hero-body is-relative">
+          <div>
+            <div class="columns is-multiline is-gapless">
+              <div class="column is-two-thirds">
+                <div class="py-6"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="hero is-medium is-light">
-      <div class="hero-body is-relative">
-        <div>
-          <div class="columns is-multiline is-gapless">
-            <div class="column is-two-thirds">
-              <div class="py-6"></div>
+      </section>
+      <section class="hero is-medium is-light">
+        <div class="hero-body is-relative">
+          <div>
+            <div class="columns is-multiline is-gapless">
+              <div class="column is-two-thirds">
+                <div class="py-6"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <work-experience />
-    <contact-form />
+      </section>
+
+      <contact-form />
+    </div>
   </div>
 </template>
 
 <script>
+import gsap from 'gsap';
+
 import LightBulbSection from '@/components/LightBulbSection.vue';
 import MainHero from '@/components/MainHero.vue';
 import TextSlide from '@/components/TextSlide.vue';
 import SideScrollBeatTimeline from '@/components/SideScrollBeatTimeline.vue';
 
 import WordCluster from '@/components/WordCluster.vue';
-import WorkExperience from '@/components/work-experience/WorkExperience.vue';
 import JobSearchHero from '@/components/job-search/JobSearchHero.vue';
 import SiliconValleyHero from '@/components/silicon-valley/SiliconValleyHero.vue';
 import ContactForm from '@/components/contact/ContactForm.vue';
 import FullStackExplained from '@/components/full-stack-explained/FullStackExplained.vue';
 import SlideTextWall from '@/components/slide-text-wall/SlideTextWall.vue';
+import ProjectGallery from '@/components/project-gallery/ProjectGallery.vue';
 
 export default {
   name: 'HomeView',
@@ -96,6 +130,8 @@ export default {
     return {
       startDate: null,
       currentDate: null,
+      interval: null,
+      timeline: null,
     };
   },
   components: {
@@ -103,13 +139,13 @@ export default {
     LightBulbSection,
     SideScrollBeatTimeline,
     MainHero,
-    WorkExperience,
     TextSlide,
     JobSearchHero,
     ContactForm,
     FullStackExplained,
     SiliconValleyHero,
     SlideTextWall,
+    ProjectGallery,
   },
   computed: {
     dateDifference() {
@@ -117,18 +153,69 @@ export default {
         return '';
       }
 
-      var diff = this.currentDate.getTime() - this.startDate.getTime(); // this is a time in milliseconds
-      var diff_as_date = new Date(diff);
-      diff_as_date.getHours(); // hours
-      diff_as_date.getMinutes(); // minutes
-      diff_as_date.getSeconds(); // seconds
-      return `${diff_as_date.getYear()} Jahren, ${diff_as_date.getDay()} Tagen, ${diff_as_date.getHours()} Stunden und ${diff_as_date.getMinutes()}`;
+      var distance = this.currentDate.getTime() - this.startDate.getTime(); // this is a time in milliseconds
+
+      var years = Math.abs(Math.round(distance / 1000 / (60 * 60 * 24) / 365.25));
+
+      var days = Math.abs(Math.floor(years * 365.25 - Math.floor(distance / (1000 * 60 * 60 * 24))));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      return [
+        { label: 'Jahre', value: years },
+        { label: 'Tage', value: days },
+        { label: 'Stunden', value: hours },
+        { label: 'Minuten', value: minutes },
+        { label: 'Sekunden', value: seconds },
+      ];
+    },
+  },
+  methods: {
+    setUpTimeline() {
+      const scrub = 1;
+
+      this.timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#start-trigger_${this._uid}`,
+          endTrigger: `#end-trigger_${this._uid}`,
+          start: 'top 10%',
+          end: 'bottom 50%',
+          scrub,
+        },
+      });
+
+      this.dateDifference.forEach((entry, index) => {
+        const value = -(index - Math.floor(this.dateDifference.length / 2));
+        this.timeline.fromTo(
+          `#card_${this._uid}_${entry.label}`,
+          {
+            x: value * 275,
+          },
+          {
+            x: 0,
+            ease: 'power4.out',
+            rotate: 0,
+          },
+          '<'
+        );
+      });
+    },
+    updateCurrentDate() {
+      this.currentDate = new Date(Date.now());
+    },
+    createInterval() {
+      this.interval = setInterval(this.updateCurrentDate, 1000);
     },
   },
 
   mounted() {
-    this.startDate = new Date(Date.parse('31 Feb 2019 00:12:00 GMT'));
+    this.startDate = new Date(Date.parse('01 Feb 2019 10:00:00 GMT'));
     this.currentDate = new Date(Date.now());
+    this.createInterval();
+    setTimeout(() => {
+      this.setUpTimeline();
+    }, 1000);
   },
 };
 </script>
@@ -185,6 +272,18 @@ export default {
   }
 }
 
+#date-cards {
+  .column {
+    z-index: 0;
+    position: relative;
+  }
+  .card {
+    outline: 2px solid $black;
+  }
+  .column:first-child {
+    z-index: 100;
+  }
+}
 .is-retro:not(.title) {
   position: relative;
   img {
@@ -242,16 +341,20 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: #0c6249;
-    mix-blend-mode: lighten;
+    background-color: #6fc8ac;
+    mix-blend-mode: hard-light;
+    opacity: 0.4;
   }
 
   img {
-    mix-blend-mode: multiply;
     -webkit-filter: grayscale(100%) contrast(1.2);
-    filter: grayscale(100%) contrast(1.2);
+    filter: grayscale(100%) contrast(1);
+    mix-blend-mode: multiply;
   }
 
+  &.is-primary {
+    background-color: $primary;
+  }
   &.is-success {
     background-color: #00ff36;
 

@@ -1,9 +1,12 @@
 <template>
   <light-bulb-section type="is-black" class="has-gridlines" :has-light="hasLight">
-    <div class="hero-head"><div class="container"></div></div>
     <job-search-desktop v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"></job-search-desktop>
     <div class="hero-body is-relative">
-      <div class="hero-body__content" :class="{ 'p-6': ['desktop', 'widescreen', 'fullhd'].includes($mq) }">
+      <div
+        class="hero-body__content"
+        :class="{ 'p-6': ['desktop', 'widescreen', 'fullhd'].includes($mq) }"
+        :id="`content_${_uid}`"
+      >
         <div :class="{ 'container is-fluid': ['widescreen', 'fullhd'].includes($mq) }">
           <div v-if="!['desktop', 'widescreen', 'fullhd'].includes($mq)" class="level is-mobile">
             <div class="level-left">
@@ -13,7 +16,7 @@
               </div>
             </div>
           </div>
-          <text-slide :animated-text="mainHeroText" class="mb-6" />
+          <text-slide :animated-text="mainHeroText" class="mb-6" :is-active="false" />
           <div v-if="!['desktop', 'widescreen', 'fullhd'].includes($mq)" class="job-search-mobile">
             <job-search-carousel :has-light="hasLight"></job-search-carousel>
           </div>
@@ -31,6 +34,7 @@
   </light-bulb-section>
 </template>
 <script>
+import gsap from 'gsap';
 import LightBulbSection from '../LightBulbSection.vue';
 import JobSearchCarousel from './JobSearchCarousel.vue';
 import JobSearchDesktop from './JobSearchDesktop.vue';
@@ -42,6 +46,7 @@ export default {
 
   data() {
     return {
+      timeline: null,
       hasLight: false,
     };
   },
@@ -57,7 +62,7 @@ export default {
           text: 'Der <strong class="has-text-weight-bold">beste</strong>',
         },
         {
-          class: 'title is-size-5-mobile is-2 mt-2 is-retro has-text-primary has-text-weight-bold is-family-secondary',
+          class: 'title is-size-6-mobile is-2 mt-2 is-retro has-text-primary has-text-weight-bold is-family-secondary',
           text: 'Full-Stack-Developer',
         },
         {
@@ -74,6 +79,28 @@ export default {
         },
       ];
     },
+  },
+
+  methods: {
+    setUpTimeline() {
+      const scrub = true;
+
+      this.timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#text-wall-start-trigger_${this._uid}`,
+          scrub,
+          start: 'top 0%',
+          end: '+=1300',
+        },
+      });
+
+      this.timeline.to(`#content_${this._uid}`, {
+        y: '-30%',
+      });
+    },
+  },
+  mounted() {
+    this.setUpTimeline();
   },
 };
 </script>

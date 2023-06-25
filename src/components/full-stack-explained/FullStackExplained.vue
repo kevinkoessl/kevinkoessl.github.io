@@ -2,7 +2,7 @@
   <div
     class="hero has-gridlines is-black has-gridlines-right"
     id="full-stack-explained"
-    style="background: linear-gradient(#171b20 0%, #171b20 30%, #ffffff 30.0001%, #ffffff 100%)"
+    style="background: linear-gradient(#ffffff 0%, #ffffff 30%, #171b20 30.0001%, #171b20 100%)"
   >
     <div class="hero-body">
       <div id="full-stack-explained__start-trigger"></div>
@@ -50,17 +50,12 @@
                       </div>
                       <div class="card-body">
                         <div class="mr-4" style="border-right: 2px solid #171b20">
-                          <div class="title is-3 is-broken-grid is-family-secondary is-clipped">
-                            <div
-                              class="switch-text has-text-black"
-                              style="mix-blend-mode: difference"
-                              id="animate-frontend"
-                            >
-                              FRON<br />TEND
-                            </div>
-                            <div class="switch-text has-text-black" style="mix-blend-mode: normal" id="animate-backend">
-                              BACK <br />END
-                            </div>
+                          <div
+                            class="title is-3 is-broken-grid is-family-superior is-clipped"
+                            style="mix-blend-mode: difference"
+                          >
+                            <div class="switch-text has-text-white" id="animate-frontend">FRONT<br />END</div>
+                            <div class="switch-text has-text-white" id="animate-backend">BACK <br />END</div>
                           </div>
                           <br />
                           <div class="switch-switch is-relative is-clipped" style="border: 2px solid white">
@@ -104,26 +99,29 @@
               <div class="column is-half py-6">
                 <div class="py-6"></div>
                 <div class="parallax is-clipped is-relative mt-6" style="border-radius: 5px">
-                  <div class="switch-text-backend is-absolute p-4 inset" style="top: 0; left: 0; bottom: 0; right: 0">
-                    <p class="has-text-white">
+                  <div
+                    class="switch-text-backend has-background-white is-absolute p-4 inset"
+                    style="top: 0; left: 0; bottom: 0; right: 0"
+                  >
+                    <p class="has-text-black">
                       So schön romantisch es im Frontend auch zugeht, ohne Backend läuft hier meistens nichts.
                       Datenbanken, Algorithmen und Server verarbeiten die Eingaben Deiner User. Und wenn alles
                       Reibungslos läuft, bekommen sie davon nichtmal was mit.
                     </p>
                     <br />
-                    <p class="s-size-7 has-text-white pt-3 has-text-weight-bold">
+                    <p class="s-size-7 has-text-black pt-3 has-text-weight-bold">
                       Im Backend arbeite ich mit Node.js, Express, NestJS, MongoDB und TypeORM.
                     </p>
                   </div>
-                  <div class="switch-text-frontend has-background-white p-4" style="border-radius: 5px">
+                  <div class="switch-text-frontend has-background-black p-4" style="border-radius: 5px">
                     <div class="switch-text-frontend-content">
-                      <p class="i has-text-black">
+                      <p class="has-text-white">
                         Das Frontend ist das Fenster zur digitalen Welt, in dem Kreativität und Code sich vereinen, um
                         ein faszinierendes Benutzererlebnis zu schaffen. Es ist die visuelle Magie, die Deine
                         Nutzer*Innen in eine einnehmende virtuelle Realität eintauchen lässt.
                       </p>
                       <br />
-                      <p class="s-size-7 has-text-black pt-3 has-text-weight-bold">
+                      <p class="s-size-7 has-text-white pt-3 has-text-weight-bold">
                         Um solche Erlebnisse zu verwirklichen verwende ich Vue.js, Buefy und GSAP als mein Werkzeug.
                       </p>
                     </div>
@@ -132,9 +130,10 @@
                 <div class="go-to-all-technologies has-text-right py-4 is-relative">
                   <b-button
                     type="is-ghost"
-                    class="has-text-black"
+                    class="has-text-white"
                     icon-right="arrow-right"
                     style="mix-blend-mode: difference !important"
+                    @click="$router.push({ path: '/experience', scrollTo: 0 })"
                   >
                     Alle Technologien</b-button
                   >
@@ -147,11 +146,7 @@
         <div id="full-stack-explained__end-trigger"></div>
 
         <div id="start-start-trigger"></div>
-        <div class="hero is-fullheight">
-          <div class="hero-body">
-            <div class="title is-1" id="lol">lol</div>
-          </div>
-        </div>
+        <div class="hero is-fullheight"></div>
       </div>
       <div id="end-end-trigger"></div>
     </div>
@@ -234,7 +229,6 @@ export default {
       this.timeline2
         .to('.card--frontend .switch-switch', { y: '-20%', duration: 2 })
         .to('.card--frontend .title.is-broken-grid', { x: '-20%', y: '-15%', duration: 2 }, '<')
-
         .from('.card--frontend .fade-in-text', { duration: 2, y: '-15%' }, '<');
 
       this.timeline3 = gsap.timeline({
@@ -255,7 +249,7 @@ export default {
         .to('#animate-frontend', { y: '-100%' }, '<')
         .from('#animate-backend', { y: '100%' }, '<')
         .to('.parallax', { y: '-50%', duration: 1 }, '<')
-        .to('.card--frontend .switch-switch-parent', { x: '100%' }, '<50%')
+        .to('.card--frontend .switch-switch-parent', { x: '100%' }, '<')
         .to('.card--frontend .switch-switch .switch-frontend', { x: '-100%' }, '<');
 
       //.to('.card--frontend ', { background: '#000000' }, '<');

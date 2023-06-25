@@ -21,7 +21,7 @@
             :key="`text-line-word_${i}_${j}`"
             class="title is-2 mx-4"
             style="white-space: nowrap"
-            :class="i === 7 && j === 2 ? 'has-text-white' : 'has-text-black'"
+            :class="i === 6 && j === 3 ? 'has-text-white' : 'has-text-black'"
           >
             {{ text }}
           </span>
@@ -55,7 +55,7 @@ export default {
           trigger: `#text-wall-start-trigger_${this._uid}`,
           endTrigger: `#text-wall-end-trigger_${this._uid}`,
           end: 'bottom 0%',
-
+          pin: `#text-wall-background_${this._uid}`,
           scrub,
         },
       });
@@ -63,12 +63,16 @@ export default {
       for (let i = 0; i < 15; i++) {
         let value = Math.abs(7 - i) + 1;
         value = 7 - value;
+
+        const direction = i % 2 === 0 ? -1 : 1;
+
         this.timeline.fromTo(
           `#text-wall-text_${this._uid}-line_${i}`,
           {
-            x: value * Math.pow(value, 1.5) * 15,
+            x: direction * value * Math.pow(value, 1.5) * 5,
           },
-          { x: 0, y: 0, opacity: 1, rotate: 0 },
+          { x: 0 },
+
           0
         );
       }
