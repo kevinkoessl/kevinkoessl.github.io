@@ -61,7 +61,7 @@ export default {
 
     let height = 800;
     this.scene.rotation.x = 0.7
-    if(this.$mq === 'mobile') {
+    if(['mobile', 'tablet', 'desktop' ].includes(this.$mq)) {
       height = 400;
       this.scene.rotation.x = 1.5
     }
@@ -98,7 +98,7 @@ export default {
     },
     resize() {
       let height = 800;
-      if(this.$mq === 'mobile') {
+      if(['mobile', 'tablet', 'desktop'].includes(this.$mq)) {
       height = 400;
       this.scene.rotation.x = 1.5
     }

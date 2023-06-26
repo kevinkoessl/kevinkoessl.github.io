@@ -1,18 +1,25 @@
 <template>
-  <div>
-    <section class="hero is-medium is-white has-gridlines">
+  <div class="has-background-white">
+    <section class="hero is-medium has-gridlines">
       <div class="hero-body is-relative">
         <div>
           <div class="columns is-multiline is-gapless">
             <div id="sc-valley__img-1-start-trigger"></div>
-            <div class="column is-full is-half-fullhd pt-6">
-              <text-slide :animated-text="heroText1" />
+            <div class="column is-full is-half-desktop pt-6">
+              <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']">
+                <div v-if="['tablet'].includes($mq)" class="section-two"></div>
+                <div class="title is-6 has-text-right-desktop">
+                  Während er sein Glück vermutlich im
+                  <span class="has-text-primary is-family-secondary">Silicon Valley</span> versucht...
+                </div>
+              </mq-layout>
+              <mq-layout :mq="['fullhd']"><text-slide :animated-text="heroText1" /></mq-layout>
             </div>
-            <div class="column is-full is-half-fullhd">
+            <div class="column is-full is-half-desktop">
               <div
                 :class="{
-                  'px-6': ['fullhd'].includes($mq),
-                  'py-6': ['mobile', 'tablet', 'desktop', 'widescreen'].includes($mq),
+                  'px-6': ['desktop', 'widescreen', 'fullhd'].includes($mq),
+                  'py-6': ['mobile', 'tablet'].includes($mq),
                 }"
               >
                 <div
@@ -34,25 +41,28 @@
       <div class="hero-body">
         <div id="sc-valley__img-2-start-trigger"></div>
         <div class="columns is-multiline">
-          <mq-layout :mq="['mobile', 'tablet', 'desktop', 'widescreen']" class="column is-full">
-            <div v-if="['tablet', 'desktop'].includes($mq)" class="section-two"></div>
-            <text-slide :animated-text="heroText2" />
+          <mq-layout :mq="['mobile', 'tablet']" class="column is-full">
+            <div :class="{ 'px-6': ['tablet'].includes($mq) }">
+              <div v-if="['tablet', 'desktop'].includes($mq)" class="section-two"></div>
+              <div class="title is-6 has-text-right-mobile has-text-right-tablet">
+                ...fühle ich mich im <span class="has-text-primary is-family-secondary">Pott</span> bestens aufgehoben.
+              </div>
+            </div>
           </mq-layout>
 
-          <div
-            class="column is-full is-half-tablet is-relative"
-            :class="{ 'is-offset-one-third': ['tablet', 'desktop'].includes($mq) }"
-          >
-            <mq-layout :mq="['tablet', 'desktop']" class="py-6 my-6"></mq-layout>
+          <div class="column is-one-third-desktop is-relative is-offset-2-desktop">
+            <mq-layout :mq="['desktop']" class="py-6 my-6"></mq-layout>
+
             <div
               class="is-flex is-justify-content-flex-end is-relative"
               :class="{
-                'px-6': ['sidescreen', 'fullhd'].includes($mq),
-                'py-6': ['mobile', 'tablet', 'desktop'].includes($mq),
+                'px-6': ['tablet'].includes($mq),
+                'px-4': ['desktop', 'widescreen', 'fullhd'].includes($mq),
+                'py-4': ['mobile', 'tablet'].includes($mq),
               }"
             >
               <canvas-3-d
-                v-if="['tablet', 'desktop', 'widescreen', 'fullhd'].includes($mq)"
+                v-if="['desktop', 'widescreen', 'fullhd'].includes($mq)"
                 class="offset-canvas is-absolute"
                 style="width: 800px; height: 800px"
               ></canvas-3-d>
@@ -63,11 +73,16 @@
                 </div>
               </div>
             </div>
-            <template v-if="$mq === 'mobile'">
+            <template v-if="['mobile', 'tablet'].includes($mq)">
               <div class="section-two"></div>
               <canvas-3-d></canvas-3-d>
             </template>
           </div>
+          <mq-layout :mq="['desktop', 'widescreen']" class="column is-half is-flex-desktop is-align-items-center">
+            <div class="title is-6">
+              ...fühle ich mich im <span class="has-text-primary is-family-secondary">Pott</span> bestens aufgehoben.
+            </div>
+          </mq-layout>
           <mq-layout :mq="['fullhd']" class="column is-half">
             <text-slide :animated-text="heroText2" />
             <div v-if="$mq === 'tablet'" class="section-two"></div>
@@ -81,6 +96,8 @@
 </template>
 <script>
 import gsap from 'gsap';
+
+import { BREAKPOINTS } from '@/consts/break-points';
 
 import TextSlide from '../TextSlide.vue';
 import Canvas3D from './Canvas3D.vue';
@@ -135,34 +152,42 @@ export default {
   methods: {
     setUpTimeline1() {
       const scrub = 1;
-      this.timeline1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#sc-valley__img-1-start-trigger`,
-          endTrigger: `#sc-valley__img-1-end-trigger`,
-          start: 'top 100%',
 
-          scrub,
-          end: 'bottom 0%',
-        },
+      let mm = gsap.matchMedia();
+
+      mm.add(`(min-width: ${BREAKPOINTS.desktop}px)`, () => {
+        let timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#sc-valley__img-1-start-trigger`,
+            endTrigger: `#sc-valley__img-1-end-trigger`,
+            start: 'top 100%',
+
+            scrub,
+            end: 'bottom 0%',
+          },
+        });
+
+        timeline.fromTo('#sc-valley__img-1', { x: '-50%' }, { x: '0%', ease: 'power4.out' });
       });
-
-      this.timeline1.fromTo('#sc-valley__img-1', { x: '-50%' }, { x: '0%', ease: 'power4.out' });
     },
     setUpTimeline2() {
       const scrub = 1;
 
-      this.timeline2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#sc-valley__img-2-start-trigger`,
-          endTrigger: `#sc-valley__img-2-end-trigger`,
-          start: 'top 100%',
+      let mm = gsap.matchMedia();
 
-          scrub,
-          end: 'bottom 0%',
-        },
+      mm.add(`(min-width: ${BREAKPOINTS.desktop}px)`, () => {
+        let timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#sc-valley__img-2-start-trigger`,
+            endTrigger: `#sc-valley__img-2-end-trigger`,
+            start: 'top 100%',
+            scrub,
+            end: 'bottom 0%',
+          },
+        });
+
+        timeline.fromTo('#sc-valley__img-2', { y: '50%' }, { y: '-10%', ease: 'power4.out' });
       });
-
-      this.timeline2.fromTo('#sc-valley__img-2', { y: '50%' }, { y: '-50%' });
     },
   },
   mounted() {
@@ -179,21 +204,21 @@ export default {
 
 @media screen and (min-width: $desktop) {
   .offset-canvas {
-    left: -90%;
-    top: -50%;
+    left: -110%;
+    top: -110%;
   }
 }
 
 @media screen and (min-width: $widescreen) {
   .offset-canvas {
-    left: -40%;
-    top: -107%;
+    left: -115%;
+    top: -139%;
   }
 }
 
 @media screen and (min-width: $fullhd) {
   .offset-canvas {
-    left: -200px;
+    left: -467px;
     top: -107%;
   }
 }

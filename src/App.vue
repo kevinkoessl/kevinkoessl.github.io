@@ -2,11 +2,18 @@
   <div id="app">
     <b-navbar fixed-top type=" is-transparent">
       <template #end>
-        <b-navbar-item href="/" class="has-text-white">Start</b-navbar-item>
-        <b-navbar-item href="/experience" class="has-text-white mr-6">Lebenslauf</b-navbar-item>
+        <b-navbar-item href="/" :class="{ 'has-text-white': !$mq.includes('mobile') }">Start</b-navbar-item>
+        <b-navbar-item href="/experience" :class="{ 'has-text-white mr-6': !$mq.includes('mobile') }"
+          >Lebenslauf</b-navbar-item
+        >
       </template>
     </b-navbar>
     <router-view></router-view>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p><strong>&copy</strong> Kevin Kössl {{ currentYear }}</p>
+      </div>
+    </footer>
 
     <!--
 
@@ -127,12 +134,48 @@ export default {
       expertise: ['Controlling', 'The', 'Chaos'],
     };
   },
+  computed: {
+    currentYear() {
+      let currentDate = new Date(Date.now());
+      return currentDate.getFullYear();
+    },
+  },
 };
 </script>
 <style lang="scss">
+.footer {
+  border-top: 2px solid black;
+}
 .navbar {
-  border-bottom: 2px solid white;
-  mix-blend-mode: difference;
   background-color: rgba(0, 0, 0, 0);
+  mix-blend-mode: difference;
+  z-index: 198982;
+
+  .navbar-brand {
+    mix-blend-mode: difference;
+    position: relative;
+  }
+
+  .navbar-burger {
+    &:focus,
+    &:hover,
+    &.is-active {
+      color: #ffffff;
+    }
+  }
+
+  .navbar-menu {
+    mix-blend-mode: normal;
+    background-color: #ffffff;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navbar {
+    border-bottom: 2px solid white;
+    .navbar-menu {
+      mix-blend-mode: normal;
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
 }
 </style>

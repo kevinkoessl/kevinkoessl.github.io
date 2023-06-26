@@ -146,7 +146,27 @@
         <div id="full-stack-explained__end-trigger"></div>
 
         <div id="start-start-trigger"></div>
-        <div class="hero is-fullheight"></div>
+        <div class="hero is-fullheight">
+          <div class="container">
+            <div class="columns">
+              <div class="column is-full">
+                <div class="py-6 my-6"></div>
+                <div class="py-6 my-6"></div>
+                <h3 class="title is-5 has-text-centered has-text-white">Meine persönliche</h3>
+                <div class="title is-1 has-text-centered mb-6 has-text-white">Wall Of Fail</div>
+                <p class="is-family-superior title is-3 has-text-centered has-text-primary">
+                  „Wer erfolgreich sein will, muss scheitern!”
+                </p>
+                <div class="py-6 my-6"></div>
+                <p class="title is-6 has-text-white">
+                  Und damit in unserer Zusammenarbeit alles glatt geht, sammel ich meine Fails schonmal im Hinterzimmer.
+                </p>
+
+                <div class="py-6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="end-end-trigger"></div>
     </div>

@@ -6,6 +6,7 @@ import Buefy from 'buefy';
 import VueMq from 'vue-mq';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { BREAKPOINTS } from './consts/break-points';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,13 +14,7 @@ Vue.config.productionTip = false;
 Vue.use(Buefy);
 
 Vue.use(VueMq, {
-  breakpoints: {
-    mobile: 769,
-    tablet: 1025,
-    desktop: 1217,
-    widescreen: 1408,
-    fullhd: Infinity,
-  },
+  breakpoints: BREAKPOINTS,
 });
 
 new Vue({

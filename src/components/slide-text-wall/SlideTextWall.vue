@@ -1,14 +1,10 @@
 <template>
-  <div class="text-wall">
+  <div class="text-wall is-clipped" id="text-wall" style="max-width: 100%">
     <div :id="`text-wall-start-trigger_${_uid}`"></div>
-    <div class="hero is-fullheight is-clipped is-relative is-primary has-gridlines has-gridlines-right">
+    <div class="hero is-fullheight is-relative is-primary has-gridlines has-gridlines-right is-clipped">
       <div class="hero-head"><div class="container"></div></div>
 
-      <div
-        class="hero-background"
-        style="transform: translateX(-50%) rotateZ(-30deg)"
-        :id="`text-wall-background_${_uid}`"
-      >
+      <div class="hero-background" style="transform: translateX(-50%) rotateZ(-30deg)" :id="`text-wall-background`">
         <div
           v-for="i in 11"
           :key="`text-line_${i}`"
@@ -19,7 +15,7 @@
           <span
             v-for="j in 5"
             :key="`text-line-word_${i}_${j}`"
-            class="title is-2 mx-4"
+            class="title is-2 is-size-5-mobile mx-4"
             style="white-space: nowrap"
             :class="i === 6 && j === 3 ? 'has-text-white' : 'has-text-black'"
           >
@@ -27,11 +23,12 @@
           </span>
         </div>
       </div>
+
       <div class="hero-body">
         <div></div>
       </div>
     </div>
-    <div :id="`text-wall-end-trigger_${_uid}`"></div>
+    <div :id="`text-wall-end-trigger`"></div>
   </div>
 </template>
 
@@ -50,23 +47,23 @@ export default {
     setUpTimeline() {
       let scrub = 1;
 
-      this.timeline = gsap.timeline({
+      let timeline = gsap.timeline({
         scrollTrigger: {
           trigger: `#text-wall-start-trigger_${this._uid}`,
-          endTrigger: `#text-wall-end-trigger_${this._uid}`,
+          endTrigger: `#text-wall-end-trigger`,
           end: 'bottom 0%',
-          pin: `#text-wall-background_${this._uid}`,
+          pin: `#text-wall-background`,
           scrub,
         },
       });
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 1; i < 12; i++) {
         let value = Math.abs(7 - i) + 1;
         value = 7 - value;
 
         const direction = i % 2 === 0 ? -1 : 1;
 
-        this.timeline.fromTo(
+        timeline.fromTo(
           `#text-wall-text_${this._uid}-line_${i}`,
           {
             x: direction * value * Math.pow(value, 1.5) * 5,

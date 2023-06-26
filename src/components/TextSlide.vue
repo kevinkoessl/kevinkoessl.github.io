@@ -17,6 +17,7 @@
 </template>
 <script>
 import gsap from 'gsap';
+import { BREAKPOINTS } from '@/consts/break-points';
 
 export default {
   name: 'TextSlide',
@@ -36,39 +37,33 @@ export default {
     setUpTimeline() {
       if (!this.isActive) return;
 
-      if (this.$mq === 'mobile') {
-        if (this.timeline) this.timeline.kill();
+      let mm = gsap.matchMedia();
 
-        return;
-      }
+      mm.add(`(min-width: ${BREAKPOINTS.mobile}px)`, () => {
+        let timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#text-slide-trigger_${this._uid}`,
+            scrub: true,
+            start: 'top 70%',
+            end: '+=400',
+          },
+        });
 
-      this.timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#text-slide-trigger_${this._uid}`,
-          scrub: true,
-
-          start: 'top 70%',
-          end: '+=400',
-        },
-      });
-
-      this.timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
-        x: '100px',
-
-        opacity: 0,
-        ease: 'power1.out',
-        stagger: {
-          amount: 0.5,
-          ease: 'linear',
-        },
+        timeline.from(`#text-slide_${this._uid} .text-slide-line:not(.slide-left)`, {
+          x: '100px',
+          opacity: 0,
+          ease: 'power1.out',
+          stagger: {
+            amount: 0.5,
+            ease: 'linear',
+          },
+        });
       });
     },
   },
 
   mounted() {
     this.setUpTimeline();
-
-    window.addEventListener('resize', this.setUpTimeline);
   },
 };
 </script>

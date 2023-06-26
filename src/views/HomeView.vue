@@ -3,44 +3,61 @@
     <div style="position: sticky; top: 0">
       <job-search-hero />
     </div>
-    <div class="is-relative">
-      <silicon-valley-hero></silicon-valley-hero>
+    <div>
+      <silicon-valley-hero class="is-relative"></silicon-valley-hero>
 
       <slide-text-wall></slide-text-wall>
+
       <section class="hero is-medium has-gridlines is-black has-gridlines-right is-relative" style="z-index: 98">
         <div class="hero-body">
           <div class="container">
             <div class="columns is-multiline is-gapless">
               <div class="column is-full">
                 <div class="py-6">
-                  <div class="title is-3 has-text-white">Willkommen auf meinem virtuellen Spielplatz!</div>
+                  <div class="title is-3 is-size-6-mobile has-text-white">
+                    Willkommen auf meinem virtuellen Spielplatz!
+                  </div>
                   <br />
-                  <p class="is-size-6 has-text-white">
-                    Als erfahrener Webentwickler mit einem Faible für Vue.js, Nest.js und einer Prise Machine Learning
-                    bin ich hier, um deine Projekte auf das nächste Level zu katapultieren.
+                  <p class="is-size-6 is-size-7-mobile has-text-white">
+                    Als erfahrener Webentwickler mit einem Faible für GSAP, Vue, Nest.js und einer Prise Machine
+                    Learning bin ich hier, um deine Projekte auf das nächste Level zu katapultieren.
                   </p>
                   <div class="is-large has-text-centered my-6 py-6">
                     <div :id="`start-trigger_${_uid}`"></div>
-                    <div class="py-6 my-6"></div>
-                    <div class="title is-2 is-family-secondary mb-6">EXAKT</div>
-                    <div class="columns" id="date-cards">
-                      <div class="column" v-for="entry in dateDifference" :key="entry.label">
-                        <div class="card py-6 px-4 has-background-primary" :id="`card_${_uid}_${entry.label}`">
-                          <div class="title is-3 has-text-white">{{ entry.value }}</div>
-                          <div class="title is-6 has-text-black">
+                    <div class="py-6 my-6" v-if="!['mobile', 'tablet'].includes($mq)"></div>
+                    <div
+                      class="title is-2 is-size-5-mobile is-size-4-tablet is-size-2-desktop is-family-secondary mb-6"
+                    >
+                      EXAKT
+                    </div>
+                    <div class="columns is-centered is-multiline" id="date-cards">
+                      <div
+                        class="column is-one-third-tablet is-one-fifth-desktop"
+                        v-for="entry in dateDifference"
+                        :key="entry.label"
+                      >
+                        <div class="card py-6 px-4-tablet has-background-primary" :id="`card_${_uid}_${entry.label}`">
+                          <div class="title is-3 is-size-5-tablet is-size-4-widescreen is-size-3-fullhd has-text-white">
+                            {{ entry.value }}
+                          </div>
+                          <div class="title is-6 is-size-6-mobile is-size-7-tablet is-size-6-fullhd has-text-black">
                             {{ entry.label }}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="title is-4 mb-6 py-6">Praxis Erfahrung</div>
+                    <div class="title is-4 is-size-5-mobile mt-6 mb-1">Praktische Erfahrung</div>
+                    <div class="py-6 mb-6">
+                      <span class="has-text-primary">[</span> In case that really matters to you
+                      <span class="has-text-primary">]</span>
+                    </div>
 
                     <div :id="`end-trigger_${_uid}`"></div>
                   </div>
 
                   <div class="columns">
-                    <div class="column is-half">
-                      <div class="title is-3"><span class="has-text-primary">#</span>amazing</div>
+                    <div class="column is-full is-two-thirds-widescreen is-half-fullhd">
+                      <div class="title is-3 is-size-4-mobile"><span class="has-text-primary">#</span>amazing</div>
                       <p class="is-size-7 has-text-white has-text-weight-bold">
                         <br />Bis heute habe ich so manche Codezeile geschrieben, aber mein wahrer Stolz liegt in all
                         den Nutzererlebnissen, die ich bisher bei meiner Arbeit gestalten durfte. Denn was nützt der
@@ -63,47 +80,61 @@
           </div>
         </div>
       </section>
-      <section class="hero is-large has-gridlines is-white has-gridlines-right">
-        <div class="hero-body is-relative">
-          <div>
-            <div class="columns is-multiline is-gapless">
-              <div class="column is-full">
-                <div class="title is-4 is-family-superior">
-                  Mein Ziel ist es, Webanwendungen zu gestalten, die so intuitiv sind, dass selbst Oma Waltraud sie ohne
-                  Anleitung bedienen kann. Klingt nach einem Abenteuer? Dann lass uns gemeinsam großartige digitale
-                  Erlebnisse erschaffen!
+      <div class="is-relative">
+        <section class="hero is-large has-gridlines is-white has-gridlines-right">
+          <div class="hero-body">
+            <div>
+              <div class="columns is-multiline is-gapless">
+                <div class="column is-full">
+                  <div class="title is-4 is-size-7-mobile is-size-5-tablet is-size-4-desktop is-family-superior">
+                    Mein Ziel ist es, Webanwendungen zu gestalten, die so intuitiv sind, dass selbst Oma Waltraud sie
+                    ohne Anleitung bedienen kann. Klingt nach einem Abenteuer? Dann lass uns gemeinsam großartige
+                    digitale Erlebnisse erschaffen!
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <full-stack-explained></full-stack-explained>
-      <project-gallery />
-      <section class="hero is-medium is-light">
-        <div class="hero-body is-relative">
-          <div>
-            <div class="columns is-multiline is-gapless">
-              <div class="column is-two-thirds">
-                <div class="py-6"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="hero is-medium is-light">
-        <div class="hero-body is-relative">
-          <div>
-            <div class="columns is-multiline is-gapless">
-              <div class="column is-two-thirds">
-                <div class="py-6"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <contact-form />
+        <!---
+        <full-stack-explained></full-stack-explained>
+        <project-gallery />
+        -->
+        <section class="hero is-fullheight is-white">
+          <div class="hero-body is-relative is-justify-content-center">
+            <div>
+              <div class="columns is-centered has-text-centered-tablet has-text-left-mobile">
+                <div class="column is-two-thirds-desktop">
+                  <div class="title is-3 is-size-5-mobile is-size-tablet is-size-3-desktop">
+                    Noch nicht überzeugt<span class="has-text-primary">?</span>
+                  </div>
+                  <p class="is-size-6-tablet is-size-7-mobile has-text-black has-text-weight-bold">
+                    Dann schau doch nochmal über meinen Lebenslauf, oder schreib mir gerne bei LinkedIn! Ich freue mich
+                    schon auf Deine Nachricht.
+                  </p>
+                  <div class="py-6 has-text-centered-mobile">
+                    <a
+                      href="https://www.linkedin.com/in/kevin-k%C3%B6ssl-a7a792232/"
+                      class="button is-ghost has-text-black"
+                      :class="$mq === 'mobile' ? 'is-small' : 'is-medium'"
+                      target="_blank"
+                      >zu LinkedIn</a
+                    >
+                    <b-button
+                      type="is-black is-outlined mr-4"
+                      :size="$mq === 'mobile' ? 'is-small' : 'is-medium'"
+                      icon-right="arrow-right"
+                      @click="$router.push({ path: '/experience', scrollTo: 0 })"
+                      >Lebenslauf</b-button
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </template>
@@ -123,6 +154,7 @@ import ContactForm from '@/components/contact/ContactForm.vue';
 import FullStackExplained from '@/components/full-stack-explained/FullStackExplained.vue';
 import SlideTextWall from '@/components/slide-text-wall/SlideTextWall.vue';
 import ProjectGallery from '@/components/project-gallery/ProjectGallery.vue';
+import { BREAKPOINTS } from '@/consts/break-points';
 
 export default {
   name: 'HomeView',
@@ -175,30 +207,34 @@ export default {
     setUpTimeline() {
       const scrub = 1;
 
-      this.timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#start-trigger_${this._uid}`,
-          endTrigger: `#end-trigger_${this._uid}`,
-          start: 'top 10%',
-          end: 'bottom 50%',
-          scrub,
-        },
-      });
+      const mm = gsap.matchMedia();
 
-      this.dateDifference.forEach((entry, index) => {
-        const value = -(index - Math.floor(this.dateDifference.length / 2));
-        this.timeline.fromTo(
-          `#card_${this._uid}_${entry.label}`,
-          {
-            x: value * 275,
+      mm.add(`(min-width: ${BREAKPOINTS.widescreen}px)`, () => {
+        let timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#start-trigger_${this._uid}`,
+            endTrigger: `#end-trigger_${this._uid}`,
+            start: 'top 10%',
+            end: 'bottom 50%',
+            scrub,
           },
-          {
-            x: 0,
-            ease: 'power4.out',
-            rotate: 0,
-          },
-          '<'
-        );
+        });
+
+        this.dateDifference.forEach((entry, index) => {
+          const value = -(index - Math.floor(this.dateDifference.length / 2));
+          timeline.fromTo(
+            `#card_${this._uid}_${entry.label}`,
+            {
+              x: value * 275,
+            },
+            {
+              x: 0,
+              ease: 'power4.out',
+              rotate: 0,
+            },
+            '<'
+          );
+        });
       });
     },
     updateCurrentDate() {
@@ -274,14 +310,24 @@ export default {
 
 #date-cards {
   .column {
-    z-index: 0;
-    position: relative;
+    position: sticky;
+    top: 0;
   }
   .card {
     outline: 2px solid $black;
   }
-  .column:first-child {
-    z-index: 100;
+}
+
+@media screen and (min-width: $tablet) {
+  #date-cards {
+    .column {
+      z-index: 0;
+      position: relative;
+    }
+
+    .column:first-child {
+      z-index: 100;
+    }
   }
 }
 .is-retro:not(.title) {

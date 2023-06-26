@@ -2,21 +2,6 @@
   <div id="project-gallery has-background-black" style="z-index: 100; position: relative">
     <section class="section has-background-black">
       <div class="container">
-        <div class="columns">
-          <div class="column is-full">
-            <h3 class="title is-5 has-text-centered has-text-white">Meine persönliche</h3>
-            <div class="title is-1 has-text-centered mb-6 has-text-white">Wall Of Fail</div>
-            <p class="is-family-superior title is-3 has-text-centered has-text-primary">
-              „Wer erfolgreich sein will, muss scheitern!”
-            </p>
-            <div class="py-6 my-6"></div>
-            <p class="title is-6 has-text-white">
-              Und damit in unserer Zusammenarbeit alles glatt geht, sammel ich meine Fails schonmal im Hinterzimmer.
-            </p>
-
-            <div class="py-6"></div>
-          </div>
-        </div>
         <div>
           <div
             class="title is-2 has-text-white"

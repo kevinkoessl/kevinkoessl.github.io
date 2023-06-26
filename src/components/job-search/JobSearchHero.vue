@@ -35,6 +35,8 @@
 </template>
 <script>
 import gsap from 'gsap';
+
+import { BREAKPOINTS } from '@/consts/break-points';
 import LightBulbSection from '../LightBulbSection.vue';
 import JobSearchCarousel from './JobSearchCarousel.vue';
 import JobSearchDesktop from './JobSearchDesktop.vue';
@@ -58,19 +60,21 @@ export default {
     mainHeroText() {
       return [
         {
-          class: 'title is-size-4-mobile is-3 has-text-white',
+          class: 'title is-size-6-mobile is-size-5-tablet is-size-4-fullhd is-3 has-text-white',
           text: 'Der <strong class="has-text-weight-bold">beste</strong>',
         },
         {
-          class: 'title is-size-6-mobile is-2 mt-2 is-retro has-text-primary has-text-weight-bold is-family-secondary',
+          class:
+            'title is-size-6-mobile is-size-4-tablet is-size-3-fullhd is-2 mt-2 is-retro has-text-primary has-text-weight-bold is-family-secondary',
           text: 'Full-Stack-Developer',
         },
         {
-          class: 'title is-size-6-mobile is-3 mt-2  has-text-white has-text-weight-normal',
+          class:
+            'title is-size-6-mobile is-size-5-tablet is-size-4-fullhd is-3 mt-2  has-text-white has-text-weight-normal',
           text: 'der <strong class="has-text-weight-bold">Welt</strong> sucht eine',
         },
         {
-          class: `title is-size-5-mobile is-2 mt-2 has-text-dark-desktop has-text-weight-bold is-inline-block is-relative${
+          class: `title is-size-6-mobile is-size-4-tablet is-size-3-fullhd is-2 mt-2 has-text-dark-desktop has-text-weight-bold is-inline-block is-relative${
             ['desktop', 'widescreen', 'fullhd'].includes(this.$mq)
               ? ' has-underline has-text-black slide-left'
               : ' has-text-primary'
@@ -85,17 +89,21 @@ export default {
     setUpTimeline() {
       const scrub = true;
 
-      this.timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#text-wall-start-trigger_${this._uid}`,
-          scrub,
-          start: 'top 0%',
-          end: '+=1300',
-        },
-      });
+      const mm = gsap.matchMedia();
 
-      this.timeline.to(`#content_${this._uid}`, {
-        y: '-30%',
+      mm.add(`(min-width: ${BREAKPOINTS.desktop}px)`, () => {
+        let timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#text-wall-start-trigger_${this._uid}`,
+            scrub,
+            start: 'top 0%',
+            end: '+=1300',
+          },
+        });
+
+        timeline.to(`#content_${this._uid}`, {
+          y: '-30%',
+        });
       });
     },
   },

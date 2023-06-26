@@ -23,12 +23,7 @@
         >
           <div class="hero-background">
             <div :id="`work-experience-image_${_uid}-desktop`" class="has-background-dark is-clipped">
-              <b-image
-                :src="experience.imageUrl"
-                webp-fallback=".jpg"
-                class="is-tinted"
-                :class="experience.imageClass || ''"
-              ></b-image>
+              <b-image :src="experience.imageUrl" class="is-tinted" :class="experience.imageClass || ''"></b-image>
             </div>
           </div>
         </div>
