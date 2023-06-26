@@ -10,7 +10,6 @@
       <div class="section">
         <h3 class="title is-4 is-size-7-mobile py-4-tablet is-family-secondary" :id="`subtitle_${_uid}`">
           {{ data.title }}
-          lol
         </h3>
         <p
           class="content is-broken-grid p-2 py-4-tablet px-6-tablet has-background-primary has-text-white has-text-weight-bold-tablet"
