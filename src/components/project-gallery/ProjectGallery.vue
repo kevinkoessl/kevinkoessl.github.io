@@ -1,14 +1,9 @@
 <template>
-  <div id="project-gallery has-background-black" style="z-index: 100; position: relative">
-    <section class="section has-background-black">
+  <div id="project-gallery" style="z-index: 100; position: relative">
+    <section class="has-background-black section">
       <div class="container">
         <div>
-          <div
-            class="title is-2 has-text-white"
-            style="position: sticky; top: 50px; z-index: 35; mix-blend-mode: difference"
-          >
-            Projekte
-          </div>
+          <div class="title is-2 is-size-5-mobile sticky-title has-text-white">Projekte</div>
           <div class="columns is-multiline is-centered" v-for="(project, index) in projects" :key="project.id">
             <div class="py-6 column is-full">
               <project-tile :data="project" :type="index % 2 === 0 ? 'is-left' : 'is-right'" />
@@ -63,3 +58,22 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@import '~@/styles/main.scss';
+
+#project-gallery {
+  .sticky-title {
+    z-index: 35;
+    mix-blend-mode: difference;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  #project-gallery {
+    .sticky-title {
+      position: sticky;
+      top: 50px;
+    }
+  }
+}
+</style>

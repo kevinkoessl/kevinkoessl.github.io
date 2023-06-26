@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="position: sticky; top: 0">
+    <div class="main-hero">
       <job-search-hero />
     </div>
     <div>
@@ -14,11 +14,11 @@
             <div class="columns is-multiline is-gapless">
               <div class="column is-full">
                 <div class="py-6">
-                  <div class="title is-3 is-size-6-mobile has-text-white">
+                  <div class="title is-3 is-size-6-mobile is-size-5-tablet is-size-3-desktop has-text-white">
                     Willkommen auf meinem virtuellen Spielplatz!
                   </div>
                   <br />
-                  <p class="is-size-6 is-size-7-mobile has-text-white">
+                  <p class="is-size-6 is-size-7-mobile is-size-7-tablet is-size-6-desktop has-text-white">
                     Als erfahrener Webentwickler mit einem Faible für GSAP, Vue, Nest.js und einer Prise Machine
                     Learning bin ich hier, um deine Projekte auf das nächste Level zu katapultieren.
                   </p>
@@ -97,10 +97,10 @@
           </div>
         </section>
 
-        <!---
         <full-stack-explained></full-stack-explained>
+
         <project-gallery />
-        -->
+
         <section class="hero is-fullheight is-white">
           <div class="hero-body is-relative is-justify-content-center">
             <div>
@@ -319,6 +319,11 @@ export default {
 }
 
 @media screen and (min-width: $tablet) {
+  .main-hero {
+    position: sticky;
+    top: 0;
+  }
+
   #date-cards {
     .column {
       z-index: 0;
