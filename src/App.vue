@@ -1,6 +1,19 @@
 <template>
   <div id="app">
-    <b-navbar fixed-top type=" is-transparent">
+    <b-navbar fixed-top type=" is-transparent" :mobile-burger="false">
+      <template #brand v-if="$mq === 'mobile'">
+        <b-navbar-item
+          href="/"
+          class="has-icon-left"
+          :class="{ 'has-text-black mr-6': !$mq.includes('mobile') }"
+          v-if="$route.path !== '/'"
+        >
+          <b-icon icon="arrow-left" class="mr-3"></b-icon> Zurück zur Startseite</b-navbar-item
+        >
+        <b-navbar-item href="/experience" :class="{ 'has-text-black mr-6': !$mq.includes('mobile') }" v-else
+          >Lebenslauf</b-navbar-item
+        >
+      </template>
       <template #end>
         <b-navbar-item
           href="/"
@@ -155,12 +168,13 @@ export default {
 }
 .navbar {
   background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px solid white;
   mix-blend-mode: difference;
   z-index: 198982;
 
   .navbar-brand {
-    mix-blend-mode: difference;
     position: relative;
+    justify-content: flex-end;
   }
 
   .navbar-burger {
@@ -178,7 +192,6 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .navbar {
-    border-bottom: 2px solid white;
     .navbar-menu {
       mix-blend-mode: normal;
       background-color: rgba(0, 0, 0, 0);

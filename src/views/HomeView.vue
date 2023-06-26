@@ -119,8 +119,11 @@
                     Noch nicht überzeugt<span class="has-text-primary">?</span>
                   </div>
                   <p class="is-size-6-tablet is-size-7-mobile has-text-black has-text-weight-bold">
-                    Dann schau doch nochmal über meinen Lebenslauf, oder schreib mir gerne bei LinkedIn! Ich freue mich
-                    schon auf Deine Nachricht.
+                    Dann ist Dir leider nicht mehr zu helfen. 😁 <br />
+                  </p>
+                  <p>
+                    Schau doch nochmal über meinen Lebenslauf, oder schreib mir gerne bei LinkedIn und überleg's Dir ein
+                    zweites mal. Ich freue mich schon auf Deine Nachricht!
                   </p>
                   <div class="py-6 has-text-centered-mobile">
                     <a

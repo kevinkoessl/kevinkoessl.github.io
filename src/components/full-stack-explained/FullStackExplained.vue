@@ -88,7 +88,7 @@
                     <p class="has-text-black">
                       So schön romantisch es im Frontend auch zugeht, ohne Backend läuft hier meistens nichts.
                       Datenbanken, Algorithmen und Server verarbeiten die Eingaben Deiner User. Und wenn alles
-                      Reibungslos läuft, bekommen sie davon nichtmal was mit.
+                      reibungslos läuft, bekommen sie davon nichtmal was mit.
                     </p>
                     <br />
                     <p class="s-size-7 has-text-black pt-3 has-text-weight-bold">
@@ -118,7 +118,7 @@
                     <p class="has-text-black">
                       So schön romantisch es im Frontend auch zugeht, ohne Backend läuft hier meistens nichts.
                       Datenbanken, Algorithmen und Server verarbeiten die Eingaben Deiner User. Und wenn alles
-                      Reibungslos läuft, bekommen sie davon nichtmal was mit.
+                      reibungslos läuft, bekommen sie davon nichtmal was mit.
                     </p>
                     <br />
                     <p class="s-size-7 has-text-black pt-3 has-text-weight-bold">
