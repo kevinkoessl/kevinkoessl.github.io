@@ -158,10 +158,11 @@
                 >
                   Meine persönliche
                 </h3>
+                <div id="wall-of-fail-start-trigger"></div>
                 <div
                   class="title is-1 is-size-5-mobile is-size-3-tablet is-2-desktop is-size-1-widescreen has-text-centered-tablet mb-6 has-text-white"
                 >
-                  Wall Of Fail
+                  Wall Of <span class="fail">Fail</span>
                 </div>
                 <p
                   class="title is-3 is-size-6-mobile is-size-5-tablet is-size-3-desktop has-text-centered-tablet has-text-primary is-family-superior"
@@ -170,7 +171,8 @@
                 </p>
                 <mq-layout :mq="['tablet', 'desktop', 'widescreen', 'fullhd']" class="py-6 my-6"> </mq-layout>
                 <p class="title is-6 is-size-7-mobile is-size-7-tablet is-size-6-desktop has-text-white">
-                  Und damit in unserer Zusammenarbeit alles glatt geht, sammel ich meine Fails schonmal im Hinterzimmer.
+                  Und damit in unserer Zusammenarbeit alles glatt geht, sammel ich meine Fails schonmal in meinem
+                  Hinterzimmer.
                 </p>
 
                 <div class="py-6"></div>
@@ -219,6 +221,18 @@ export default {
         .from('#animate-backend', { y: '100%' }, '<')
         .to('.card--frontend .switch-switch-parent', { x: '100%' }, '<')
         .to('.card--frontend .switch-switch .switch-frontend', { x: '-100%' }, '<');
+
+      const timeline2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#wall-of-fail-start-trigger',
+          start: 'top 70%',
+          scrub: 1,
+          end: '+=400',
+          pinnedContainer: '#full-stack-explained',
+        },
+      });
+
+      timeline2.to('.fail', { rotate: 90, y: '100%', opacity: 0 });
     },
     desktopTimeline() {
       const scrub = 1;
@@ -257,6 +271,18 @@ export default {
         .to('.parallax', { y: '-50%', duration: 1 }, '<')
         .to('.card--frontend .switch-switch-parent', { x: '100%' }, '<')
         .to('.card--frontend .switch-switch .switch-frontend', { x: '-100%' }, '<');
+
+      const timeline3 = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#wall-of-fail-start-trigger',
+          start: 'top 50%',
+          scrub: 1,
+          end: '+=800',
+          pinnedContainer: '#full-stack-explained',
+        },
+      });
+
+      timeline3.to('.fail', { rotate: 90, y: '100%', opacity: 0 });
     },
     setUpTimeline() {
       const mm = gsap.matchMedia();
@@ -274,6 +300,9 @@ export default {
 
 #full-stack-explained {
   background: linear-gradient(#ffffff 0%, #ffffff 20%, #171b20 20.0001%, #171b20 100%);
+  .fail {
+    display: inline-block;
+  }
 }
 
 .switch-text {
