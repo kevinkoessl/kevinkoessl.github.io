@@ -150,9 +150,6 @@ export default {
 };
 </script>
 <style lang="scss">
-#app {
-  overflow-x: hidden;
-}
 .footer {
   border-top: 2px solid black;
 }

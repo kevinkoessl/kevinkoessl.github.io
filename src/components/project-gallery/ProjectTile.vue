@@ -10,9 +10,9 @@
       <div class="section">
         <h3 class="title is-4 is-size-7-mobile py-4-tablet is-family-secondary" :id="`subtitle_${_uid}`">
           {{ data.title }}
+          lol
         </h3>
         <p
-          :id="`content_${_uid}`"
           class="content is-broken-grid p-2 py-4-tablet px-6-tablet has-background-primary has-text-white has-text-weight-bold-tablet"
           v-html="data.description"
         ></p>
@@ -66,11 +66,7 @@
             </mq-layout>
 
             <mq-layout :mq="['mobile', 'tablet']">
-              <h2
-                :id="`title_${_uid}`"
-                class="is-broken-grid has-text-left-mobile has-text-right-desktop py-3"
-                v-html="data.subtitle"
-              ></h2>
+              <h2 class="is-broken-grid has-text-left-mobile has-text-right-desktop py-3" v-html="data.subtitle"></h2>
               <div class="has-text-right mt-5">
                 <b-button icon-right="arrow-right" size="is-small" type="is-primary" @click="isOpen = true"
                   >Mehr Erfahren</b-button
@@ -141,7 +137,9 @@ export default {
   },
 
   mounted() {
-    this.setUpTimeline();
+    setTimeout(() => {
+      this.setUpTimeline();
+    }, 100);
   },
 };
 </script>
