@@ -2,8 +2,15 @@
   <div id="app">
     <b-navbar fixed-top type=" is-transparent">
       <template #end>
-        <b-navbar-item href="/" :class="{ 'has-text-white': !$mq.includes('mobile') }">Start</b-navbar-item>
-        <b-navbar-item href="/experience" :class="{ 'has-text-white mr-6': !$mq.includes('mobile') }"
+        <b-navbar-item
+          href="/"
+          class="has-icon-left"
+          :class="{ 'has-text-white mr-6': !$mq.includes('mobile') }"
+          v-if="$route.path !== '/'"
+        >
+          <b-icon icon="arrow-left" class="mr-3"></b-icon> Zurück zur Startseite</b-navbar-item
+        >
+        <b-navbar-item href="/experience" :class="{ 'has-text-white mr-6': !$mq.includes('mobile') }" v-else
           >Lebenslauf</b-navbar-item
         >
       </template>
@@ -143,6 +150,9 @@ export default {
 };
 </script>
 <style lang="scss">
+#app {
+  overflow-x: hidden;
+}
 .footer {
   border-top: 2px solid black;
 }

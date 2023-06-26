@@ -1,7 +1,7 @@
 <template>
   <div class="work-experience has-background-white">
     <!--iris-in-transition /-->
-    <div class="hero is-medium is-white has-gridlines">
+    <div class="hero is-medium is-black has-gridlines">
       <div class="hero-body">
         <div :class="{ container: ['widescreen', 'fullhd'].includes($mq) }">
           <div class="title is-3 is-size-5-mobile is-retro">Praktische Erfahrung</div>

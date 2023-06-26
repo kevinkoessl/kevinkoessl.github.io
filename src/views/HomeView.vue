@@ -30,18 +30,27 @@
                     >
                       EXAKT
                     </div>
-                    <div class="columns is-centered is-multiline" id="date-cards">
+                    <div class="columns is-gapless is-centered is-multiline" id="date-cards">
                       <div
                         class="column is-one-third-tablet is-one-fifth-desktop"
                         v-for="entry in dateDifference"
                         :key="entry.label"
                       >
-                        <div class="card py-6 px-4-tablet has-background-primary" :id="`card_${_uid}_${entry.label}`">
-                          <div class="title is-3 is-size-5-tablet is-size-4-widescreen is-size-3-fullhd has-text-white">
-                            {{ entry.value }}
-                          </div>
-                          <div class="title is-6 is-size-6-mobile is-size-7-tablet is-size-6-fullhd has-text-black">
-                            {{ entry.label }}
+                        <div
+                          :class="{
+                            'p-1': ['mobile', 'tablet'].includes($mq),
+                            'p-2': ['desktop', 'widescreen', 'fullhd'].includes($mq),
+                          }"
+                        >
+                          <div class="card py-6 px-4-tablet has-background-primary" :id="`card_${_uid}_${entry.label}`">
+                            <div
+                              class="title is-3 is-size-5-tablet is-size-4-widescreen is-size-3-fullhd has-text-white"
+                            >
+                              {{ entry.value }}
+                            </div>
+                            <div class="title is-6 is-size-6-mobile is-size-7-tablet is-size-6-fullhd has-text-black">
+                              {{ entry.label }}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -68,7 +77,7 @@
                           type="is-white is-outlined mr-4"
                           size="is-medium"
                           icon-right="arrow-right"
-                          @click="$router.push({ path: '/experience', scrollTo: 0 })"
+                          @click="$router.push({ path: '/experience' })"
                           >Lebenslauf</b-button
                         >
                       </div>
@@ -125,7 +134,7 @@
                       type="is-black is-outlined mr-4"
                       :size="$mq === 'mobile' ? 'is-small' : 'is-medium'"
                       icon-right="arrow-right"
-                      @click="$router.push({ path: '/experience', scrollTo: 0 })"
+                      @click="$router.push({ path: '/experience' })"
                       >Lebenslauf</b-button
                     >
                   </div>
@@ -225,7 +234,7 @@ export default {
           timeline.fromTo(
             `#card_${this._uid}_${entry.label}`,
             {
-              x: value * 275,
+              x: value * 269,
             },
             {
               x: 0,
@@ -249,6 +258,8 @@ export default {
     this.startDate = new Date(Date.parse('01 Feb 2019 10:00:00 GMT'));
     this.currentDate = new Date(Date.now());
     this.createInterval();
+    window.scrollTo(0, 0);
+
     setTimeout(() => {
       this.setUpTimeline();
     }, 1000);
@@ -309,6 +320,7 @@ export default {
 }
 
 #date-cards {
+  position: relative;
   .column {
     position: sticky;
     top: 0;
@@ -335,6 +347,7 @@ export default {
     }
   }
 }
+
 .is-retro:not(.title) {
   position: relative;
   img {

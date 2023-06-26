@@ -7,12 +7,21 @@
           <div class="switch-background">
             <div class="columns is-multiline">
               <div class="column is-half has-text-black">
-                <div class="title is-2 is-size-6-mobile has-text-primary mb-0 is-relative is-retro">
+                <mq-layout :mq="['tablet', 'desktop', 'widescreen']" class="my-6"></mq-layout>
+
+                <div
+                  class="title is-2 is-size-6-mobile is-size-4-tablet is-size-3-widescreen is-size-2-fullhd has-text-primary mb-0 is-relative is-retro"
+                >
                   Was ist Full-Stack?
                 </div>
+                <mq-layout :mq="['tablet']" class="my-3"></mq-layout>
                 <div class="is-flex is-justify-content-flex-end">
                   <div class="switch-cards" id="switch-cards">
-                    <div class="mr-4 py-6" style="border-right: 2px solid white; mix-blend-mode: difference"></div>
+                    <mq-layout
+                      :mq="['desktop', 'widescreen', 'fullhd']"
+                      class="mr-4 py-6"
+                      style="border-right: 2px solid white; mix-blend-mode: difference"
+                    ></mq-layout>
                     <div class="card card--frontend">
                       <div class="card-head" style="border-bottom: 2px solid white; mix-blend-mode: difference">
                         <div class="mr-4 py-3" style="border-right: 2px solid white; mix-blend-mode: difference"></div>
@@ -20,7 +29,7 @@
                       <div class="card-body">
                         <div class="mr-4 px-4 px-0-tablet" style="border-right: 2px solid #171b20">
                           <div
-                            class="title is-3 is-size-4-mobile is-broken-grid is-family-superior is-clipped"
+                            class="title is-3 is-size-4-mobile is-size-4-tablet is-size-4-desktop is-size-4-widescreen is-size-3-fullhd is-broken-grid is-family-superior is-clipped"
                             style="mix-blend-mode: difference"
                           >
                             <div class="switch-text has-text-white" id="animate-frontend">FRONT<br />END</div>
@@ -68,7 +77,8 @@
 
               <div class="column is-half py-6">
                 <mq-layout class="py-6" :mq="['tablet', 'desktop', 'widescreen', 'fullhd']"></mq-layout>
-                <div class="parallax is-clipped mt-6-tablet" style="border-radius: 5px">
+                <mq-layout class="py-6 my-4" :mq="['desktop', 'widescreen']"></mq-layout>
+                <div class="parallax is-clipped mt-6-tablet" style="border-radius: 7px">
                   <mq-layout
                     :mq="['tablet', 'desktop', 'widescreen', 'fullhd']"
                     class="switch-text-backend has-background-white p-4 inset"
@@ -143,13 +153,23 @@
                 <mq-layout :mq="['tablet', 'desktop', 'widescreen', 'fullhd']">
                   <div class="py-6 my-6"></div>
                 </mq-layout>
-                <h3 class="title is-5 is-size-7-mobile has-text-centered-tablet has-text-white">Meine persönliche</h3>
-                <div class="title is-1 is-size-5-mobile has-text-centered-tablet mb-6 has-text-white">Wall Of Fail</div>
-                <p class="is-family-superior title is-3 is-size-6-mobile has-text-centered-tablet has-text-primary">
+                <h3
+                  class="title is-5 is-size-7-mobile is-size-6-tablet is-size-5-desktop has-text-centered-tablet has-text-white"
+                >
+                  Meine persönliche
+                </h3>
+                <div
+                  class="title is-1 is-size-5-mobile is-size-3-tablet is-2-desktop is-size-1-widescreen has-text-centered-tablet mb-6 has-text-white"
+                >
+                  Wall Of Fail
+                </div>
+                <p
+                  class="title is-3 is-size-6-mobile is-size-5-tablet is-size-3-desktop has-text-centered-tablet has-text-primary is-family-superior"
+                >
                   „Wer erfolgreich sein will, muss scheitern!”
                 </p>
                 <mq-layout :mq="['tablet', 'desktop', 'widescreen', 'fullhd']" class="py-6 my-6"> </mq-layout>
-                <p class="title is-6 is-size-7-mobile has-text-white">
+                <p class="title is-6 is-size-7-mobile is-size-7-tablet is-size-6-desktop has-text-white">
                   Und damit in unserer Zusammenarbeit alles glatt geht, sammel ich meine Fails schonmal im Hinterzimmer.
                 </p>
 
@@ -187,7 +207,6 @@ export default {
           pin: '#frontend-section',
           start: this.$mq === 'mobile' ? 'top -10%' : 'top: 0%',
           scrub,
-          markers: true,
           end: '+=1000',
         },
       });
@@ -225,8 +244,8 @@ export default {
           start: 'top 105%',
           scrub,
           end: 'bottom 70%',
-
           pin: '#frontend-section',
+
           pinnedContainer: '#full-stack-explained',
         },
       });
@@ -241,8 +260,8 @@ export default {
     },
     setUpTimeline() {
       const mm = gsap.matchMedia();
-      mm.add(`(max-width: ${BREAKPOINTS.tablet}px)`, this.mobileTimeline);
-      mm.add(`(min-width: ${BREAKPOINTS.desktop}px)`, this.desktopTimeline);
+      mm.add(`(max-width: ${BREAKPOINTS.mobile - 1}px)`, this.mobileTimeline);
+      mm.add(`(min-width: ${BREAKPOINTS.mobile}px)`, this.desktopTimeline);
     },
   },
   mounted() {
@@ -302,6 +321,7 @@ export default {
 
 .parallax {
   z-index: 0;
+  position: relative;
   border: 2px solid $black;
 
   .switch-text-frontend {
@@ -310,6 +330,13 @@ export default {
 }
 
 @media screen and (min-width: $tablet) {
+  .parallax {
+    .switch-text-frontend {
+      border: none;
+    }
+  }
+}
+@media screen and (min-width: $fullhd) {
   #full-stack-explained {
     background: linear-gradient(#ffffff 0%, #ffffff 30%, #171b20 30.0001%, #171b20 100%);
   }

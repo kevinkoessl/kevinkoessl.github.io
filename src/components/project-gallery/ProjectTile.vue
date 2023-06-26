@@ -1,7 +1,7 @@
 <template>
   <div class="project-tile">
     <div :id="`start-trigger_${_uid}`"></div>
-    <b-sidebar v-model="isOpen" fullwidth fullheight scroll="clip">
+    <b-sidebar v-model="isOpen" fullheight scroll="clip" mobile="fullwidth">
       <div class="pt-3 px-3">
         <b-button type="is-ghost" class="has-text-black" icon-left="close" size="is-small" @click="isOpen = false"
           >Schließen</b-button
@@ -22,7 +22,7 @@
     </b-sidebar>
     <div class="columns is-centered is-multiline">
       <mq-layout
-        :mq="['tablet', 'desktop', 'widescreen', 'fullhd']"
+        :mq="['desktop', 'widescreen', 'fullhd']"
         class="column is-full-tablet is-5-desktop is-flex is-align-items-center is-justify-content-flex-end-tablet"
       >
         <h2
@@ -39,9 +39,9 @@
         <div class="card has-gridlines" :id="`card_${_uid}`">
           <div class="card-header">
             <div class="grid-line mx-4 py-3" :class="type">
-              <mq-layout :mq="['mobile']">
+              <mq-layout :mq="['mobile', 'tablet']">
                 <h3
-                  class="title is-4 is-size-7-mobile py-4-tablet px-3 is-family-secondary has-text-white"
+                  class="title is-4 is-size-7-mobile is-size-7-tablet py-4-tablet px-3 is-family-secondary has-text-white"
                   :id="`subtitle_${_uid}`"
                 >
                   {{ data.title }}
@@ -49,12 +49,12 @@
               </mq-layout>
             </div>
           </div>
-          <div
-            class="card-content is-clipped px-2 py-4 has-gridlines mx-4"
-            :class="{ [type]: true, ' ': $mq !== 'mobile' }"
-          >
-            <mq-layout :mq="['tablet', 'desktop', 'widescreen', 'fullhd']">
-              <h3 class="title is-4 is-size-7-mobile py-4-tablet is-family-secondary" :id="`subtitle_${_uid}`">
+          <div class="card-content px-2 py-4 has-gridlines mx-4" :class="{ [type]: true, ' ': $mq !== 'mobile' }">
+            <mq-layout :mq="['desktop', 'widescreen', 'fullhd']">
+              <h3
+                class="title is-4 is-size-7-mobile is-size-6-tablet is-size-4-widescreen py-4-tablet is-family-secondary"
+                :id="`subtitle_${_uid}`"
+              >
                 {{ data.title }}
               </h3>
               <p
@@ -65,7 +65,7 @@
               <div v-html="data.challenges"></div>
             </mq-layout>
 
-            <mq-layout :mq="['mobile']">
+            <mq-layout :mq="['mobile', 'tablet']">
               <h2
                 :id="`title_${_uid}`"
                 class="is-broken-grid has-text-left-mobile has-text-right-desktop py-3"
@@ -119,7 +119,7 @@ export default {
     setUpTimeline() {
       const mm = gsap.matchMedia();
 
-      mm.add(`(min-width: ${BREAKPOINTS.desktop}px)`, () => {
+      mm.add(`(min-width: ${BREAKPOINTS.tablet}px)`, () => {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: `#start-trigger_${this._uid}`,
@@ -133,7 +133,7 @@ export default {
         timeline
           .from(`#title_${this._uid}`, { x: '50%', duration: 0.5 })
           .from(`#card_${this._uid}`, { x: '-100px', duration: 0.5 }, '<')
-          .fromTo(`#content_${this._uid}`, { x: 0 }, { x: '20%', duration: 0.5 }, '<')
+          .fromTo(`#content_${this._uid}`, { x: 0 }, { x: '10%', duration: 0.5 }, '<')
           .fromTo(`#subtitle_${this._uid}`, { y: '10%' }, { y: '-10%', duration: 1 }, '<50%')
           .fromTo(`#content_${this._uid}`, { y: '50%' }, { y: '-10%', duration: 1 }, '<');
       });

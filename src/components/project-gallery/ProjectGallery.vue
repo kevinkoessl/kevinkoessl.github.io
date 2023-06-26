@@ -4,8 +4,12 @@
       <div class="container">
         <div>
           <div class="title is-2 is-size-5-mobile sticky-title has-text-white">Projekte</div>
-          <div class="columns is-multiline is-centered" v-for="(project, index) in projects" :key="project.id">
-            <div class="py-6 column is-full">
+          <div class="columns is-multiline is-centered">
+            <div
+              class="py-6-mobile py-6-desktop column is-full-desktop is-half-tablet"
+              v-for="(project, index) in projects"
+              :key="project.id"
+            >
               <project-tile :data="project" :type="index % 2 === 0 ? 'is-left' : 'is-right'" />
             </div>
           </div>
@@ -38,7 +42,7 @@ export default {
         {
           id: 2,
           title: 'Revuelution',
-          subtitle: 'Eine Vue3 Animation-Library ',
+          subtitle: 'Eine Vue3 Komponenten - Library mit GSAP Animationen',
           description:
             'Falls es Dir bis jetzt noch nicht aufgefallen ist, ich mag Animationen. Auf meiner Suche nach bestehenden Librarys ist mir dabei aufgefallen, dass es einige Probleme bei der Nutzung von GSAP mit Vue3 noch zu lösen gibt. ',
           challenges:

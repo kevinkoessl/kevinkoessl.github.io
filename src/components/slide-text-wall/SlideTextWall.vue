@@ -9,7 +9,7 @@
 
       <div class="hero-background" :id="`text-wall-background`">
         <div
-          v-for="i in 12"
+          v-for="i in 15"
           :key="`text-line_${i}`"
           style="height: unset"
           :id="`text-wall-text_${_uid}-line_${i}`"
@@ -18,7 +18,7 @@
           <span
             v-for="j in 5"
             :key="`text-line-word_${i}_${j}`"
-            class="title is-2 is-size-6-mobile is-size-4-tablet is-size-3-desktop mx-4"
+            class="title is-2 is-size-6-mobile is-size-4-tablet is-size-3-desktop is-size-2-widescreen mx-4"
             style="white-space: nowrap"
             :class="i === 6 && j === 3 ? 'has-text-white' : 'has-text-black'"
           >
@@ -109,7 +109,7 @@ export default {
 @media screen and (min-width: $desktop) {
   #text-wall-background {
     max-height: none;
-    transform: translateX(-50%) rotateZ(-30deg);
+    transform: translateX(-50%) translateY(0) rotateZ(-30deg);
   }
 }
 

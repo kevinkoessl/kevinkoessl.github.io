@@ -13,6 +13,10 @@ export default {
   components: {
     WorkExperience,
   },
+
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 <style lang="scss"></style>
