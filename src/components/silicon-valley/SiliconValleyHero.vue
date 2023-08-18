@@ -27,7 +27,11 @@
                   class="is-retro is-primary"
                   id="sc-valley__img-1"
                 >
-                  <b-image :src="require('@/assets/img/silicon-valley.png')" ratio="is4by3"></b-image>
+                  <b-image
+                    :src="require('@/assets/img/silicon-valley.png')"
+                    ratio="is4by3"
+                    alt="Silicon Valley - Karte"
+                  ></b-image>
                 </div>
               </div>
             </div>
@@ -69,7 +73,11 @@
 
               <div :style="`width: ${!['mobile', 'tablet', 'desktop'].includes($mq) ? '400px' : '100%'}`">
                 <div class="is-retro has-background-light px-4" id="sc-valley__img-2">
-                  <b-image :src="require('@/assets/img/kevin-cutout.png')" ratio="is5by7" />
+                  <b-image
+                    :src="require('@/assets/img/kevin-cutout.png')"
+                    ratio="is5by7"
+                    alt="Kevin Kössl - Full Stack Developer"
+                  />
                 </div>
               </div>
             </div>

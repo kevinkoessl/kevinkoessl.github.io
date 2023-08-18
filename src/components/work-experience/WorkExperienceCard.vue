@@ -7,6 +7,7 @@
         <div :id="`work-experience-image_${_uid}`" class="has-background-dark is-clipped work-experience-image-div">
           <b-image
             :src="experience.imageUrl"
+            :alt="experience.imageAlt"
             class="is-clipped is-tinted"
             :class="experience.imageClass || ''"
           ></b-image>
@@ -23,7 +24,12 @@
         >
           <div class="hero-background">
             <div :id="`work-experience-image_${_uid}-desktop`" class="has-background-dark is-clipped">
-              <b-image :src="experience.imageUrl" class="is-tinted" :class="experience.imageClass || ''"></b-image>
+              <b-image
+                :src="experience.imageUrl"
+                :alt="experience.imageAlt"
+                class="is-tinted"
+                :class="experience.imageClass || ''"
+              ></b-image>
             </div>
           </div>
         </div>

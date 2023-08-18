@@ -9,7 +9,11 @@
           <div class="column is-half">
             <div class="px-6">
               <div style="width: 80%" class="is-retro">
-                <b-image :src="require('@/assets/img/silicon-valley.png')" ratio="is4by3"></b-image>
+                <b-image
+                  :src="require('@/assets/img/silicon-valley.png')"
+                  ratio="is4by3"
+                  alt="Silicon Valley - Karte"
+                ></b-image>
               </div>
             </div>
           </div>
