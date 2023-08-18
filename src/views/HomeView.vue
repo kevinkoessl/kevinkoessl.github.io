@@ -199,7 +199,7 @@ export default {
 
       var distance = this.currentDate.getTime() - this.startDate.getTime(); // this is a time in milliseconds
 
-      var years = Math.abs(Math.round(distance / 1000 / (60 * 60 * 24) / 365.25));
+      var years = Math.abs(Math.round(distance / 1000 / (60 * 60 * 24) / 365.25)) - 1;
 
       var days = Math.abs(Math.floor(years * 365.25 - Math.floor(distance / (1000 * 60 * 60 * 24))));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
