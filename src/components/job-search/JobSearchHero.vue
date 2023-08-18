@@ -28,6 +28,17 @@
             size="is-small"
             >{{ lightSwitchLabel }}
           </b-switch>
+          <div class="scroll-down is-flex is-justify-content-center is-align-items-center">
+            <div
+              class="scroll-down-button is-flex is-justify-content-center is-align-items-center"
+              :class="{ 'is-animated': animated }"
+              @click="scrollDown"
+              @mouseenter="animated = false"
+              @mouseleave="animated = true"
+            >
+              <b-icon icon="chevron-down" type="is-light" size="is-medium"></b-icon>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -50,6 +61,7 @@ export default {
     return {
       timeline: null,
       hasLight: false,
+      animated: true,
     };
   },
 
@@ -86,6 +98,9 @@ export default {
   },
 
   methods: {
+    scrollDown() {
+      window.scrollTo({ top: this.$mq !== 'mobile' ? 1000 : 800, behavior: 'smooth' });
+    },
     setUpTimeline() {
       const scrub = true;
 
@@ -112,4 +127,57 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+@import '~@/styles/main.scss';
+.scroll-down-button {
+  border: 1px solid $white;
+  border-radius: 50%;
+  transition: box-shadow 0.15s ease-in-out;
+  box-shadow: 0 0 0 0 hsla(0, 0%, 100%, 0.7);
+  cursor: pointer;
+
+  margin-top: 100px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 50px;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    margin-top: 0;
+  }
+  &:hover {
+    transition: box-shadow 0.7s cubic-bezier(0.31, 0.46, 0.02, 1);
+    box-shadow: 0 0 0 30px hsla(0, 0%, 100%, 0.2);
+  }
+
+  &.is-animated {
+    -webkit-animation: bounce 2s infinite 2s;
+    animation: bounce 2s infinite 2s;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  60% {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+</style>
