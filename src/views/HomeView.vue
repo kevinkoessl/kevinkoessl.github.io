@@ -197,21 +197,21 @@ export default {
         return '';
       }
 
-      var distance = this.currentDate.getTime() - this.startDate.getTime(); // this is a time in milliseconds
+      const diff = this.$moment.duration(this.currentDate.diff(this.startDate));
 
-      var years = Math.abs(Math.round(distance / 1000 / (60 * 60 * 24) / 365.25)) - 1;
+      const a = this.$moment([this.currentDate.year(), this.startDate.month(), this.startDate.date()]);
 
-      var days = Math.abs(Math.floor(years * 365.25 - Math.floor(distance / (1000 * 60 * 60 * 24))));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const dayDiff = this.$moment.duration(this.currentDate.diff(a)).asDays();
 
+      console.log(a);
+
+      const date = diff._data;
       return [
-        { label: 'Jahre', value: years },
-        { label: 'Tage', value: days },
-        { label: 'Stunden', value: hours },
-        { label: 'Minuten', value: minutes },
-        { label: 'Sekunden', value: seconds },
+        { label: 'Jahre', value: date.years },
+        { label: 'Tage', value: Math.floor(dayDiff) },
+        { label: 'Stunden', value: date.hours },
+        { label: 'Minuten', value: date.minutes },
+        { label: 'Sekunden', value: date.seconds },
       ];
     },
   },
@@ -250,7 +250,7 @@ export default {
       });
     },
     updateCurrentDate() {
-      this.currentDate = new Date(Date.now());
+      this.currentDate = this.$moment();
     },
     createInterval() {
       this.interval = setInterval(this.updateCurrentDate, 1000);
@@ -258,8 +258,8 @@ export default {
   },
 
   mounted() {
-    this.startDate = new Date(Date.parse('01 Feb 2019 10:00:00 GMT'));
-    this.currentDate = new Date(Date.now());
+    this.startDate = this.$moment.parseZone('01 Feb 2019 10:00:00+0:00');
+    this.currentDate = this.$moment();
     this.createInterval();
     window.scrollTo(0, 0);
 

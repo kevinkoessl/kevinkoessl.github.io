@@ -7,6 +7,8 @@ import VueMq from 'vue-mq';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { BREAKPOINTS } from './consts/break-points';
+import moment from 'moment';
+import vueMoment from 'vue-moment';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +17,10 @@ Vue.use(Buefy);
 
 Vue.use(VueMq, {
   breakpoints: BREAKPOINTS,
+});
+
+Vue.use(vueMoment, {
+  moment,
 });
 
 new Vue({
